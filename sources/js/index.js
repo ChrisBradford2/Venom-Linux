@@ -64,7 +64,9 @@ scope.addEventListener("click", (e) => {
     }
 })
 
-
+/**
+ * Get current time date
+ */
 const getCurrentTimeDate = () => {
     let currentTimeDate = new Date();
 
