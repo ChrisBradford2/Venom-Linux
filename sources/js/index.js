@@ -127,3 +127,35 @@ const getCurrentTimeDate = () => {
 
 }
 getCurrentTimeDate();
+
+/**
+ * Get current time date
+ */
+class Application {
+    constructor(icon,name,link){
+    	this.icon=icon;
+      	this.name=name;
+        this.link=link;
+    }
+}
+
+const figma = new Application('../assets/icons/figma.svg', 'Figma', 'https://fonts.googleapis.com');
+const github = new Application('../assets/icons/github.svg', 'Github', 'https://fonts.googleapis.com');
+
+let applicationList = new Array();
+applicationList[0] = figma;
+applicationList[1] = github;
+
+for (let key in applicationList) {
+    console.log("key : " + key + "  =>value: " + applicationList[key] + "<br>");
+}
+
+// Storing data:
+const myObj = { name: "John", age: 31, city: "New York" };
+const myJSON = JSON.stringify(myObj);
+localStorage.setItem("testJSON", myJSON);
+
+// Retrieving data:
+let text = localStorage.getItem("testJSON");
+let obj = JSON.parse(text);
+document.getElementById("demo").innerHTML = obj.name;

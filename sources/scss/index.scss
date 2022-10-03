@@ -7,6 +7,7 @@
 
 * {
     font-family: Ubuntu;
+    color: white;
 }
 
 html, body {
@@ -26,16 +27,30 @@ body {
     background-clip: initial;
     background-size: cover;
     .nav {
-        color: white;
         background-color: black;
         display: flex;
         justify-content: space-between;
         align-items: center;
+        padding: 0 .5rem;
         &--infos {
             list-style: none;
             padding: 0;
             display: flex;
             gap: .5rem;
+            margin: .5rem 0;
+        }
+    }
+    .desktop {
+        padding: 1.5rem;
+        &--app-list {
+            display: flex;
+            align-items: flex-start;
+            flex-direction: column;
+            &--icon {
+                display: flex;
+                text-align: center;
+                flex-direction: column;
+            }
         }
     }
     #context-menu {
