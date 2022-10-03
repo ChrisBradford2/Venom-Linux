@@ -1,4 +1,4 @@
-console.log("Hello, ESGI!")
+console.log("Hello, ESGI!");
 
 /**
  * Custom right click
@@ -63,3 +63,65 @@ scope.addEventListener("click", (e) => {
         contextMenu.classList.remove("visible");
     }
 })
+
+
+const getCurrentTimeDate = () => {
+    let currentTimeDate = new Date();
+
+    var weekday = new Array(7);
+    weekday[0] = "Sunday";
+    weekday[1] = "Monday";
+    weekday[2] = "Tuesday";
+    weekday[3] = "Wednesday";
+    weekday[4] = "Thuesday";
+    weekday[5] = "Friday";
+    weekday[6] = "Saturday";
+
+    var month = new Array(12);
+    month[0] = "Jan";
+    month[1] = "Feb";
+    month[2] = "Mar";
+    month[3] = "Apr";
+    month[4] = "May";
+    month[5] = "Jun";
+    month[6] = "Jul";
+    month[7] = "Aug";
+    month[8] = "Sep";
+    month[9] = "Oct";
+    month[10] = "Nov";
+    month[11] = "Dec";
+
+    var hours   =  currentTimeDate.getHours();
+
+    var minutes =  currentTimeDate.getMinutes();
+    minutes = minutes < 10 ? '0'+minutes : minutes;
+
+     var AMPM = hours >= 12 ? 'PM' : 'AM';
+
+    if(hours === 12){
+        hours=12;
+
+    }else{
+
+        hours = hours%12;
+
+    }
+
+    var currentTime = `${hours}:${minutes}${AMPM}`;
+    var currentDay = weekday[currentTimeDate.getDay()];
+
+    var currentDate  = currentTimeDate.getDate();
+    var currentMonth = month[currentTimeDate.getMonth()];
+    var CurrentYear = currentTimeDate.getFullYear();
+
+    var fullDate = `${currentDate} ${currentMonth} ${CurrentYear}`;
+
+
+    document.getElementById("time").innerHTML = currentTime;
+    document.getElementById("day").innerHTML = currentDay;
+    document.getElementById("date").innerHTML = fullDate;
+
+    setTimeout(getCurrentTimeDate, 500);
+
+}
+getCurrentTimeDate();

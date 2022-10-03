@@ -25,13 +25,13 @@ body {
     background-position: center;
     background-clip: initial;
     background-size: cover;
-    nav {
+    .nav {
         color: white;
         background-color: black;
         display: flex;
         justify-content: space-between;
         align-items: center;
-        .pc-infos {
+        &--infos {
             list-style: none;
             padding: 0;
             display: flex;
