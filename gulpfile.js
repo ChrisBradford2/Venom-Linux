@@ -12,7 +12,7 @@ async function compilescss () {
         .pipe(sourcemaps.init())
         .pipe(sass().on('error', sass.logError))
         .pipe(postcss([autoprefixer({
-            browsers: [
+            overrideBrowserslist: [
               'Chrome >= 35',
               'Firefox >= 38',
               'Edge >= 12',
