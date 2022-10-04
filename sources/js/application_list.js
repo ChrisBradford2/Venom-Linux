@@ -6,7 +6,7 @@
 class Application {
   constructor(icon, name, link, target) {
     /* String : Path of the svg icon
-    
+
     Directory and extension are already defined, please
     ONLY set the name file. */
     this.icon = icon;
