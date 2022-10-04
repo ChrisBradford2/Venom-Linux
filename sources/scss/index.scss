@@ -1,79 +1,83 @@
 @font-face {
-    // Defining what the font will be called
-    font-family: Ubuntu;
-    // Linking to the font file
-    src: url(../assets/fonts/Ubuntu-Regular.ttf);
+  // Defining what the font will be called
+  font-family: 'Ubuntu';
+  // Linking to the font file
+  src: url(../assets/fonts/Ubuntu-Regular.ttf);
 }
 
 * {
-    font-family: Ubuntu;
-    color: white;
+  font-family: 'Ubuntu';
+  color: white;
 }
 
-html, body {
-    min-height: 100vh;
-    width: 100vw;
-    margin: 0;
-    padding: 0;
-    max-width: 100%;
+html,
+body {
+  min-height: 100vh;
+  width: 100vw;
+  margin: 0;
+  padding: 0;
+  max-width: 100%;
+	a {
+		text-decoration: none;
+	}
 }
 
 body {
-    background-color: #210101;
-    background-image: url("../assets/img/background_dark.png");
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-position: center;
-    background-clip: initial;
-    background-size: cover;
-    .nav {
-        background-color: black;
+  background-color: #210101;
+  background-image: url("../assets/img/background_dark.png");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  background-clip: initial;
+  background-size: cover;
+  .nav {
+    background-color: black;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 0.5rem;
+    &--infos {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      gap: 0.5rem;
+      margin: 0.5rem 0;
+    }
+  }
+  .desktop {
+    padding: 1.5rem;
+    &--app-list {
+      display: flex;
+      align-items: flex-start;
+      flex-direction: column;
+      &--icon {
         display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 0 .5rem;
-        &--infos {
-            list-style: none;
-            padding: 0;
-            display: flex;
-            gap: .5rem;
-            margin: .5rem 0;
-        }
+        text-align: center;
+        flex-direction: column;
+      }
     }
-    .desktop {
-        padding: 1.5rem;
-        &--app-list {
-            display: flex;
-            align-items: flex-start;
-            flex-direction: column;
-            &--icon {
-                display: flex;
-                text-align: center;
-                flex-direction: column;
-            }
-        }
+  }
+  #context-menu {
+    position: fixed;
+    z-index: 10000;
+    width: 150px;
+    background-color: #1b1a1a;
+    border-radius: 5px;
+    transform: scale(0);
+    transform-origin: top left;
+    .item {
+      padding: 8px 10px;
+      font-size: 15px;
+      cursor: pointer;
+      border-radius: inherit;
+      color: white;
+      &:hover {
+        background-color: #343434;
+      }
     }
-    #context-menu {
-        position: fixed;
-        z-index: 10000;
-        width: 150px;
-        background-color: #1b1a1a;
-        border-radius: 5px;
-        transform: scale(0);
-        transform-origin: top left;
-        .item {
-            padding: 8px 10px;
-            font-size: 15px;
-            cursor: pointer;
-            border-radius: inherit;
-            color: white;
-            &:hover {
-                background-color: #343434;
-            }
-        }
-        &.visible {
-            transform: scale(1);
-            transition: transform 200ms ease-in-out;
-        }
+    &.visible {
+      transform: scale(1);
+      transition: transform 200ms ease-in-out;
     }
+  }
 }

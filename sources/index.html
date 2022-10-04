@@ -23,22 +23,14 @@
             </ul>
         </nav>
         <section class="desktop">
-            <div class="desktop--app-list">
-                <div class="desktop--app-list--icon">
-                    <img src="assets/icons/figma.svg" alt="figma" />
-                    <p>Figma</p>
-                </div>
-                <div class="desktop--app-list--icon">
-                    <img src="assets/icons/github.svg" alt="github" />
-                    <p>Github</p>
-                </div>
-            </div>
+            <div id="application-list" class="desktop--app-list"></div>
         </section>
         <section id="context-menu">
-            <div id="new-file" class="item">New file</div>
+            <div id="new-file" class="item"><a href="#">New file</a></div>
             <div id="new-folder" class="item">New folder</div>
             <div id="about" class="item">About</div>
         </section>
         <script src="js/index.js"></script>
+        <script src="js/application_list.js"></script>
     </body>
 </html>
