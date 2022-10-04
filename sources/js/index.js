@@ -152,7 +152,11 @@ for (let key in applicationList) {
 }
 
 // Storing data:
-const myObj = { name: "John", age: 31, city: "New York" };
+const myObj = {
+  name: "John",
+  age: 31,
+  city: "New York",
+};
 const myJSON = JSON.stringify(myObj);
 localStorage.setItem("testJSON", myJSON);
 
