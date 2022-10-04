@@ -5,9 +5,11 @@
  */
 class Application {
   constructor(icon, name, link, target) {
-    // String : Path of the svg icon
-    this.icon = icon; // Directory and extension are already defined, please
-    // ONLY set the name file.
+    /* String : Path of the svg icon
+    
+    Directory and extension are already defined, please
+    ONLY set the name file. */
+    this.icon = icon;
     // String : Name of the application
     this.name = name;
     // String : Link to redirect
