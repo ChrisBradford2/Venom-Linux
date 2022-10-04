@@ -33,6 +33,7 @@ const firefox = new Application(
   "https://fonts.googleapis.com"
 );
 
+// Add the application in the array :
 let applicationList = [github, figma, firefox];
 
 applicationList.forEach(function (application) {
@@ -43,8 +44,8 @@ applicationList.forEach(function (application) {
   // Retrieving data:
   let text = localStorage.getItem("applicationItem");
   let obj = JSON.parse(text);
-  // console.log(obj);
 
+  // Set condition of the target="_blank".
   var blank;
   if (obj.target === true) {
     blank = 'target="_blank"';
@@ -52,6 +53,7 @@ applicationList.forEach(function (application) {
     blank = "";
   }
 
+  // Inject the div to application's list section.
   document.getElementById("application-list").innerHTML += `
       <div class="desktop--app-list--icon">
           <a href="${obj.link}" ${blank}>
