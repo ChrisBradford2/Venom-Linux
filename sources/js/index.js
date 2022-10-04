@@ -12,8 +12,8 @@ const scope = document.querySelector("body");
 
 // Prevent the menu from going out of bounds.
 const normalizePosition = (mouseX, mouseY) => {
-  const { left: scopeOffsetX, top: scopeOffsetY } =
-    scope.getBoundingClientRect();
+  const {left : scopeOffsetX, top : scopeOffsetY} =
+      scope.getBoundingClientRect();
 
   const scopeX = mouseX - scopeOffsetX;
   const scopeY = mouseY - scopeOffsetY;
@@ -34,25 +34,23 @@ const normalizePosition = (mouseX, mouseY) => {
     normalizedY = scopeOffsetY + scope.clientHeight - contextMenu.clientHeight;
   }
 
-  return { normalizedX, normalizedY };
+  return {normalizedX, normalizedY};
 };
 
 // Display the menu only on right-click.
 scope.addEventListener("contextmenu", (event) => {
   event.preventDefault();
 
-  const { offsetX: mouseX, offsetY: mouseY } = event;
+  const {offsetX : mouseX, offsetY : mouseY} = event;
 
-  const { normalizedX, normalizedY } = normalizePosition(mouseX, mouseY);
+  const {normalizedX, normalizedY} = normalizePosition(mouseX, mouseY);
 
   contextMenu.style.top = `${normalizedY}px`;
   contextMenu.style.left = `${normalizedX}px`;
 
   contextMenu.classList.remove("visible");
 
-  setTimeout(() => {
-    contextMenu.classList.add("visible");
-  });
+  setTimeout(() => { contextMenu.classList.add("visible"); });
 });
 
 // Close the menu when the user clicks outside.
@@ -132,16 +130,10 @@ class Application {
   }
 }
 
-const figma = new Application(
-  "../assets/icons/figma.svg",
-  "Figma",
-  "https://fonts.googleapis.com"
-);
-const github = new Application(
-  "../assets/icons/github.svg",
-  "Github",
-  "https://fonts.googleapis.com"
-);
+const figma = new Application("../assets/icons/figma.svg", "Figma",
+                              "https://fonts.googleapis.com");
+const github = new Application("../assets/icons/github.svg", "Github",
+                               "https://fonts.googleapis.com");
 
 let applicationList = new Array();
 applicationList[0] = figma;
@@ -152,7 +144,11 @@ for (let key in applicationList) {
 }
 
 // Storing data:
-const myObj = { name: "John", age: 31, city: "New York" };
+const myObj = {
+  name : "John",
+  age : 31,
+  city : "New York"
+};
 const myJSON = JSON.stringify(myObj);
 localStorage.setItem("testJSON", myJSON);
 
