@@ -1,7 +1,7 @@
 name: Feature request
 description: Suggest an idea for this project
 title: "[FEATURE]: "
-labels: ["enhancement"]
+labels: ["feature"]
 body:
   - type: markdown
     attributes:
@@ -32,8 +32,10 @@ body:
   - type: textarea
     id: additionnal
     attributes:
-      label: Additional context
-      description: Add any other context or screenshots about the feature request here.
+      label: Acceptance Criteria
+      value: "- [ ] | - [ ]"
+    validations:
+      required: true
   - type: checkboxes
     id: terms
     attributes:
