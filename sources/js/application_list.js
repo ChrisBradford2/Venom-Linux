@@ -7,7 +7,7 @@ class Application {
   constructor(icon, name, link, target) {
     // String : Path of the svg icon
     this.icon = icon; // Directory and extension are already defined, please
-                      // ONLY set the name file.
+    // ONLY set the name file.
     // String : Name of the application
     this.name = name;
     // String : Link to redirect
@@ -18,18 +18,26 @@ class Application {
 }
 
 const figma = new Application(
-    "figma", "Figma",
-    "https://www.figma.com/file/SZWyC97gtK3khQtp0NgFEE/OS-project?node-id=0%3A1",
-    true);
-const github = new Application("github", "Github",
-                               "https://github.com/ChrisBradford2/Venom-Linux");
-const firefox =
-    new Application("firefox", "Firefox", "https://fonts.googleapis.com");
+  "figma",
+  "Figma",
+  "https://www.figma.com/file/SZWyC97gtK3khQtp0NgFEE/OS-project?node-id=0%3A1",
+  true
+);
+const github = new Application(
+  "github",
+  "Github",
+  "https://github.com/ChrisBradford2/Venom-Linux"
+);
+const firefox = new Application(
+  "firefox",
+  "Firefox",
+  "https://fonts.googleapis.com"
+);
 
 // Add the application in the array :
-let applicationList = [ github, figma, firefox ];
+let applicationList = [github, figma, firefox];
 
-applicationList.forEach(function(application) {
+applicationList.forEach(function (application) {
   // Storing data:
   const applicationJSON = JSON.stringify(application);
   localStorage.setItem("applicationItem", applicationJSON);
@@ -50,8 +58,7 @@ applicationList.forEach(function(application) {
   document.getElementById("application-list").innerHTML += `
       <div class="desktop--app-list--icon">
           <a href="${obj.link}" ${blank}>
-              <img src="assets/icons/${obj.icon}.svg" alt="${
-      obj.icon} application" />
+              <img src="assets/icons/${obj.icon}.svg" alt="${obj.icon} application" />
               <p>${obj.name}</p>
           </a>
       </div>

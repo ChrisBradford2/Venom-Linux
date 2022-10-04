@@ -12,8 +12,8 @@ const scope = document.querySelector("body");
 
 // Prevent the menu from going out of bounds.
 const normalizePosition = (mouseX, mouseY) => {
-  const {left : scopeOffsetX, top : scopeOffsetY} =
-      scope.getBoundingClientRect();
+  const { left: scopeOffsetX, top: scopeOffsetY } =
+    scope.getBoundingClientRect();
 
   const scopeX = mouseX - scopeOffsetX;
   const scopeY = mouseY - scopeOffsetY;
@@ -34,23 +34,25 @@ const normalizePosition = (mouseX, mouseY) => {
     normalizedY = scopeOffsetY + scope.clientHeight - contextMenu.clientHeight;
   }
 
-  return {normalizedX, normalizedY};
+  return { normalizedX, normalizedY };
 };
 
 // Display the menu only on right-click.
 scope.addEventListener("contextmenu", (event) => {
   event.preventDefault();
 
-  const {offsetX : mouseX, offsetY : mouseY} = event;
+  const { offsetX: mouseX, offsetY: mouseY } = event;
 
-  const {normalizedX, normalizedY} = normalizePosition(mouseX, mouseY);
+  const { normalizedX, normalizedY } = normalizePosition(mouseX, mouseY);
 
   contextMenu.style.top = `${normalizedY}px`;
   contextMenu.style.left = `${normalizedX}px`;
 
   contextMenu.classList.remove("visible");
 
-  setTimeout(() => { contextMenu.classList.add("visible"); });
+  setTimeout(() => {
+    contextMenu.classList.add("visible");
+  });
 });
 
 // Close the menu when the user clicks outside.
