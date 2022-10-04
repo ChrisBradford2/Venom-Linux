@@ -8,14 +8,12 @@ const minify = require("gulp-clean-css");
 const rename = require("gulp-rename");
 
 async function compilescss() {
-  gulp
-    .src("./sources/scss/*.scss")
-    .pipe(sourcemaps.init())
-    .pipe(sass().on("error", sass.logError))
-    .pipe(
-      postcss([
+  gulp.src("./sources/scss/*.scss")
+      .pipe(sourcemaps.init())
+      .pipe(sass().on("error", sass.logError))
+      .pipe(postcss([
         autoprefixer({
-          overrideBrowserslist: [
+          overrideBrowserslist : [
             "Chrome >= 35",
             "Firefox >= 38",
             "Edge >= 12",
@@ -27,25 +25,21 @@ async function compilescss() {
             "Opera >= 12",
           ],
         }),
-      ])
-    )
-    .pipe(sourcemaps.write())
-    .pipe(prefix())
-    .pipe(minify())
-    .pipe(
-      rename(function (path) {
+      ]))
+      .pipe(sourcemaps.write())
+      .pipe(prefix())
+      .pipe(minify())
+      .pipe(rename(function(path) {
         return {
-          dirname: path.dirname + "",
-          basename: path.basename + ".min",
-          extname: ".css",
+          dirname : path.dirname + "",
+          basename : path.basename + ".min",
+          extname : ".css",
         };
-      })
-    )
-    .pipe(gulp.dest("./sources/css"));
+      }))
+      .pipe(gulp.dest("./sources/css"));
 }
 
-gulp.task("watch", function () {
-  gulp.watch("./sources/scss/*.scss", compilescss);
-});
+gulp.task("watch",
+          function() { gulp.watch("./sources/scss/*.scss", compilescss); });
 
 exports.default = compilescss;
