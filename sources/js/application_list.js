@@ -39,15 +39,10 @@ const firefox = new Application(
 // Add the application in the array :
 let applicationList = [github, figma, firefox];
 
-function formdata() 
-{
+function formdata() {
   let newFileName = document.getElementById("new-file-name").value;
   console.log(newFileName);
-  const new_file = new Application (
-    "file",
-    newFileName,
-    "#"
-  )
+  const new_file = new Application("file", newFileName, "#");
   console.log(new_file);
   applicationList.push(new_file);
   console.log(applicationList);
