@@ -156,5 +156,18 @@ body {
 
   .modal-body {
     padding: 2px 16px;
+		form {
+			input {
+				&[type=text] {
+					background-color: #000;
+					color: white;
+					
+				}
+				&[type=submit] {
+					background-color: #000;
+					color: white;
+				}
+			}
+		}
   }
 }

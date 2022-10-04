@@ -66,8 +66,15 @@
         <div class="modal-body">
           <p>Set the name of the new file</p>
           <form action="javascript:void(0);" method="post">
-            <input type="text" id="new-file-name" class="form-control" placeholder="New file" aria-label="Recipient's username" aria-describedby="button-addon2">
-            <input type="submit" value="Submit" onclick="formdata()">
+            <input
+              type="text"
+              id="new-file-name"
+              class="form-control"
+              placeholder="New file"
+              required
+              aria-label="New file"
+            />
+            <input type="submit" value="Submit" onclick="formdata()" />
           </form>
         </div>
       </div>

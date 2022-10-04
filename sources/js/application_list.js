@@ -51,6 +51,26 @@ function formdata()
   console.log(new_file);
   applicationList.push(new_file);
   console.log(applicationList);
+
+  // Storing data:
+  const applicationJSON = JSON.stringify(new_file);
+  localStorage.setItem("applicationText", applicationJSON);
+
+  // Retrieving data:
+  let text = localStorage.getItem("applicationText");
+  let obj = JSON.parse(text);
+
+  // Inject the div to application's list section.
+  document.getElementById("application-list").innerHTML += `
+  <div class="desktop--app-list--icon">
+      <a href="${obj.link}">
+          <img src="assets/icons/${obj.icon}.svg" alt="${obj.icon} text file application" />
+          <p>${obj.name}.txt</p>
+      </a>
+  </div>
+  `;
+
+  modal.style.display = "none";
 }
 
 applicationList.forEach(function (application) {
@@ -72,11 +92,11 @@ applicationList.forEach(function (application) {
 
   // Inject the div to application's list section.
   document.getElementById("application-list").innerHTML += `
-      <div class="desktop--app-list--icon">
-          <a href="${obj.link}" ${blank}>
-              <img src="assets/icons/${obj.icon}.svg" alt="${obj.icon} application" />
-              <p>${obj.name}</p>
-          </a>
-      </div>
-      `;
+    <div class="desktop--app-list--icon">
+        <a href="${obj.link}" ${blank}>
+            <img src="assets/icons/${obj.icon}.svg" alt="${obj.icon} application" />
+            <p>${obj.name}</p>
+        </a>
+    </div>
+  `;
 });
