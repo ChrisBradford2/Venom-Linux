@@ -1,44 +1,78 @@
 <!DOCTYPE html>
 <html lang="en-US">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="JavaScript">
-        <title>Venom Linux</title>
-        <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png">
-        <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png">
-        <link rel="manifest" href="assets/favicon/site.webmanifest">
-        <link rel="mask-icon" href="assets/favicon/safari-pinned-tab.svg" color="#5bbad5">
-        <meta name="apple-mobile-web-app-title" content="Venom">
-        <meta name="application-name" content="Venom">
-        <meta name="msapplication-TileColor" content="#b91d47">
-        <meta name="theme-color" content="#210101">
-        <link rel="stylesheet" href="css/index.min.css">
-    </head>
-    <body>
-        <nav class="nav">
-            <div id="nav--app-title">Applications</div>
-            <div id="nav--calendar">
-                <span id="day"></span>, <span id="date"></span> <span id="time"></span>
-            </div>
-            <ul class="nav--infos">
-                <li>sound</li>
-                <li>battery</li>
-                <li>
-                    <button>dark_mode</button>
-                </li>
-            </ul>
-        </nav>
-        <section class="desktop">
-            <div id="application-list" class="desktop--app-list"></div>
-        </section>
-        <section id="context-menu">
-            <div id="new-file" class="item"><a href="#">New file</a></div>
-            <div id="new-folder" class="item">New folder</div>
-            <div id="about" class="item">About</div>
-        </section>
-        <script src="js/index.js"></script>
-        <script src="js/application_list.js"></script>
-    </body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="JavaScript" />
+    <title>Venom Linux</title>
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="assets/favicon/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="assets/favicon/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="assets/favicon/favicon-16x16.png"
+    />
+    <link rel="manifest" href="assets/favicon/site.webmanifest" />
+    <link
+      rel="mask-icon"
+      href="assets/favicon/safari-pinned-tab.svg"
+      color="#5bbad5"
+    />
+    <meta name="apple-mobile-web-app-title" content="Venom" />
+    <meta name="application-name" content="Venom" />
+    <meta name="msapplication-TileColor" content="#b91d47" />
+    <meta name="theme-color" content="#210101" />
+    <link rel="stylesheet" href="css/index.min.css" />
+  </head>
+  <body>
+    <nav class="nav">
+      <div id="nav--app-title">Applications</div>
+      <div id="nav--calendar">
+        <span id="day"></span>, <span id="date"></span> <span id="time"></span>
+      </div>
+      <ul class="nav--infos">
+        <li>sound</li>
+        <li>battery</li>
+        <li>
+          <button>dark_mode</button>
+        </li>
+      </ul>
+    </nav>
+    <section class="desktop">
+      <div id="application-list" class="desktop--app-list"></div>
+    </section>
+    <section id="context-menu">
+      <div id="new-file" class="item">New file</div>
+      <div id="new-folder" class="item">New folder</div>
+      <div id="about" class="item">About</div>
+    </section>
+    <section class="modal modal--new-file" id="modal-new-file">
+      <!-- Modal content -->
+      <div class="modal-content">
+        <div class="modal-header">
+          <span class="close">&times;</span>
+          <h2>New file</h2>
+        </div>
+        <div class="modal-body">
+          <p>Set the name of the new file</p>
+          <form action="javascript:void(0);" method="post">
+            <input type="text" id="new-file-name" class="form-control" placeholder="New file" aria-label="Recipient's username" aria-describedby="button-addon2">
+            <input type="submit" value="Submit" onclick="formdata()">
+          </form>
+        </div>
+      </div>
+    </section>
+    <script src="js/index.js"></script>
+    <script src="js/application_list.js"></script>
+  </body>
 </html>
