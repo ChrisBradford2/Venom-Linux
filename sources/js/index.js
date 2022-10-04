@@ -20,7 +20,7 @@ const normalizePosition = (mouseX, mouseY) => {
     const scopeX = mouseX - scopeOffsetX;
     const scopeY = mouseY - scopeOffsetY;
 
-    const outOfBoundsOnX = scopeX + contextMenu.clientWidth> scope.clientWidth;
+    const outOfBoundsOnX = scopeX + contextMenu.clientWidth > scope.clientWidth;
     const  outOfBoundsOnY = scopeY + contextMenu.clientHeight > scope.clientHeight;
 
     let normalizedX = mouseX;
@@ -129,7 +129,7 @@ const getCurrentTimeDate = () => {
 getCurrentTimeDate();
 
 /**
- * Get current time date
+ * Class Application
  */
 class Application {
     constructor(icon,name,link){
