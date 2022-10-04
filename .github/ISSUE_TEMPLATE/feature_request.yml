@@ -33,7 +33,9 @@ body:
     id: additionnal
     attributes:
       label: Acceptance Criteria
-      value: "- [ ] | - [ ]"
+      value: |
+        - [ ] Criteria #1
+        - [ ] Criteria #2
     validations:
       required: true
   - type: checkboxes
