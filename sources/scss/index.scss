@@ -1,15 +1,11 @@
 @font-face {
-  // Defining what the font will be called
-  font-family: "Ubuntu";
-  // Linking to the font file
-  src: url(../assets/fonts/Ubuntu-Regular.ttf);
+  font-family: Ubuntu;
+  src: url('../assets/fonts/Ubuntu-Regular.ttf');
 }
-
 * {
-  font-family: "Ubuntu";
+  font-family: Ubuntu, sans-serif;
   color: white;
 }
-
 html,
 body {
   min-height: 100vh;
@@ -21,10 +17,9 @@ body {
     text-decoration: none;
   }
 }
-
 body {
   background-color: #210101;
-  background-image: url("../assets/img/background_dark.png");
+  background-image: url('../assets/img/background_dark.png');
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: center;
@@ -35,13 +30,16 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 0.5rem;
+    padding: 0 .5rem;
+    &--date {
+      margin: 0 auto;
+    }
     &--infos {
       list-style: none;
       padding: 0;
       display: flex;
-      gap: 0.5rem;
-      margin: 0.5rem 0;
+      gap: .5rem;
+      margin: .5rem 0;
     }
   }
   .desktop {
@@ -61,7 +59,7 @@ body {
     position: fixed;
     z-index: 10000;
     width: 150px;
-    background-color: #1b1a1a;
+    background-color: #1B1A1A;
     border-radius: 5px;
     transform: scale(0);
     transform-origin: top left;
