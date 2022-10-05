@@ -89,11 +89,15 @@ Please mark the page you work on "in progress"-->
 
 ## About The Project
 
-DevNotes is a web platform acting as a Wiki for the bachelor 3 INGLOG of Paris Ynov Campus allowing to visualize the students course notes.
+*To complete*
 
 ### Built With
 
-The Wiki and content is contained within this repo, and the system has been built using [Docusaurus v2.0](https://docusaurus.io/).
+- Html
+- Scss
+- PostCss
+- JavaScript
+- Vite
 
 <!-- GETTING STARTED -->
 
@@ -115,16 +119,19 @@ Install [Node.js](https://nodejs.org/en/download/).
 
 👤 **Nicolas Barbarisi** :
 
-* Role : Scrum Master - Maintainer - Editor
 * Website: www.nicolas-barbarisi.com
 * Github: [@ChrisBradford2](https://github.com/ChrisBradford2)
 * LinkedIn: [@Nicolas Barbarisi ](https://www.linkedin.com/in/nicolas-barbarisi-a4a97a193/)
 
-👤 **Alexandre Kramer**
+👤 **Hamidou Kanoute**
 
-* Maintainer - Editor
-* Github: [@Nyftheart](https://github.com/Nyftheart)
-* LinkedIn: [@Alexandre Kramer](https://www.linkedin.com/in/alexandre-kramer-41bba2198/)
+* Github: [@hkanoute](https://github.com/hkanoute)
+* LinkedIn: [@Hamidou Kanoute](https://www.linkedin.com/in/hamidou-kanoute/)
+
+👤 **Serkan Deveci**
+
+* Github: [@sDev67](https://github.com/sDev67)
+* LinkedIn: [@Serkan Deveci](https://www.linkedin.com/in/serkan-deveci-6086aa217/)
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
