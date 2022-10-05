@@ -1,25 +1,3 @@
-# Venom-Linux
-
-## Install project
-
-```bash
-docker-compose build
-docker-compose up -d
-```
-
-```bash
-npm install
-npm start
-```
-
-## Run styles compilation
-
-Style compilation is made with gulp. To run it, use :
-```gulp
-gulp watch
-```
-
-
 [![Contributors][contributors-shield]][contributors-url]
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
@@ -68,7 +46,6 @@ gulp watch
         <li><a href="#installation">Installation</a></li>
       </ul>
     </li>
-    <li><a href="#contributing">Contributing</a></li>
     <li><a href="#contact">Contact</a></li>
   </ol>
 </details>
@@ -105,13 +82,24 @@ Please mark the page you work on "in progress"-->
 
 ### Prerequisites
 
-Install [Node.js](https://nodejs.org/en/download/).
+Install [Docker](https://www.docker.com/).
 
 ### Local Development
 
-1. Run `yarn install` in your terminal.
-2. Run `npx docusaurus start`
-3. Open `http://localhost:3000/DevNotes`
+1. Build the docker image and start the container :
+    ```bash
+    docker-compose build
+    docker-compose up -d
+    ```
+2. Run `npm install` to install the local server, then run `npm start` to start it
+3. Open [http://localhost:8000/](http://localhost:8000/)
+
+### Run styles compilation
+
+Style compilation is made with gulp. To run it, use :
+```bash
+gulp watch
+```
 
 <!-- CONTACT -->
 
