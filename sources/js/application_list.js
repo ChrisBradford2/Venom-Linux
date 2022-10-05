@@ -39,6 +39,7 @@ const firefox = new Application(
 // Add the application in the array :
 const applicationList = [github, figma, firefox]
 
+// eslint-disable-next-line no-unused-vars
 function formdata () {
   const newFileName = document.getElementById('new-file-name').value
   console.log(newFileName)
@@ -65,6 +66,7 @@ function formdata () {
   </div>
   `
 
+  document.getElementById('new-file-name').value = ''
   document.getElementById('modal-new-file').style.display = 'none'
 }
 
