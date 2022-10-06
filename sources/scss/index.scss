@@ -48,7 +48,7 @@ body {
       justify-content: flex-end;
       &--vibration {
         .mySVG {
-          background-image: url("../assets/icons/vibration.svg");
+          background-image: url('../assets/icons/vibration.svg');
         }
       }
       #battery-span,
@@ -202,8 +202,8 @@ body {
     &--text {
       visibility: hidden;
       width: 120px;
-      background-color: #1b1a1a;
-      color: #fff;
+      background-color: #1B1A1A;
+      color: #FFF;
       text-align: center;
       border-radius: 6px;
       padding: 5px 0;
@@ -212,19 +212,19 @@ body {
       top: 150%;
       left: 50%;
       margin-left: -60px;
-  
+
       /* Fade in tooltip - takes 1 second to go from 0% to 100% opac: */
       opacity: 0;
       transition: ease-in-out .2s;
-      &::after {
-        content: "";
+      &:after {
+        content: '';
         position: absolute;
         bottom: 100%;
         left: 50%;
         margin-left: -5px;
         border-width: 5px;
         border-style: solid;
-        border-color: transparent transparent #1b1a1a transparent;
+        border-color: transparent transparent #1B1A1A;
       }
     }
     &:hover {
