@@ -30,16 +30,38 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 .5rem;
+    padding: .25rem .5rem;
+    &--app-title {
+      flex: 1;
+    }
     &--date {
-      margin: 0 auto;
+      flex: 2;
+      text-align: center;
     }
     &--infos {
       list-style: none;
       padding: 0;
       display: flex;
-      gap: .5rem;
+      gap: .75rem;
       margin: .5rem 0;
+      flex: 1;
+      justify-content: flex-end;
+      &--vibration {
+        .mySVG {
+          background-image: url('../assets/icons/vibration.svg');
+        }
+      }
+      #battery-span,
+      #speed-test {
+        padding-left: .25rem;
+      }
+      &--speed {
+        #speed-test {
+          min-width: 102px;
+          display: inline-block;
+          text-align: right;
+        }
+      }
     }
   }
   .desktop {
@@ -171,6 +193,44 @@ body {
             display: none;
           }
         }
+      }
+    }
+  }
+  .tooltip {
+    position: relative;
+    display: inline-block;
+    &--text {
+      visibility: hidden;
+      width: 120px;
+      background-color: #1B1A1A;
+      color: #FFF;
+      text-align: center;
+      border-radius: 6px;
+      padding: 5px 0;
+      position: absolute;
+      z-index: 1;
+      top: 150%;
+      left: 50%;
+      margin-left: -60px;
+
+      /* Fade in tooltip - takes 1 second to go from 0% to 100% opac: */
+      opacity: 0;
+      transition: ease-in-out .2s;
+      &:after {
+        content: '';
+        position: absolute;
+        bottom: 100%;
+        left: 50%;
+        margin-left: -5px;
+        border-width: 5px;
+        border-style: solid;
+        border-color: transparent transparent #1B1A1A;
+      }
+    }
+    &:hover {
+      .tooltip--text {
+        visibility: visible;
+        opacity: 1;
       }
     }
   }

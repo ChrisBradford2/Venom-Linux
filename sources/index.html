@@ -36,15 +36,15 @@
   </head>
   <body>
     <nav class="nav">
-        <div >Applications</div>
+        <div class="nav--app-title">Applications</div>
         <div class="nav--date">
             <span id="day"></span>, <span id="date"></span> <span id="time"></span>
         </div>
         <ul class="nav--infos">
-            <li><i class="fa-solid fa-volume-low"></i></li>
-            <li><i class="fa-solid fa-battery-three-quarters"></i></li>
-            <li>
-                <i class="fa-solid fa-signal"></i>
+            <li class="nav--infos--vibration tooltip" onclick="toggleVibrationState()"><i id="vibration-state-icon" class="fa-solid"></i><span id="vibration-state-text" class="tooltip--text"></span></li>
+            <li class="nav--infos--battery"><i id="battery" class="fa-solid"></i><span id="battery-span"></span></li>
+            <li class="nav--infos--speed">
+                <i class="fa-solid fa-signal"></i><span id="speed-test"></span>
             </li>
         </ul>
     </nav>
@@ -81,6 +81,7 @@
       </div>
     </section>
     <script src="js/index.js"></script>
+    <script src="js/navbar.js"></script>
     <script src="js/application_list.js"></script>
     <script src="https://kit.fontawesome.com/ca13fc92c5.js" crossorigin="anonymous"></script>
   </body>

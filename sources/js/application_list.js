@@ -82,7 +82,7 @@ applicationList.forEach(function (application) {
   // Set condition of the target="_blank".
   let blank
   if (obj.target === true) {
-    blank = 'target="_blank"'
+    blank = ' target="_blank"'
   } else {
     blank = ''
   }
@@ -90,7 +90,7 @@ applicationList.forEach(function (application) {
   // Inject the div to application's list section.
   document.getElementById('application-list').innerHTML += `
       <div class="desktop--app-list--icon">
-          <a href="${obj.link}" ${blank}>
+          <a href="${obj.link}"${blank}>
               <img src="assets/icons/${obj.icon}.svg" alt="${obj.icon} application" />
               <p>${obj.name}</p>
           </a>
