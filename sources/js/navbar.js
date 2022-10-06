@@ -1,5 +1,8 @@
-//JUST AN EXAMPLE, PLEASE USE YOUR OWN PICTURE!
-var imageAddr = "https://www.google.fr/images/branding/googlelogo/2x/googlelogo_light_color_272x92dp.png"; 
+/**
+ * Speed test
+ */
+
+var imageAddr = "https://venom-linux-seven.vercel.app/assets/img/background_dark.png"; 
 var downloadSize = 4995374; //bytes
 
 function ShowProgressMessage(msg) {
@@ -52,14 +55,41 @@ function MeasureConnectionSpeed() {
         var speedBps = (bitsLoaded / duration).toFixed(2);
         var speedKbps = (speedBps / 1024).toFixed(2);
         var speedMbps = (speedKbps / 1024).toFixed(2);
-        ShowProgressMessage([
-            "Your connection speed is:", 
-            speedBps + " bps", 
-            speedKbps + " kbps", 
-            speedMbps + " Mbps",
-            "------------------"
-        ]);
         document.getElementById("speed-test").innerHTML = speedMbps + " Mbps"
     }
 }
-var myVar = setInterval(MeasureConnectionSpeed, 2000); //setting the loop with time interval
+var interval = setInterval(MeasureConnectionSpeed, 2000); //setting the loop with time interval
+
+/**
+ * Battery
+ */
+
+navigator.getBattery()
+  .then(function(battery) {
+    let level = battery.level;
+    let levelPercent = (level * 100) + " %";
+    let batteryIsCharging = battery.charging;
+    let icon = document.getElementById("battery");
+    let span = document.getElementById("battery-span");
+    function addClass(className) {
+        icon.classList.add(className);
+    }
+    if (batteryIsCharging === false) {
+        if (level < 0.1) {
+            addClass("fa-battery-empty")
+        } else if (level < 0.3) {
+            addClass("fa-battery-quarter")
+        } else if (level < 0.6) {
+            addClass("fa-battery-half")
+        } else if (level < 0.9) {
+            addClass("fa-battery-three-quarter")
+        } else {
+            addClass("fa-battery-full")
+        }
+    } else if (batteryIsCharging === true && level == 1) {
+        addClass("fa-plug-circle-check")
+    } else {
+        addClass("fa-plug-circle-bolt")
+    }
+    span.innerHTML = levelPercent
+});

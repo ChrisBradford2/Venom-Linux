@@ -42,16 +42,19 @@ body {
       list-style: none;
       padding: 0;
       display: flex;
-      gap: .5rem;
+      gap: .75rem;
       margin: .5rem 0;
       flex: 1;
       justify-content: flex-end;
+      #battery-span,
+      #speed-test {
+        padding-left: .25rem;
+      }
       &--speed {
         #speed-test {
           min-width: 102px;
           display: inline-block;
           text-align: right;
-          padding-left: .25rem;
         }
       }
     }
