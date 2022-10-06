@@ -118,6 +118,7 @@ gulp watch
 
 👤 **Serkan Deveci**
 
+* Website: http://serkan-deveci.herokuapp.com/fr
 * Github: [@sDev67](https://github.com/sDev67)
 * LinkedIn: [@Serkan Deveci](https://www.linkedin.com/in/serkan-deveci-6086aa217/)
 
