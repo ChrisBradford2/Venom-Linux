@@ -82,7 +82,7 @@ navigator.getBattery()
         } else if (level < 0.6) {
             addClass("fa-battery-half")
         } else if (level < 0.9) {
-            addClass("fa-battery-three-quarter")
+            addClass("fa-battery-three-quarters")
         } else {
             addClass("fa-battery-full")
         }
@@ -93,3 +93,41 @@ navigator.getBattery()
     }
     span.innerHTML = levelPercent
 });
+
+/**
+ * Vibration
+ */
+
+function singleVibration(time) {
+    // vibrate device for ${time} milliseconds
+    window.navigator.vibrate(time);
+}
+
+function multiVibration(array) {
+    // Basically it is performed as a series of [VIBRATION] [PAUSE] [VIBRATION] [PAUSE] [VIBRATION] [PAUSE]...
+    window.navigator.vibrate(array);
+}
+
+let vibrationIsAllowed = true;
+let iconVibration = document.getElementById("vibration-state-icon");
+let spanVibration = document.getElementById("vibration-state-text");
+
+function toggleVibrationState() {
+    vibrationIsAllowed = !vibrationIsAllowed;
+    if (vibrationIsAllowed == true) {
+        iconVibration.classList.replace("fa-mobile", "fa-mobile-screen")
+        spanVibration.innerHTML = "Vibration On";
+        multiVibration([300, 100, 200, 50, 300]);
+    } else {
+        iconVibration.classList.replace("fa-mobile-screen", "fa-mobile")
+        spanVibration.innerHTML = "Vibration Off"
+    }
+}
+
+if (vibrationIsAllowed == true) {
+    iconVibration.classList.add("fa-mobile-screen")
+    spanVibration.innerHTML = "Vibration On"
+} else {
+    iconVibration.classList.add("fa-mobile")
+    spanVibration.innerHTML = "Vibration Off"
+}
