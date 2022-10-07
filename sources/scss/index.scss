@@ -235,3 +235,87 @@ body {
     }
   }
 }
+
+/* GAME  */
+input {
+  color: #000;
+}
+
+#game {
+  visibility: visible;
+  background-color: gray;
+  position: absolute;
+  top: 10%;
+  left: 10%;
+  width: 80%;
+  height: 80%;
+}
+
+#tictactoe_section_form {
+  visibility: visible;
+  text-align: center;
+  position: absolute;
+  top: 5%;
+  left: 20%;
+  width: auto;
+  height: auto;
+
+}
+
+#gameAndScore{
+  display: flex;
+  flex-direction: row;
+}
+
+#plateau {
+  display: flex;
+  flex-direction: column;
+  margin: 10%;
+  visibility: hidden;
+  text-align: center;
+  width: auto;
+  height: auto;
+}
+
+#scoreBoard{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: center;
+  margin: 10%;
+  width: auto;
+  height: auto;
+}
+
+#closeGame {
+  float: right;
+  border: 1px solid black;
+  background-color: red;
+
+}
+
+#nextGame{
+  visibility: hidden;
+}
+
+table {
+  border-collapse: collapse;
+  font-weight: bold;
+}
+
+table td {
+  border: 10px solid black;
+  width: 8rem;
+  height: 8rem;
+  text-align: center;
+  font-size: 6rem;
+  font-family: sans;
+  background-color: #eee;
+  cursor: pointer;
+  color: #000;
+}
+
+table td.O,
+table td.X {
+  cursor: default;
+}
