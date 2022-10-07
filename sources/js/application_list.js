@@ -4,7 +4,7 @@
  * @param {Application} object
  */
 class Application {
-  constructor (icon, name, link, target) {
+  constructor(icon, name, link, target) {
     /* String : Path of the svg icon
 
     Directory and extension are already defined, please
@@ -35,9 +35,15 @@ const firefox = new Application(
   'Firefox',
   'https://fonts.googleapis.com'
 )
+const calculator = new Application(
+  'calculator',
+  'Calculator',
+  '../views/calculator.html',
+  true
+)
 
 // Add the application in the array :
-const applicationList = [github, figma, firefox]
+const applicationList = [github, figma, firefox, calculator]
 
 // eslint-disable-next-line no-unused-vars
 function formdata () {
