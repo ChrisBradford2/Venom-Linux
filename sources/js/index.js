@@ -92,17 +92,20 @@ const getCurrentTimeDate = () => {
   let hours = currentTimeDate.getHours()
 
   let minutes = currentTimeDate.getMinutes()
-  minutes = minutes < 10 ? '0' + minutes : minutes
+  minutes = 10 > minutes ? '0' + minutes : minutes
 
-  const AMPM = hours >= 12 ? 'PM' : 'AM'
+  let seconds = currentTimeDate.getSeconds()
+  seconds = 10 > seconds ? '0' + seconds : seconds
 
-  if (hours === 12) {
+  const AMPM = 12 <= hours ? 'PM' : 'AM'
+
+  if (12 === hours) {
     hours = 12
   } else {
     hours = hours % 12
   }
 
-  const currentTime = `${hours}:${minutes}${AMPM}`
+  const currentTime = `${hours}:${minutes}:${seconds} ${AMPM}`
   const currentDay = weekday[currentTimeDate.getDay()]
 
   const currentDate = currentTimeDate.getDate()
@@ -112,7 +115,7 @@ const getCurrentTimeDate = () => {
   const fullDate = `${currentDate} ${currentMonth} ${CurrentYear}`
 
   document.getElementById('time').innerHTML = currentTime
-  document.getElementById('day').innerHTML = currentDay
+  document.getElementById('day').innerHTML = currentDay + ', '
   document.getElementById('date').innerHTML = fullDate
 
   setTimeout(getCurrentTimeDate, 500)
@@ -121,5 +124,28 @@ getCurrentTimeDate()
 
 // Modal
 
-// eslint-disable-next-line no-undef
-newModal('modal-new-file', 'new-file')
+const modal = document.getElementById('modal-new-file')
+
+// Get the button that opens the modal
+const btn = document.getElementById('new-file')
+
+// Get the <span> element that closes the modal
+const span = document.getElementById('close-new-file')
+
+// When the user clicks the button, open the modal
+btn.onclick = function () {
+  modal.style.display = 'block'
+  console.log('Get the modal')
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function () {
+  modal.style.display = 'none'
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function (event) {
+  if (event.target === modal) {
+    modal.style.display = 'none'
+  }
+}

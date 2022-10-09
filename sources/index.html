@@ -57,7 +57,7 @@
     <nav class="nav">
         <div class="nav--app-title">Applications</div>
         <div class="nav--date">
-            <span id="day"></span>, <span id="date"></span> <span id="time"></span>
+            <span id="day"></span><span id="date"></span> <span id="time"></span>
         </div>
         <ul class="nav--infos">
             <li class="nav--infos--vibration tooltip" onclick="toggleVibrationState()"><i id="vibration-state-icon" class="fa-solid"></i><span id="vibration-state-text" class="tooltip--text"></span></li>
@@ -79,7 +79,7 @@
       <!-- Modal content -->
       <div class="modal-content">
         <div class="modal-header">
-          <span class="close">&times;</span>
+          <span id="close-new-file" class="close">&times;</span>
           <h2>New file</h2>
         </div>
         <div class="modal-body">
@@ -99,10 +99,107 @@
         </div>
       </div>
     </section>
+    <section class="modal modal--settings-application" id="modal-settings-application">
+      <!-- Modal content -->
+      <div class="modal-content">
+        <div class="modal-header">
+          <span id="close-settings-application" class="close">&times;</span>
+          <h2>Settings</h2>
+        </div>
+        <div class="modal-body">
+          <div class="sidebar w3-bar-block w3-light-grey w3-card" style="width:130px">
+            <h5 class="w3-bar-item">Menu</h5>
+            <button class="bar-item button tablink red" onclick="openCity(event, 'London')">Date et heure</button>
+            <button class="bar-item button tablink" onclick="openCity(event, 'Paris')">Vibration</button>
+            <button class="bar-item button tablink" onclick="openCity(event, 'Tokyo')">Battery</button>
+            <button class="bar-item button tablink" onclick="openCity(event, 'Network')">Network</button>
+            <button class="bar-item button tablink" onclick="openCity(event, 'Dark-mode')">Dark Mode</button>
+          </div>
+          
+          <div class="tab-content">
+            <div id="London" class="w3-container city" style="display:block">
+              <h2>Date et heure</h2>
+              <h2>Date</h2>
+              <label class="switch">
+                <input id="checkbox-date" type="checkbox">
+                <span class="slider"></span>
+                <span>Masquer la date</span>
+              </label>
+              <br>
+              <label class="switch">
+                <input id="checkbox-year" type="checkbox">
+                <span class="slider"></span>
+                <span>Masquer l’année</span>
+              </label>
+              <br>
+              <label class="switch">
+                <input id="checkbox-month" type="checkbox">
+                <span class="slider"></span>
+                <span>Masquer le mois</span>
+              </label>
+              <br>
+              <label class="switch">
+                <input id="checkbox" type="checkbox">
+                <span class="slider"></span>
+                <span>Masquer le jour</span>
+              </label>
+
+              <h2>Heure</h2>
+              <label class="switch">
+                <input id="checkbox-year" type="checkbox">
+                <span class="slider"></span>
+                <span>Masquer l’heure</span>
+              </label>
+              <br>
+              <label class="switch">
+                <input id="checkbox-month" type="checkbox">
+                <span class="slider"></span>
+                <span>Masquer les minutes</span>
+              </label>
+              <br>
+              <label class="switch">
+                <input id="checkbox" type="checkbox">
+                <span class="slider"></span>
+                <span>Masquer les secondes</span>
+              </label>
+            </div>
+          
+            <div id="Paris" class="w3-container city" style="display:none">
+              <h2>Vibration</h2>
+              <p>Paris is the capital of France.</p> 
+              <p>The Paris area is one of the largest population centers in Europe, with more than 12 million inhabitants.</p>
+            </div>
+          
+            <div id="Tokyo" class="w3-container city" style="display:none">
+              <h2>Battery</h2>
+              <p>Tokyo is the capital of Japan.</p>
+              <p>It is the center of the Greater Tokyo Area, and the most populous metropolitan area in the world.</p>
+            </div>
+
+            <div id="Network" class="w3-container city" style="display:none">
+              <h2>Network</h2>
+              <p>Tokyo is the capital of Japan.</p>
+              <p>It is the center of the Greater Tokyo Area, and the most populous metropolitan area in the world.</p>
+            </div>
+                  
+            <div id="Dark-mode" class="w3-container city" style="display:none">
+              <h2>Dark Mode</h2>
+              <label class="switch">
+                <input id="checkbox" type="checkbox" checked>
+                <span class="slider"></span>
+                <span>Enable dark mode</span>
+              </label>
+            </div>
+          
+          </div>
+        </div>
+      </div>
+    </section>
     <script src="js/modal.js"></script>
     <script src="js/index.js"></script>
     <script src="js/navbar.js"></script>
     <script src="js/application_list.js"></script>
+    <script src="js/settings.js"></script>
     <script src="https://kit.fontawesome.com/ca13fc92c5.js" crossorigin="anonymous"></script>
   </body>
 </html>

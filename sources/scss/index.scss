@@ -74,13 +74,10 @@ body {
         display: flex;
         text-align: center;
         flex-direction: column;
-        a, div {
-          img {
-            width: 100%;
-            height: auto;
-            max-width: 4rem;
-          }
-        }
+        width: 100%;
+        height: auto;
+        max-width: 4rem;
+        cursor: pointer;
       }
     }
   }
@@ -199,6 +196,52 @@ body {
           &[type='submit'] {
             display: none;
           }
+        }
+      }
+    }
+  }
+  .modal--settings-application {
+    .modal-content {
+      .modal-body {
+        padding: 0;
+        display: flex;
+        gap: 1rem;
+        .sidebar {
+          background-color: black;
+          z-index: 1;
+          overflow: auto;
+          flex: 1;
+          .bar-item {
+            width: 100%;
+            display: block;
+            padding: 8px 16px;
+            text-align: left;
+            border: none;
+            white-space: normal;
+            float: none;
+            outline: 0;
+          }
+          .button {
+            display: inline-block;
+            padding: 8px 16px;
+            vertical-align: middle;
+            overflow: hidden;
+            text-decoration: none;
+            color: inherit;
+            background-color: inherit;
+            cursor: pointer;
+            white-space: nowrap;
+            background-color: black;
+            &:hover {
+              background-color: #1b1a1a;
+            }
+          }
+          .red {
+            background-color: #210101;
+          }
+        }
+        .tab-content {
+          flex: 2;
         }
       }
     }

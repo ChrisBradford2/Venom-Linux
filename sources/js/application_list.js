@@ -88,7 +88,7 @@ applicationList.forEach(function (application) {
 
   // Set condition of the target="_blank".
   let blank
-  if (obj.target === true) {
+  if (true === obj.target) {
     blank = ' target="_blank"'
   } else {
     blank = ''
@@ -96,7 +96,7 @@ applicationList.forEach(function (application) {
 
   // Set condition of the target="_blank".
   let isLink
-  if (obj.tag === 'a') {
+  if ('a' === obj.tag) {
     isLink = ` href="${obj.link}"`
   } else {
     isLink = ''
@@ -104,11 +104,9 @@ applicationList.forEach(function (application) {
 
   // Inject the div to application's list section.
   document.getElementById('application-list').innerHTML += `
-      <div class="desktop--app-list--icon">
-          <${obj.tag} id="${obj.icon}-application"${isLink}${blank}>
-              <img src="assets/icons/${obj.icon}.svg" alt="${obj.icon} application" />
-              <p>${obj.name}</p>
-          </a>
-      </div>
-      `
+    <${obj.tag} class="desktop--app-list--icon" id="${obj.icon}-application"${isLink}${blank}>
+      <img src="assets/icons/${obj.icon}.svg" alt="${obj.icon} application" />
+      <p>${obj.name}</p>
+    </a>
+   `
 })

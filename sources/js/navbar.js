@@ -9,7 +9,7 @@ const downloadSize = 4995374 // bytes
 
 function ShowProgressMessage (msg) {
   if (console) {
-    if (typeof msg === 'string') {
+    if ('string' === typeof msg) {
       console.log(msg)
     } else {
       for (let i = 0; i < msg.length; i++) {
@@ -20,7 +20,7 @@ function ShowProgressMessage (msg) {
 
   const oProgress = document.getElementById('progress')
   if (oProgress) {
-    const actualHTML = (typeof msg === 'string') ? msg : msg.join('<br />')
+    const actualHTML = ('string' === typeof msg) ? msg : msg.join('<br />')
     oProgress.innerHTML = actualHTML
   }
 }
@@ -77,19 +77,19 @@ navigator.getBattery()
     function addClass (className) {
       icon.classList.add(className)
     }
-    if (batteryIsCharging === false) {
-      if (level < 0.1) {
+    if (false === batteryIsCharging) {
+      if (0.1 > level) {
         addClass('fa-battery-empty')
-      } else if (level < 0.3) {
+      } else if (0.3 > level) {
         addClass('fa-battery-quarter')
-      } else if (level < 0.6) {
+      } else if (0.6 > level) {
         addClass('fa-battery-half')
-      } else if (level < 0.9) {
+      } else if (0.9 > level) {
         addClass('fa-battery-three-quarters')
       } else {
         addClass('fa-battery-full')
       }
-    } else if (batteryIsCharging === true && level === 1) {
+    } else if (true === batteryIsCharging && 1 === level) {
       addClass('fa-plug-circle-check')
     } else {
       addClass('fa-plug-circle-bolt')
@@ -117,7 +117,7 @@ const spanVibration = document.getElementById('vibration-state-text')
 
 function toggleVibrationState () {
   vibrationIsAllowed = !vibrationIsAllowed
-  if (vibrationIsAllowed === true) {
+  if (true === vibrationIsAllowed) {
     iconVibration.classList.replace('fa-mobile', 'fa-mobile-screen')
     spanVibration.innerHTML = 'Vibration On'
     multiVibration([300, 100, 200, 50, 300])
@@ -127,7 +127,7 @@ function toggleVibrationState () {
   }
 }
 
-if (vibrationIsAllowed === true) {
+if (true === vibrationIsAllowed) {
   iconVibration.classList.add('fa-mobile-screen')
   spanVibration.innerHTML = 'Vibration On'
 } else {
