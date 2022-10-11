@@ -3,8 +3,27 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="JavaScript" />
     <title>Venom Linux</title>
+    <meta name="title" content="Venom Linux">
+    <meta name="description" content="Made in Javascript from scratch, Venom Linux is an operating system interface inspired by Ubuntu that aims to reveal the full potential of Javascript.">
+    <meta name="keywords" content="venom, linux, javascript">
+    <meta name="robots" content="index, follow">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="language" content="English">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://venom-linux.xyz">
+    <meta property="og:title" content="Venom Linux">
+    <meta property="og:description" content="Made in Javascript from scratch, Venom Linux is an operating system interface inspired by Ubuntu that aims to reveal the full potential of Javascript.">
+    <meta property="og:image" content="https://www.venom-linux.xyz/assets/img/og_image.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://venom-linux.xyz">
+    <meta property="twitter:title" content="Venom Linux">
+    <meta property="twitter:description" content="Made in Javascript from scratch, Venom Linux is an operating system interface inspired by Ubuntu that aims to reveal the full potential of Javascript.">
+    <meta property="twitter:image" content="https://www.venom-linux.xyz/assets/img/og_image.png">
     <link
       rel="apple-touch-icon"
       sizes="180x180"
@@ -36,15 +55,15 @@
   </head>
   <body>
     <nav class="nav">
-        <div >Applications</div>
+        <div class="nav--app-title">Applications</div>
         <div class="nav--date">
             <span id="day"></span>, <span id="date"></span> <span id="time"></span>
         </div>
         <ul class="nav--infos">
-            <li><i class="fa-solid fa-volume-low"></i></li>
-            <li><i class="fa-solid fa-battery-three-quarters"></i></li>
-            <li>
-                <i class="fa-solid fa-signal"></i>
+            <li class="nav--infos--vibration tooltip" onclick="toggleVibrationState()"><i id="vibration-state-icon" class="fa-solid"></i><span id="vibration-state-text" class="tooltip--text"></span></li>
+            <li class="nav--infos--battery"><i id="battery" class="fa-solid"></i><span id="battery-span"></span></li>
+            <li class="nav--infos--speed">
+                <i class="fa-solid fa-signal"></i><span id="speed-test"></span>
             </li>
         </ul>
     </nav>
@@ -81,6 +100,7 @@
       </div>
     </section>
     <script src="js/index.js"></script>
+    <script src="js/navbar.js"></script>
     <script src="js/application_list.js"></script>
     <script src="https://kit.fontawesome.com/ca13fc92c5.js" crossorigin="anonymous"></script>
   </body>
