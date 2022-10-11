@@ -23,7 +23,6 @@ keys.addEventListener('click', (event) => {
           console.log('first')
         }
         screen.textContent = keyTyped
-        keysTyped.push(keyTyped)
         console.log('second 1')
       } else {
         console.log('second 2')
@@ -33,23 +32,18 @@ keys.addEventListener('click', (event) => {
 
     switch (action) {
       case 'plus':
-        keysTyped.push(displayedNumber)
-        keysTyped.push('+')
         display(displayedNumber, '+', screen)
         calculator.dataset.previousKeyType = 'operator'
         break
       case 'minus':
-        keysTyped.push('-')
         display(displayedNumber, '-', screen)
         calculator.dataset.previousKeyType = 'operator'
         break
       case 'multiply':
-        keysTyped.push('*')
         display(displayedNumber, '*', screen)
         calculator.dataset.previousKeyType = 'operator'
         break
       case 'divide':
-        keysTyped.push('/')
         display(displayedNumber, '/', screen)
         calculator.dataset.previousKeyType = 'operator'
         break
@@ -61,11 +55,11 @@ keys.addEventListener('click', (event) => {
         keysTyped = []
         break
       case 'equal':
-        keysTyped.push('=')
+
+        keysTyped.push(displayedNumber)
         calculate(keysTyped)
         break
       default:
-        if (calculator.dataset.previousKeyType === 'operator') keysTyped.push(displayedNumber)
         calculator.dataset.previousKeyType = ''
         break
     }
@@ -85,7 +79,23 @@ function display(number, operator, screen) {
 }
 
 function calculate(keysTyped) {
-  let typedNumber = keysTyped.filter((number) => {
+  const keys = []
+  let equation = 0;
 
+  for (let i = 0; i < keysTyped[0].length; i++) {
+    keys.push(keysTyped[0][i])
+  }
+
+  keys.reduce((previousValue, currentValue) => {
+    console.log(previousValue, currentValue)
+
+    /*if (!parseInt(e)) {
+      switch (e) {
+        case '*':
+          equation = equation
+          break
+      }
+    }*/
   })
+
 }

@@ -4,7 +4,7 @@
  * @param {Application} object
  */
 class Application {
-  constructor(icon, name, link, target) {
+  constructor (icon, name, link, target) {
     /* String : Path of the svg icon
 
     Directory and extension are already defined, please
