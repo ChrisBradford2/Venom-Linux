@@ -1,101 +1,116 @@
 
-const calculator = document.getElementById('calculator')
-
+const calculator = document.querySelector('.calculator')
 const keys = calculator.querySelector('.calculator--keys')
+const display = document.getElementById('screen')
 
-let keysTyped = []
+/**
+* For each key we add an event listener
+* */
+keys.addEventListener('click', e => {
+  // we get clicked key, the action realised, the displayed number and the type previous key typed using data attributs
+  const key = e.target
+  const action = key.dataset.action
+  const keyContent = key.textContent
+  let displayedNum = display.textContent
+  const previousKeyType = calculator.dataset.previousKeyType
+  let isComplexStatement = false
 
-keys.addEventListener('click', (event) => {
-  if (event.target.matches('button')) {
-    const key = event.target
-    // use of data attributes to recognize the type of action executed
-    const action = key.dataset.action
-    const keyTyped = key.textContent
-    const screen = document.getElementById('screen')
-    const displayedNumber = screen.textContent
-    // use data attributes to store the type of the previous key typed
-    const previousKeyType = calculator.dataset.previousKeyType
-
-    if (!action) {
-      if (displayedNumber === '0') {
-        if (previousKeyType !== '') {
-          screen.textContent = `${displayedNumber}${keyTyped}`
-          console.log('first')
-        }
-        screen.textContent = keyTyped
-        console.log('second 1')
-      } else {
-        console.log('second 2')
-        screen.textContent = `${displayedNumber}${keyTyped}`
-      }
-    }
-
-    switch (action) {
-      case 'plus':
-        display(displayedNumber, '+', screen)
-        calculator.dataset.previousKeyType = 'operator'
-        break
-      case 'minus':
-        display(displayedNumber, '-', screen)
-        calculator.dataset.previousKeyType = 'operator'
-        break
-      case 'multiply':
-        display(displayedNumber, '*', screen)
-        calculator.dataset.previousKeyType = 'operator'
-        break
-      case 'divide':
-        display(displayedNumber, '/', screen)
-        calculator.dataset.previousKeyType = 'operator'
-        break
-      case 'decimal':
-        display(displayedNumber, '.', screen)
-        break
-      case 'clear':
-        display(0, null, screen)
-        keysTyped = []
-        break
-      case 'equal':
-
-        keysTyped.push(displayedNumber)
-        calculate(keysTyped)
-        break
-      default:
-        calculator.dataset.previousKeyType = ''
-        break
+  /**
+   * Reset of the screen in cas of 0, operator or error
+   */
+  if (!action) {
+    if (displayedNum === '0' || previousKeyType === 'operator' || displayedNum === 'Error') {
+      display.textContent = keyContent
+      calculator.dataset.previousKeyType = ''
+    } else {
+      display.textContent = displayedNum + keyContent
     }
   }
-  console.log(keysTyped)
-  console.log(calculator.dataset.previousKeyType)
+
+  const firstValue = calculator.dataset.firstValue
+  const operator = calculator.dataset.operator
+  const secondValue = displayedNum
+
+  /**
+   * Allow the user to make many statement e.g. : 1+1+1+1+1/2
+   */
+  if (action && action !== 'clear') {
+    if (firstValue && operator && secondValue !== undefined) {
+      displayedNum = calculate(firstValue, operator, secondValue)
+      display.textContent = displayedNum
+      isComplexStatement = true
+    }
+  }
+
+  /**
+   * Setting of the first value and type of operation to do
+   */
+  if (
+    action === 'plus' ||
+    action === 'minus' ||
+    action === 'multiply' ||
+    action === 'divide'
+  ) {
+    calculator.dataset.previousKeyType = 'operator'
+    calculator.dataset.firstValue = displayedNum
+    calculator.dataset.operator = action
+  }
+
+  /**
+   * Other actions
+  */
+
+  if (action === 'decimal') {
+    display.textContent = displayedNum + '.'
+  }
+
+  if (action === 'clear') {
+    display.textContent = '0'
+    calculator.dataset.firstValue = 0
+    calculator.dataset.operator = ''
+    displayedNum = 0
+  }
+
+  if (action === 'opposite') {
+    displayedNum = -displayedNum
+    display.textContent = displayedNum
+  }
+
+  if (action === 'calculate') {
+    displayedNum = calculate(firstValue, operator, secondValue)
+    if (displayedNum !== '0' && operator !== undefined) display.textContent = calculate(firstValue, operator, secondValue)
+    // we have to fix the first value to 0 in case of complex statement to avoid doing firstValue + firstValue
+    if (isComplexStatement) calculator.dataset.firstValue = 0
+  }
 })
 
-function display(number, operator, screen) {
-  console.log('third')
-  if (operator) {
-    // eslint-disable-next-line no-return-assign
-    return screen.textContent = `${number}${operator}`
+/**
+ *
+ * @param {string} firstValue
+ * @param {string} operator
+ * @param {string} secondValue
+ * @returns {string|int}
+ */
+function calculate (firstValue, operator, secondValue) {
+  let result = 0
+  switch (operator) {
+    case 'plus':
+      result = parseFloat(firstValue) + parseFloat(secondValue)
+      break
+    case 'minus':
+      result = parseFloat(firstValue) - parseFloat(secondValue)
+      break
+    case 'multiply':
+      result = parseFloat(firstValue) * parseFloat(secondValue)
+      break
+    case 'divide':
+      result = parseFloat(firstValue) / parseFloat(secondValue)
+      break
   }
-  // eslint-disable-next-line no-return-assign
-  return screen.textContent = `${number}`
-}
 
-function calculate(keysTyped) {
-  const keys = []
-  let equation = 0;
-
-  for (let i = 0; i < keysTyped[0].length; i++) {
-    keys.push(keysTyped[0][i])
+  if (!isNaN(result) && result !== Infinity) {
+    return result
   }
 
-  keys.reduce((previousValue, currentValue) => {
-    console.log(previousValue, currentValue)
-
-    /*if (!parseInt(e)) {
-      switch (e) {
-        case '*':
-          equation = equation
-          break
-      }
-    }*/
-  })
-
+  return 'Error'
 }
