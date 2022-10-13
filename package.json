@@ -2,8 +2,7 @@
   "private": true,
   "scripts": {
     "start": "vite",
-    "lint-scss": "npx stylelint 'sources/scss/*.scss'",
-    "lint-js": "npx eslint sources/js/*.js"
+    "lint-scss": "npx stylelint --fix sources/scss/*.scss"
   },
   "devDependencies": {
     "cypress": "^10.9.0",
