@@ -107,3 +107,67 @@ changeToggleStateForDisplay(checkboxNetworkShow, 'speed-network')
 
 const checkboxVibrationShow = document.getElementById('checkbox-vibration-state')
 changeToggleStateForDisplay(checkboxVibrationShow, 'vibration')
+
+const white = 'white'
+const grey = 'grey'
+const black = 'black'
+
+const elements = document.getElementsByTagName('*')
+const body = document.getElementsByTagName('body')
+const buttons = document.getElementsByTagName('button')
+const modalContents = document.getElementsByClassName('modal-content')
+const modalHeaders = document.getElementsByClassName('modal-header')
+const sidebars = document.getElementsByClassName('sidebar')
+const inputs = document.getElementsByTagName('input')
+const selects = document.getElementsByTagName('select')
+
+document.getElementById('checkbox-theme-mode').addEventListener('change', (event) => {
+  if (false === event.currentTarget.checked) {
+    for (const element of elements) {
+      element.style.color = black
+    }
+    for (const button of buttons) {
+      button.style.backgroundColor = white
+    }
+    body[0].style.backgroundColor = white
+    body[0].style.backgroundImage = "url('../assets/img/background_light.png')"
+    document.getElementsByClassName('nav')[0].style.backgroundColor = grey
+    document.getElementById('context-menu').style.backgroundColor = white
+    for (const modalContent of modalContents) {
+      modalContent.style.backgroundColor = grey
+    }
+    for (const modalHeader of modalHeaders) {
+      modalHeader.style.backgroundColor = white
+    }
+    for (const sidebar of sidebars) {
+      sidebar.style.backgroundColor = white
+    }
+    document.getElementById('close-settings-application').style.color = white
+    for (const input of inputs) {
+      input.style.backgroundColor = white
+    }
+    for (const select of selects) {
+      select.style.backgroundColor = white
+    }
+  } else {
+    for (const element of elements) {
+      element.style.color = null
+    }
+    for (const button of buttons) {
+      button.style.backgroundColor = null
+    }
+    body[0].style.backgroundColor = null
+    body[0].style.backgroundImage = null
+    document.getElementsByClassName('nav')[0].style.backgroundColor = null
+    document.getElementById('context-menu').style.backgroundColor = null
+    for (const modalContent of modalContents) {
+      modalContent.style.backgroundColor = null
+    }
+    for (const modalHeader of modalHeaders) {
+      modalHeader.style.backgroundColor = null
+    }
+    for (const sidebar of sidebars) {
+      sidebar.style.backgroundColor = null
+    }
+  }
+})

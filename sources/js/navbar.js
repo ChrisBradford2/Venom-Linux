@@ -85,7 +85,7 @@ function getBatteryPerMinutes () {
     .then(function (battery) {
       const level = battery.level
       const levelStatus = (level * 100)
-      const levelPercent = Math.round(levelStatus) + ' %'
+      const levelPercent = Math.round(levelStatus) + ' %' // Prevent battery to be decimal.
       const batteryIsCharging = battery.charging
       const icon = document.getElementById('battery-icon')
       const span = document.getElementById('battery-span')
