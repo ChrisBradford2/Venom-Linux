@@ -105,18 +105,29 @@ const getCurrentTimeDate = () => {
     hours = hours % 12
   }
 
+  const currentHour = `${hours}`
+  const currentMinutes = `${minutes}`
+  const currentSeconds = `${seconds}`
+  const currentAMPM = `${AMPM}`
+
   const currentTime = `${hours}:${minutes}:${seconds} ${AMPM}`
   const currentDay = weekday[currentTimeDate.getDay()]
 
   const currentDate = currentTimeDate.getDate()
   const currentMonth = month[currentTimeDate.getMonth()]
-  const CurrentYear = currentTimeDate.getFullYear()
+  const currentYear = currentTimeDate.getFullYear()
 
-  const fullDate = `${currentDate} ${currentMonth} ${CurrentYear}`
+  const fullDate = `${currentDate} ${currentMonth} ${currentYear}`
 
-  document.getElementById('time').innerHTML = currentTime
+  document.getElementById('hours').innerHTML = currentHour
+  document.getElementById('minutes').innerHTML = currentMinutes
+  document.getElementById('seconds').innerHTML = currentSeconds
+  document.getElementById('ampm').innerHTML = currentAMPM
+  // document.getElementById('time').innerHTML = currentTime
   document.getElementById('day').innerHTML = currentDay + ', '
-  document.getElementById('date').innerHTML = fullDate
+  document.getElementById('date').innerHTML = currentDate + ' '
+  document.getElementById('month').innerHTML = currentMonth + ' '
+  document.getElementById('year').innerHTML = currentYear + ' '
 
   setTimeout(getCurrentTimeDate, 500)
 }

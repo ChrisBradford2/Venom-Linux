@@ -72,7 +72,7 @@ navigator.getBattery()
     const level = battery.level
     const levelPercent = (level * 100) + ' %'
     const batteryIsCharging = battery.charging
-    const icon = document.getElementById('battery')
+    const icon = document.getElementById('battery-icon')
     const span = document.getElementById('battery-span')
     function addClass (className) {
       icon.classList.add(className)
