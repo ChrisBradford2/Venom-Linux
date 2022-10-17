@@ -2,6 +2,7 @@
   "private": true,
   "scripts": {
     "start": "vite",
+    "test": "npx cypress run",
     "lint-scss": "npx stylelint 'sources/scss/*.scss'",
     "lint-js": "npx eslint sources/js/*.js"
   },
