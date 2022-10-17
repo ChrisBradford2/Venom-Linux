@@ -30,6 +30,13 @@ window.onclick = function (event) {
   }
 }
 
+// When the user clicks on 'esc' key, close the modal
+window.onkeydown = function (event) {
+  if (27 === event.keyCode) {
+    modal2.style.display = 'none'
+  }
+}
+
 // eslint-disable-next-line no-unused-vars
 function openCity (evt, cityName) {
   let i, x, tablinks
@@ -67,21 +74,6 @@ if (false === document.getElementById('checkbox-minutes').checked || false === d
 } else {
   document.getElementById('separator-hour-seconds').innerHTML = ''
 }
-
-// eslint-disable-next-line prefer-const, no-undef
-let setSpeedInterval = setInterval(MeasureConnectionSpeed, 2000) // setting the loop with time interval
-console.log(setSpeedInterval)
-/*
-const myInputArea = document.getElementById('number-timeout')
-myInputArea.addEventListener('input', (e) => {
-  let myInputText = e.target.value
-  let myInputNumber = myInputText * 1000
-  console.log(myInputNumber)
-  setSpeedInterval = 0
-  // eslint-disable-next-line no-undef
-  setSpeedInterval = setInterval(MeasureConnectionSpeed, myInputNumber)
-  console.log(setSpeedInterval)
-}) */
 
 const checkboxDayShow = document.getElementById('checkbox-day')
 changeToggleStateForDisplay(checkboxDayShow, 'day')

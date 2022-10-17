@@ -110,14 +110,10 @@ const getCurrentTimeDate = () => {
   const currentSeconds = `${seconds}`
   const currentAMPM = `${AMPM}`
 
-  const currentTime = `${hours}:${minutes}:${seconds} ${AMPM}`
   const currentDay = weekday[currentTimeDate.getDay()]
-
   const currentDate = currentTimeDate.getDate()
   const currentMonth = month[currentTimeDate.getMonth()]
   const currentYear = currentTimeDate.getFullYear()
-
-  const fullDate = `${currentDate} ${currentMonth} ${currentYear}`
 
   document.getElementById('hours').innerHTML = currentHour
   document.getElementById('minutes').innerHTML = currentMinutes
@@ -157,6 +153,13 @@ span.onclick = function () {
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function (event) {
   if (event.target === modal) {
+    modal.style.display = 'none'
+  }
+}
+
+// When the user clicks on 'esc' key, close the modal
+window.onkeydown = function (event) {
+  if (27 === event.keyCode) {
     modal.style.display = 'none'
   }
 }

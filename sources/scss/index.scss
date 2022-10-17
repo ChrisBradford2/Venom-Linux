@@ -6,6 +6,22 @@
   font-family: Ubuntu, sans-serif;
   color: white;
 }
+input {
+  background-color: #000;
+  color: white;
+  display: inline-block;
+  border: 1px solid #CCC;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+select {
+  background-color: #000;
+  color: white;
+  display: inline-block;
+  border: 1px solid #CCC;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
 html,
 body {
   min-height: 100vh;
@@ -184,14 +200,8 @@ body {
       form {
         input {
           &[type='text'] {
-            background-color: #000;
-            color: white;
             width: 100%;
             padding: 12px 20px;
-            display: inline-block;
-            border: 1px solid #CCC;
-            border-radius: 4px;
-            box-sizing: border-box;
           }
           &[type='submit'] {
             display: none;

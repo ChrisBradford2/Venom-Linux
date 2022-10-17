@@ -61,7 +61,20 @@ function MeasureConnectionSpeed () {
     document.getElementById('speed-test').innerHTML = speedMbps + ' Mbps'
   }
 }
-const interval = setInterval(MeasureConnectionSpeed, 2000) // setting the loop with time interval
+
+const timeInterval = document.getElementById('number-timeout')
+let intervalHasChanged = false
+
+let interval = setInterval(MeasureConnectionSpeed, timeInterval.value * 1000) // setting the loop with time interval
+console.log('initial : ' + interval)
+
+timeInterval.addEventListener('change', (e) => {
+  intervalHasChanged = true
+  timeInterval.value = e.target.value
+  clearInterval(interval)
+  interval = setInterval(MeasureConnectionSpeed, timeInterval.value * 1000) // setting the loop with time interval
+  console.log('modified : ' + interval)
+})
 
 /**
  * Battery
