@@ -19,7 +19,7 @@ keys.addEventListener('click', e => {
    * Reset of the screen in cas of 0, operator or error
    */
   if (!action) {
-    if (displayedNum === '0' || previousKeyType === 'operator' || displayedNum === 'Error') {
+    if ('0' === displayedNum || 'operator' === previousKeyType || 'Error' === displayedNum) {
       display.textContent = keyContent
       calculator.dataset.previousKeyType = ''
     } else {
@@ -34,7 +34,7 @@ keys.addEventListener('click', e => {
   /**
    * Allow the user to make many statement e.g. : 1+1+1+1+1/2
    */
-  if (action && action !== 'clear') {
+  if (action && 'clear' !== action) {
     if (firstValue && operator && secondValue !== undefined) {
       displayedNum = calculate(firstValue, operator, secondValue)
       display.textContent = displayedNum
@@ -46,10 +46,10 @@ keys.addEventListener('click', e => {
    * Setting of the first value and type of operation to do
    */
   if (
-    action === 'plus' ||
-    action === 'minus' ||
-    action === 'multiply' ||
-    action === 'divide'
+    'plus' === action ||
+    'minus' === action ||
+    'multiply' === action ||
+    'divide' === action
   ) {
     calculator.dataset.previousKeyType = 'operator'
     calculator.dataset.firstValue = displayedNum
@@ -60,25 +60,25 @@ keys.addEventListener('click', e => {
    * Other actions
   */
 
-  if (action === 'decimal') {
+  if ('decimal' === action) {
     display.textContent = displayedNum + '.'
   }
 
-  if (action === 'clear') {
+  if ('clear' === action) {
     display.textContent = '0'
     calculator.dataset.firstValue = 0
     calculator.dataset.operator = ''
     displayedNum = 0
   }
 
-  if (action === 'opposite') {
+  if ('opposite' === action) {
     displayedNum = -displayedNum
     display.textContent = displayedNum
   }
 
-  if (action === 'calculate') {
+  if ('calculate' === action) {
     displayedNum = calculate(firstValue, operator, secondValue)
-    if (displayedNum !== '0' && operator !== undefined) display.textContent = calculate(firstValue, operator, secondValue)
+    if ('0' !== displayedNum && operator !== undefined) display.textContent = calculate(firstValue, operator, secondValue)
     // we have to fix the first value to 0 in case of complex statement to avoid doing firstValue + firstValue
     if (isComplexStatement) calculator.dataset.firstValue = 0
   }
