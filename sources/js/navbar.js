@@ -80,36 +80,39 @@ timeInterval.addEventListener('change', (e) => {
  * Battery
  */
 
-navigator.getBattery()
-  .then(function (battery) {
-    const level = battery.level
-    const levelStatus = (level * 100)
-    const levelPercent = Math.round(levelStatus) + ' %'
-    const batteryIsCharging = battery.charging
-    const icon = document.getElementById('battery-icon')
-    const span = document.getElementById('battery-span')
-    function addClass (className) {
-      icon.classList.add(className)
-    }
-    if (false === batteryIsCharging) {
-      if (0.1 > level) {
-        addClass('fa-battery-empty')
-      } else if (0.3 > level) {
-        addClass('fa-battery-quarter')
-      } else if (0.6 > level) {
-        addClass('fa-battery-half')
-      } else if (0.9 > level) {
-        addClass('fa-battery-three-quarters')
-      } else {
-        addClass('fa-battery-full')
+function getBatteryPerMinutes () {
+  navigator.getBattery()
+    .then(function (battery) {
+      const level = battery.level
+      const levelStatus = (level * 100)
+      const levelPercent = Math.round(levelStatus) + ' %'
+      const batteryIsCharging = battery.charging
+      const icon = document.getElementById('battery-icon')
+      const span = document.getElementById('battery-span')
+      function addClass (className) {
+        icon.classList.add(className)
       }
-    } else if (true === batteryIsCharging && 1 === level) {
-      addClass('fa-plug-circle-check')
-    } else {
-      addClass('fa-plug-circle-bolt')
-    }
-    span.innerHTML = levelPercent
-  })
+      if (false === batteryIsCharging) {
+        if (0.1 > level) {
+          addClass('fa-battery-empty')
+        } else if (0.3 > level) {
+          addClass('fa-battery-quarter')
+        } else if (0.6 > level) {
+          addClass('fa-battery-half')
+        } else if (0.9 > level) {
+          addClass('fa-battery-three-quarters')
+        } else {
+          addClass('fa-battery-full')
+        }
+      } else if (true === batteryIsCharging && 1 === level) {
+        addClass('fa-plug-circle-check')
+      } else {
+        addClass('fa-plug-circle-bolt')
+      }
+      span.innerHTML = levelPercent
+    })
+}
+setInterval(getBatteryPerMinutes(), 30000)
 
 /**
  * Vibration
@@ -129,22 +132,34 @@ let vibrationIsAllowed = true
 const iconVibration = document.getElementById('vibration-state-icon')
 const spanVibration = document.getElementById('vibration-state-text')
 
+function checkVibrationToggle () {
+  document.getElementById('checkbox-vibration-toggle').checked = true
+}
+
+function uncheckVibrationToggle () {
+  document.getElementById('checkbox-vibration-toggle').checked = false
+}
+
 function toggleVibrationState () {
   vibrationIsAllowed = !vibrationIsAllowed
   if (true === vibrationIsAllowed) {
     iconVibration.classList.replace('fa-mobile', 'fa-mobile-screen')
     spanVibration.innerHTML = 'Vibration On'
     multiVibration([300, 100, 200, 50, 300])
+    checkVibrationToggle()
   } else {
     iconVibration.classList.replace('fa-mobile-screen', 'fa-mobile')
     spanVibration.innerHTML = 'Vibration Off'
+    uncheckVibrationToggle()
   }
 }
 
 if (true === vibrationIsAllowed) {
   iconVibration.classList.add('fa-mobile-screen')
   spanVibration.innerHTML = 'Vibration On'
+  checkVibrationToggle()
 } else {
   iconVibration.classList.add('fa-mobile')
   spanVibration.innerHTML = 'Vibration Off'
+  uncheckVibrationToggle()
 }
