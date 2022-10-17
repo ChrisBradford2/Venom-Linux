@@ -70,7 +70,8 @@ const interval = setInterval(MeasureConnectionSpeed, 2000) // setting the loop w
 navigator.getBattery()
   .then(function (battery) {
     const level = battery.level
-    const levelPercent = (level * 100) + ' %'
+    const levelStatus = (level * 100)
+    const levelPercent = Math.round(levelStatus) + ' %'
     const batteryIsCharging = battery.charging
     const icon = document.getElementById('battery-icon')
     const span = document.getElementById('battery-span')
