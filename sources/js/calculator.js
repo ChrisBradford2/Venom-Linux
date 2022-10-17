@@ -1,3 +1,32 @@
+// Modal
+
+const modal3 = document.getElementById('modal-calculator')
+
+// Get the button that opens the modal
+const btn3 = document.getElementById('calculator-application')
+console.log(btn3)
+
+// Get the <span> element that closes the modal
+const span3 = document.getElementById('close-calculator')
+console.log(span3)
+
+// When the user clicks the button, open the modal
+btn3.onclick = function () {
+  modal3.style.display = 'block'
+  console.log('Get the modal')
+}
+
+// When the user clicks on <span> (x), close the modal
+span3.onclick = function () {
+  modal3.style.display = 'none'
+}
+
+// When the user clicks anywhere outside of the modal, close it.
+window.onclick = function (event) {
+  if (event.target === modal3) {
+    modal3.style.display = 'none'
+  }
+}
 
 const calculator = document.querySelector('.calculator')
 const keys = calculator.querySelector('.calculator--keys')
