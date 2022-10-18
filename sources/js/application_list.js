@@ -44,7 +44,7 @@ const horloge = new Application(
   'div',
   'settings',
   'Settings',
-  'https://fonts.googleapis.com'
+  'https://exemple.com'
 )
 
 // Add the application in the array :
