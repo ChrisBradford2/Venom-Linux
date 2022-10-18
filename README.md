@@ -101,6 +101,27 @@ Style compilation is made with gulp. To run it, use :
 gulp watch
 ```
 
+### Run tests
+
+#### Run cypress
+
+```bash
+npx cypress run # To execute the test
+npx cypress open # Open the GUI (dont work in container)
+```
+
+#### Run scss linter
+
+```bash
+npm run lint-scss
+```
+
+#### Run js linter
+
+```bash
+npm run lint-js
+```
+
 <!-- CONTACT -->
 
 ## Contact
