@@ -40,8 +40,15 @@ const settings = new Application(
   'https://fonts.googleapis.com'
 )
 
+const horloge = new Application(
+  'div',
+  'settings',
+  'Settings',
+  'https://fonts.googleapis.com'
+)
+
 // Add the application in the array :
-const applicationList = [github, figma, settings]
+const applicationList = [github, figma, settings, horloge]
 
 // eslint-disable-next-line no-unused-vars
 function formdata () {
