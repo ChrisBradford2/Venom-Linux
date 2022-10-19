@@ -92,8 +92,11 @@ body {
         flex-direction: column;
         width: 100%;
         height: auto;
-        max-width: 4rem;
+        max-width: 7.5rem;
         cursor: pointer;
+        .icon-application {
+          max-width: 4rem;
+        }
       }
     }
   }

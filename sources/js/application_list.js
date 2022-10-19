@@ -66,10 +66,10 @@ function formdata () {
   // Inject the div to application's list section.
   document.getElementById('application-list').innerHTML += `
   <div class="desktop--app-list--icon">
-          <${obj.tag} id="${obj.icon}-${size}-application">
-          <img src="assets/icons/${obj.icon}.svg" alt="${obj.icon} text file application" />
-          <p>${obj.name}.txt</p>
-      </a>
+      <${obj.tag} id="${obj.icon}-${size}-application">
+        <img src="assets/icons/${obj.icon}.svg" alt="${obj.icon} text file application" />
+        <p>${obj.name}.txt</p>
+      </${obj.tag}>
   </div>
   `
 
@@ -104,9 +104,11 @@ applicationList.forEach(function (application) {
 
   // Inject the div to application's list section.
   document.getElementById('application-list').innerHTML += `
-    <${obj.tag} class="desktop--app-list--icon" id="${obj.icon}-application"${isLink}${blank}>
-      <img src="assets/icons/${obj.icon}.svg" alt="${obj.icon} application" />
+  <div class="desktop--app-list--icon" id="${obj.icon}-application">
+    <${obj.tag} ${isLink}${blank}>
+      <img class="icon-application" src="assets/icons/${obj.icon}.svg" alt="${obj.icon} application" />
       <p>${obj.name}</p>
-    </a>
-   `
+    </${obj.tag}>
+  </div>
+  `
 })
