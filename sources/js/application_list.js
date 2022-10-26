@@ -39,9 +39,15 @@ const settings = new Application(
   'Settings',
   'https://fonts.googleapis.com'
 )
+const calculatorApp = new Application(
+  'div',
+  'calculator',
+  'Calculator',
+  'https://fonts.googleapis.com'
+)
 
 // Add the application in the array :
-const applicationList = [github, figma, settings]
+const applicationList = [github, figma, calculatorApp, settings]
 
 // eslint-disable-next-line no-unused-vars
 function formdata () {
