@@ -31,6 +31,8 @@ window.onclick = function (event) {
 const calculator = document.querySelector('.calculator')
 const keys = calculator.querySelector('.calculator--keys')
 const display = document.getElementById('screen')
+let isComplexStatement = false
+let actions = []
 
 /**
 * For each key we add an event listener
@@ -42,7 +44,11 @@ keys.addEventListener('click', e => {
   const keyContent = key.textContent
   let displayedNum = display.textContent
   const previousKeyType = calculator.dataset.previousKeyType
-  let isComplexStatement = false
+
+  // Check if the user has used more than one operator to activate the complex statement mode
+  if (1 <= actions.length && !actions.includes('calculate')) {
+    isComplexStatement = true
+  }
 
   /**
    * Reset of the screen in cas of 0, operator or error
@@ -56,18 +62,19 @@ keys.addEventListener('click', e => {
     }
   }
 
+  // We retrieve the last value, operator that were set on calculator's dataset and then get the displayed value thus, allowing to know the first and second value
   const firstValue = calculator.dataset.firstValue
   const operator = calculator.dataset.operator
   const secondValue = displayedNum
 
   /**
+   * complex statement mode
    * Allow the user to make many statement e.g. : 1+1+1+1+1/2
    */
-  if (action && 'clear' !== action) {
+  if (action && 'clear' !== action && isComplexStatement) {
     if (firstValue && operator && secondValue !== undefined) {
       displayedNum = calculate(firstValue, operator, secondValue)
       display.textContent = displayedNum
-      isComplexStatement = true
     }
   }
 
@@ -83,6 +90,7 @@ keys.addEventListener('click', e => {
     calculator.dataset.previousKeyType = 'operator'
     calculator.dataset.firstValue = displayedNum
     calculator.dataset.operator = action
+    actions.push(action)
   }
 
   /**
@@ -91,6 +99,7 @@ keys.addEventListener('click', e => {
 
   if ('decimal' === action) {
     display.textContent = displayedNum + '.'
+    actions.push(action)
   }
 
   if ('clear' === action) {
@@ -106,11 +115,15 @@ keys.addEventListener('click', e => {
   }
 
   if ('calculate' === action) {
+    actions.push(action)
     displayedNum = calculate(firstValue, operator, secondValue)
+    console.log(displayedNum)
     if ('0' !== displayedNum && operator !== undefined) display.textContent = calculate(firstValue, operator, secondValue)
-    // we have to fix the first value to 0 in case of complex statement to avoid doing firstValue + firstValue
-    if (isComplexStatement) calculator.dataset.firstValue = 0
+    isComplexStatement = false
+    actions = []
   }
+
+  console.log(actions)
 })
 
 /**
@@ -121,6 +134,7 @@ keys.addEventListener('click', e => {
  * @returns {string|int}
  */
 function calculate (firstValue, operator, secondValue) {
+  console.log(firstValue, operator, secondValue)
   let result = 0
   switch (operator) {
     case 'plus':
