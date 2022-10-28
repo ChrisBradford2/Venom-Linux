@@ -9,7 +9,7 @@ const downloadSize = 4995374 // bytes
 
 function ShowProgressMessage (msg) {
   if (console) {
-    if (typeof msg === 'string') {
+    if ('string' === typeof msg) {
       console.log(msg)
     } else {
       for (let i = 0; i < msg.length; i++) {
@@ -20,7 +20,7 @@ function ShowProgressMessage (msg) {
 
   const oProgress = document.getElementById('progress')
   if (oProgress) {
-    const actualHTML = (typeof msg === 'string') ? msg : msg.join('<br />')
+    const actualHTML = ('string' === typeof msg) ? msg : msg.join('<br />')
     oProgress.innerHTML = actualHTML
   }
 }
@@ -61,41 +61,58 @@ function MeasureConnectionSpeed () {
     document.getElementById('speed-test').innerHTML = speedMbps + ' Mbps'
   }
 }
-const interval = setInterval(MeasureConnectionSpeed, 2000) // setting the loop with time interval
+
+const timeInterval = document.getElementById('number-timeout')
+let intervalHasChanged = false
+
+let interval = setInterval(MeasureConnectionSpeed, timeInterval.value * 1000) // setting the loop with time interval
+console.log('initial : ' + interval)
+
+timeInterval.addEventListener('change', (e) => {
+  intervalHasChanged = true
+  timeInterval.value = e.target.value
+  clearInterval(interval)
+  interval = setInterval(MeasureConnectionSpeed, timeInterval.value * 1000) // setting the loop with time interval
+  console.log('modified : ' + interval)
+})
 
 /**
  * Battery
  */
 
-navigator.getBattery()
-  .then(function (battery) {
-    const level = battery.level
-    const levelPercent = (level * 100) + ' %'
-    const batteryIsCharging = battery.charging
-    const icon = document.getElementById('battery')
-    const span = document.getElementById('battery-span')
-    function addClass (className) {
-      icon.classList.add(className)
-    }
-    if (batteryIsCharging === false) {
-      if (level < 0.1) {
-        addClass('fa-battery-empty')
-      } else if (level < 0.3) {
-        addClass('fa-battery-quarter')
-      } else if (level < 0.6) {
-        addClass('fa-battery-half')
-      } else if (level < 0.9) {
-        addClass('fa-battery-three-quarters')
-      } else {
-        addClass('fa-battery-full')
+function getBatteryPerMinutes () {
+  navigator.getBattery()
+    .then(function (battery) {
+      const level = battery.level
+      const levelStatus = (level * 100)
+      const levelPercent = Math.round(levelStatus) + ' %' // Prevent battery to be decimal.
+      const batteryIsCharging = battery.charging
+      const icon = document.getElementById('battery-icon')
+      const span = document.getElementById('battery-span')
+      function addClass (className) {
+        icon.classList.add(className)
       }
-    } else if (batteryIsCharging === true && level === 1) {
-      addClass('fa-plug-circle-check')
-    } else {
-      addClass('fa-plug-circle-bolt')
-    }
-    span.innerHTML = levelPercent
-  })
+      if (false === batteryIsCharging) {
+        if (0.1 > level) {
+          addClass('fa-battery-empty')
+        } else if (0.3 > level) {
+          addClass('fa-battery-quarter')
+        } else if (0.6 > level) {
+          addClass('fa-battery-half')
+        } else if (0.9 > level) {
+          addClass('fa-battery-three-quarters')
+        } else {
+          addClass('fa-battery-full')
+        }
+      } else if (true === batteryIsCharging && 1 === level) {
+        addClass('fa-plug-circle-check')
+      } else {
+        addClass('fa-plug-circle-bolt')
+      }
+      span.innerHTML = levelPercent
+    })
+}
+setInterval(getBatteryPerMinutes(), 30000)
 
 /**
  * Vibration
@@ -115,22 +132,34 @@ let vibrationIsAllowed = true
 const iconVibration = document.getElementById('vibration-state-icon')
 const spanVibration = document.getElementById('vibration-state-text')
 
+function checkVibrationToggle () {
+  document.getElementById('checkbox-vibration-toggle').checked = true
+}
+
+function uncheckVibrationToggle () {
+  document.getElementById('checkbox-vibration-toggle').checked = false
+}
+
 function toggleVibrationState () {
   vibrationIsAllowed = !vibrationIsAllowed
-  if (vibrationIsAllowed === true) {
+  if (true === vibrationIsAllowed) {
     iconVibration.classList.replace('fa-mobile', 'fa-mobile-screen')
     spanVibration.innerHTML = 'Vibration On'
     multiVibration([300, 100, 200, 50, 300])
+    checkVibrationToggle()
   } else {
     iconVibration.classList.replace('fa-mobile-screen', 'fa-mobile')
     spanVibration.innerHTML = 'Vibration Off'
+    uncheckVibrationToggle()
   }
 }
 
-if (vibrationIsAllowed === true) {
+if (true === vibrationIsAllowed) {
   iconVibration.classList.add('fa-mobile-screen')
   spanVibration.innerHTML = 'Vibration On'
+  checkVibrationToggle()
 } else {
   iconVibration.classList.add('fa-mobile')
   spanVibration.innerHTML = 'Vibration Off'
+  uncheckVibrationToggle()
 }

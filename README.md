@@ -101,6 +101,27 @@ Style compilation is made with gulp. To run it, use :
 gulp watch
 ```
 
+### Run tests
+
+#### Run cypress
+
+```bash
+npx cypress run # To execute the test
+npx cypress open # Open the GUI (dont work in container)
+```
+
+#### Run scss linter
+
+```bash
+npm run lint-scss
+```
+
+#### Run js linter
+
+```bash
+npm run lint-js
+```
+
 <!-- CONTACT -->
 
 ## Contact
@@ -138,7 +159,7 @@ gulp watch
 [licence-shield]: https://img.shields.io/github/license/ChrisBradford2/Venom-Linux?style=for-the-badge
 [licence-url]: https://github.com/ChrisBradford2/Venom-Linux/blob/main/LICENSE
 [website-shield]: https://img.shields.io/website?down_color=red&down_message=down&style=for-the-badge&url=https%3A%2F%2Fchrisbradford2.github.io%Venom-Linux%2F
-[website-url]: https://venom-linux-seven.vercel.app/
+[website-url]: https://venom-linux.xyz
 [milestones1-shield]: https://img.shields.io/github/milestones/progress-percent/ChrisBradford2/Venom-Linux/1?style=for-the-badge
 [milestones1-url]: https://github.com/ChrisBradford2/Venom-Linux/milestone/1
 [milestones2-shield]: https://img.shields.io/github/milestones/progress-percent/ChrisBradford2/Venom-Linux/2?style=for-the-badge

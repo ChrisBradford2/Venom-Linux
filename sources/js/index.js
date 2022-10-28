@@ -92,28 +92,38 @@ const getCurrentTimeDate = () => {
   let hours = currentTimeDate.getHours()
 
   let minutes = currentTimeDate.getMinutes()
-  minutes = minutes < 10 ? '0' + minutes : minutes
+  minutes = 10 > minutes ? '0' + minutes : minutes
 
-  const AMPM = hours >= 12 ? 'PM' : 'AM'
+  let seconds = currentTimeDate.getSeconds()
+  seconds = 10 > seconds ? '0' + seconds : seconds
 
-  if (hours === 12) {
+  const AMPM = 12 <= hours ? 'PM' : 'AM'
+
+  if (12 === hours) {
     hours = 12
   } else {
     hours = hours % 12
   }
 
-  const currentTime = `${hours}:${minutes}${AMPM}`
-  const currentDay = weekday[currentTimeDate.getDay()]
+  const currentHour = `${hours}`
+  const currentMinutes = `${minutes}`
+  const currentSeconds = `${seconds}`
+  const currentAMPM = `${AMPM}`
 
+  const currentDay = weekday[currentTimeDate.getDay()]
   const currentDate = currentTimeDate.getDate()
   const currentMonth = month[currentTimeDate.getMonth()]
-  const CurrentYear = currentTimeDate.getFullYear()
+  const currentYear = currentTimeDate.getFullYear()
 
-  const fullDate = `${currentDate} ${currentMonth} ${CurrentYear}`
-
-  document.getElementById('time').innerHTML = currentTime
-  document.getElementById('day').innerHTML = currentDay
-  document.getElementById('date').innerHTML = fullDate
+  document.getElementById('hours').innerHTML = currentHour
+  document.getElementById('minutes').innerHTML = currentMinutes
+  document.getElementById('seconds').innerHTML = currentSeconds
+  document.getElementById('ampm').innerHTML = currentAMPM
+  // document.getElementById('time').innerHTML = currentTime
+  document.getElementById('day').innerHTML = currentDay + ', '
+  document.getElementById('date').innerHTML = currentDate + ' '
+  document.getElementById('month').innerHTML = currentMonth + ' '
+  document.getElementById('year').innerHTML = currentYear + ' '
 
   setTimeout(getCurrentTimeDate, 500)
 }
@@ -121,18 +131,18 @@ getCurrentTimeDate()
 
 // Modal
 
-// Get the modal
 const modal = document.getElementById('modal-new-file')
 
 // Get the button that opens the modal
 const btn = document.getElementById('new-file')
 
 // Get the <span> element that closes the modal
-const span = document.getElementsByClassName('close')[0]
+const span = document.getElementById('close-new-file')
 
 // When the user clicks the button, open the modal
 btn.onclick = function () {
   modal.style.display = 'block'
+  console.log('Get the modal')
 }
 
 // When the user clicks on <span> (x), close the modal
@@ -143,6 +153,13 @@ span.onclick = function () {
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function (event) {
   if (event.target === modal) {
+    modal.style.display = 'none'
+  }
+}
+
+// When the user clicks on 'esc' key, close the modal
+window.onkeydown = function (event) {
+  if (27 === event.keyCode) {
     modal.style.display = 'none'
   }
 }

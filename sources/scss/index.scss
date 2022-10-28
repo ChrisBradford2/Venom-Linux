@@ -6,6 +6,22 @@
   font-family: Ubuntu, sans-serif;
   color: white;
 }
+input {
+  background-color: #000;
+  color: white;
+  display: inline-block;
+  border: 1px solid #CCC;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+select {
+  background-color: #000;
+  color: white;
+  display: inline-block;
+  border: 1px solid #CCC;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
 html,
 body {
   min-height: 100vh;
@@ -74,6 +90,13 @@ body {
         display: flex;
         text-align: center;
         flex-direction: column;
+        width: 100%;
+        height: auto;
+        max-width: 7.5rem;
+        cursor: pointer;
+        .icon-application {
+          max-width: 4rem;
+        }
       }
     }
   }
@@ -180,17 +203,110 @@ body {
       form {
         input {
           &[type='text'] {
-            background-color: #000;
-            color: white;
             width: 100%;
             padding: 12px 20px;
-            display: inline-block;
-            border: 1px solid #CCC;
-            border-radius: 4px;
-            box-sizing: border-box;
           }
           &[type='submit'] {
             display: none;
+          }
+        }
+      }
+    }
+  }
+  .modal--settings-application {
+    .modal-content {
+      .modal-body {
+        padding: 0;
+        display: flex;
+        gap: 1rem;
+        .sidebar {
+          background-color: black;
+          z-index: 1;
+          overflow: auto;
+          flex: 1;
+          .bar-item {
+            width: 100%;
+            display: block;
+            padding: 8px 16px;
+            text-align: left;
+            border: none;
+            white-space: normal;
+            float: none;
+            outline: 0;
+          }
+          .button {
+            display: inline-block;
+            padding: 8px 16px;
+            vertical-align: middle;
+            overflow: hidden;
+            text-decoration: none;
+            color: inherit;
+            cursor: pointer;
+            white-space: nowrap;
+            background-color: black;
+            &:hover {
+              background-color: #1B1A1A;
+            }
+          }
+          .red {
+            background-color: #210101;
+          }
+        }
+        .tab-content {
+          flex: 2;
+          .switch {
+            position: relative;
+            display: inline-block;
+            height: 17px;
+            input {
+              opacity: 0;
+              width: 0;
+              height: 0;
+              &:checked {
+                & + .slider {
+                  background-color: #2196F3;
+                  &:before {
+                    transform: translateX(13px);
+                  }
+                }
+              }
+              &:focus {
+                & + .slider {
+                  box-shadow: 0 0 1px #2196F3;
+                }
+              }
+            }
+            .slider {
+              position: absolute;
+              cursor: pointer;
+              top: 0;
+              left: 0;
+              right: 0;
+              bottom: 0;
+              background-color: #CCC;
+              transition: .4s;
+              width: 30px;
+              z-index: 999;
+              &.round {
+                border-radius: 34px;
+                &:before {
+                  border-radius: 50%;
+                }
+              }
+              &:before {
+                position: absolute;
+                content: '';
+                height: 13px;
+                width: 13px;
+                left: 2px;
+                bottom: 2px;
+                background-color: white;
+                transition: .4s;
+              }
+            }
+            .description {
+              padding-left: 2rem;
+            }
           }
         }
       }

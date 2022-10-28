@@ -10,5 +10,6 @@
         "ecmaVersion": "latest"
     },
     "rules": {
+        "yoda": ["error", "always"]
     }
 }
