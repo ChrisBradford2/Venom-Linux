@@ -236,71 +236,97 @@ body {
   }
 }
 
-/* GAME  */
-input {
-  color: #000;
+/* TIC TAC TOE GAME  */
+
+input{
+  color: black;
 }
 
-#game {
-  visibility: visible;
-  background-color: gray;
-  position: absolute;
-  top: 10%;
-  left: 10%;
-  width: 80%;
-  height: 80%;
-}
-
-#tictactoe_section_form {
-  visibility: visible;
-  text-align: center;
-  position: absolute;
-  top: 5%;
-  left: 20%;
-  width: auto;
-  height: auto;
-
-}
-
-#gameAndScore{
-  display: flex;
+#gameContainer {
+  display: flex; 
   flex-direction: row;
 }
 
-#plateau {
-  display: flex;
+#leftSide {
+  display: flex; 
+  align-items: center;
+  justify-content: center;
   flex-direction: column;
-  margin: 10%;
-  visibility: hidden;
-  text-align: center;
-  width: auto;
-  height: auto;
+  background-color: gray;
+  flex: 6;
+  padding-bottom: 20px;
 }
 
-#scoreBoard{
-  display: flex;
+#rightSide {
+  display: flex; 
+  justify-content: center;
   flex-direction: column;
-  align-items: flex-start;
-  text-align: center;
-  margin: 10%;
-  width: auto;
-  height: auto;
+  background-color: gray;
+  flex: 4;
+}
+
+#infoBlock {
+  margin-bottom: 50%;
+  visibility: hidden;
+}
+
+#btnBlock {
+  display: flex; 
+  align-items:flex-start;
+  flex-direction: column;
+  margin-top:10px;
+}
+
+#resetGame {
+  color: black; 
+  margin-bottom: 10px;
+}
+
+#startGame {
+  align-self: center;
 }
 
 #closeGame {
   float: right;
   border: 1px solid black;
   background-color: red;
+}
+#error{
+  align-self: center;
+}
+#center{
+  align-self: center;
+}
 
+#gameBoard{
+  visibility: hidden
+}
+
+#playerForm{
+  visibility: visible;
+  display: flex;
+  flex-direction: column
+}
+
+#playerFormInput{
+  display: flex; 
+  flex-direction:row; 
+  flex-wrap: wrap;
+}
+
+#playerInput{
+  display: flex; 
+  flex-direction:column
 }
 
 #nextGame{
+  color: black; 
+  margin-bottom: 10px;
   visibility: hidden;
 }
 
 table {
   border-collapse: collapse;
-  font-weight: bold;
 }
 
 table td {
@@ -315,7 +341,9 @@ table td {
   color: #000;
 }
 
-table td.O,
-table td.X {
-  cursor: default;
+table td.notClicked{
+  cursor: pointer;
+}
+table td.clicked{
+  cursor: not-allowed;
 }

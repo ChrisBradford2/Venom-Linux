@@ -1,120 +1,135 @@
-// A faire : Systeme de point
-// A faire : Faire cas quand égalité
-// A faire : Changer icone tictactoe
-// A faire : meilleur design
+/* -----------------------------------------------------------------------------
+* Global Variables
+* -----------------------------------------------------------------------------
+*/
 
-// variables globale
 let player1 = ''
 let player2 = ''
 let turn = ''
 let winner = ''
+const score = {
+  p1: 0, p2: 0
+}
+let counterForDraw = 1
 
-// on récupère les informations utiles
-
-const game_player_form = document.getElementById('tictactoe_section_form')
-const game_section = document.getElementById('game')
-const plateau = document.getElementById('plateau')
-const scoreBoard = document.getElementById('scoreBoard')
 const btnStartGame = document.getElementById('startGame')
 const msgError = document.getElementById('error')
 const closeGame = document.getElementById('closeGame')
 const btnNextGame = document.getElementById('nextGame')
-const formulaire = document.getElementById('tictactoe_section_form')
+const btnResetGame = document.getElementById('resetGame')
 
 /* -----------------------------------------------------------------------------
- * btnStartGame : Commence la partie quand l'utilisateur clique sur démarrer
- * -----------------------------------------------------------------------------
- */
+* btnStartGame : This will start the game
+* -----------------------------------------------------------------------------
+*/
+
 btnStartGame.addEventListener('click', function (event) {
   event.preventDefault()
   player1 = document.getElementById('namePlayer1').value
   player2 = document.getElementById('namePlayer2').value
 
-  console.log(player1)
-  console.log(player2)
-
   if (player1 !== '' && player2 !== '') {
     if (player1 !== player2) {
       resetBoard()
-
       turn = player1
       updateGameInformations({ winner: '', turn })
-
       hideForm()
-      showPlateau()
-
-      console.log('début de la partie !')
+      showGame()
       initializeCellAndPlay()
     } else {
-      msgError.innerText = 'Veuillez indiquer deux nom différents'
+      msgError.innerText = 'Names must be different'
       msgError.style.color = 'rgb(165, 51, 51)'
     }
   } else {
-    msgError.innerText = 'Veuillez remplir les champs'
+    msgError.innerText = 'Please enter a name for each player'
     msgError.style.color = 'rgb(165, 51, 51)'
   }
 })
 
 /* -----------------------------------------------------------------------------
- * closeGame : Ferme l'onglet de jeu
- * -----------------------------------------------------------------------------
- */
+* ResetBoard : reset all classes and content for cells, replace turn for player1
+* -----------------------------------------------------------------------------
+*/
+
+function resetBoard () {
+  turn = player1
+  winner = ''
+  updateGameInformations({ winner, turn })
+
+  const cells = document.getElementsByTagName('td')
+  const msgError = document.getElementById('error')
+
+  for (let i = 0; i < cells.length; i++) {
+    cells[i].className = 'notClicked'
+    cells[i].innerText = ''
+  }
+  counterForDraw = 1
+  msgError.innerText = ''
+}
+
+/* -----------------------------------------------------------------------------
+* closeGame : Close the game and go back to previous screen (main screen)
+* -----------------------------------------------------------------------------
+*/
+
 closeGame.addEventListener('click', function () {
   window.close()
 })
 
+/* -----------------------------------------------------------------------------
+* initializeCellAndPlay : Initalize game board, play, and check if there is a winner
+* -----------------------------------------------------------------------------
+*/
+
 function initializeCellAndPlay () {
-  const reset = document.getElementById('resetGame')
-  reset.addEventListener('click', resetBoard)
-
-  const changeOpp = document.getElementById('changeOpponent')
-  changeOpp.addEventListener('click', changeOpponent)
-
+  btnResetGame.addEventListener('click', resetBoard)
   btnNextGame.addEventListener('click', nextGame)
 
   const cells = document.getElementsByTagName('td')
-  console.log('initialisation ...')
 
   for (let i = 0; i < cells.length; i++) {
     cells[i].addEventListener('click', function (event) {
-      console.log('event !')
-      if (winner === '' && cells[i].innerText === '') {
-        if (turn === player1) {
-          if (cells[i].innerText === 'X' || cells[i].innerText === 'O') {
-            // do something
-          } else {
-            cells[i].className = 'X'
-            cells[i].innerText = 'X'
-            turn = player2
-          }
-        } else {
-          if (cells[i].innerText === 'X' || cells[i].innerText === 'O') {
-            // do something
-          } else {
-            cells[i].className = 'O'
-            cells[i].innerText = 'O'
-            turn = player1
-          }
-        }
+      if (winner === '' && cells[i].className === 'notClicked') {
+        play(cells[i])
+        checkWin(cells)
+        checkDraw(cells)
       }
-      checkWinner(cells)
     })
   }
 }
 
 /* -----------------------------------------------------------------------------
- * checkWinner : Vérifie si on a un vainqueur
- * Identifiants des cellules :
- *     <table> |---|---|---|
- *             | 0 | 1 | 2 |
- *             |---|---|---|
- *             | 3 | 4 | 5 |
- *             |---|---|---|
- *             | 6 | 7 | 8 |
- *             |---|---|---| </table>
- */
-const checkWinner = (carre) => {
-  const lines = [
+* play : put symbol in played cell, and change classname
+* -----------------------------------------------------------------------------
+*/
+
+function play (playedCell) {
+  if (playedCell.className === 'notClicked' && winner === '') {
+    if (turn === player1) {
+      playedCell.className = 'clicked'
+      playedCell.innerText = 'X'
+      turn = player2
+    } else {
+      playedCell.className = 'clicked'
+      playedCell.innerText = 'O'
+      turn = player1
+    }
+  }
+}
+
+/* -----------------------------------------------------------------------------
+* checkWin : Check if we are a winner
+*     <table> |---|---|---|
+*             | 0 | 1 | 2 |
+*             |---|---|---|
+*             | 3 | 4 | 5 |
+*             |---|---|---|
+*             | 6 | 7 | 8 |
+*             |---|---|---| </table>
+* -----------------------------------------------------------------------------
+*/
+const checkWin = (allCells) => {
+  const winnerLines = [
     [0, 1, 2],
     [3, 4, 5],
     [6, 7, 8],
@@ -125,18 +140,16 @@ const checkWinner = (carre) => {
     [2, 4, 6]
   ]
 
-  for (let i = 0; i < lines.length; i++) {
-    // on met dans la variable "a" toutes les données en colonne 1
-    // soit 0,3,6,0,1,2,0,2
-    // on met dans la variable "b" toutes les données en colonne 2
-    // on met dans la variable "c" toutes les données en colonne 3
+  for (let i = 0; i < winnerLines.length; i++) {
+    // decomposition of array
+    // "a" contain all data from first col (0,3,6,0,1,2,0,2)
+    // "b" contain all data from second col
+    // "c" contain all data from third col
 
-    const [a, b, c] = lines[i]
+    const [a, b, c] = winnerLines[i]
 
-    if (carre[a].innerText &&
-            carre[a].innerText === carre[b].innerText &&
-            carre[b].innerText === carre[c].innerText) {
-      winner = carre[a].innerText
+    if (allCells[a].innerText && allCells[a].innerText === allCells[b].innerText && allCells[b].innerText === allCells[c].innerText) {
+      winner = allCells[a].innerText
 
       if (winner === 'X') {
         winner = player1
@@ -149,82 +162,81 @@ const checkWinner = (carre) => {
   updateGameInformations({ winner, turn })
 }
 
-// Fonction qui permet de cacher ou d'afficher le formulaire et le plateau de jeu
-function hideForm () {
-  formulaire.style.visibility = 'hidden'
-}
-function showForm () {
-  formulaire.style.visibility = 'visible'
-}
-function hidePlateau () {
-  plateau.style.visibility = 'hidden'
-}
-function showPlateau () {
-  plateau.style.visibility = 'visible'
-}
-
 /* -----------------------------------------------------------------------------
- * Supprime toutes les classes et tout le contenu des toutes les cellules du
- * plateau de jeu HTML.
- * -----------------------------------------------------------------------------
- */
-function resetBoard () {
-  turn = player1
-  winner = ''
-  console.log('DANS RESET : name ' + turn)
-  updateGameInformations({ winner, turn })
+* checkDraw : Check if there is a tie
+* -----------------------------------------------------------------------------
+*/
 
-  const cells = document.getElementsByTagName('td')
-  const msgError = document.getElementById('error')
-
-  for (let i = 0; i < cells.length; i++) {
-    cells[i].className = ''
-    cells[i].innerText = ''
+function checkDraw (allPlace) {
+  for (let i = 0; i < allPlace.length; i++) {
+    if (allPlace[i].className === 'clicked') {
+      counterForDraw++
+      break
+    }
   }
-
-  msgError.innerText = ''
+  if (counterForDraw === 10 && winner === '') {
+    winner = 'none'
+    turn = null
+    updateGameInformations({ winner, turn })
+  }
 }
-
 /* -----------------------------------------------------------------------------
- * changeOpponent : Change d'adversaire en pleine partie ou à la fin
- * -----------------------------------------------------------------------------
- */
-function changeOpponent () {
-  hidePlateau()
-  btnNextGame.style.visibility = 'hidden'
-  showForm()
-}
-
-/* -----------------------------------------------------------------------------
- * nextGame : Met à jour les scores des joueurs, reset le plateau de jeu et commence la nouvelle manche
- * -----------------------------------------------------------------------------
- */
-function nextGame () {
-  btnNextGame.style.visibility = 'hidden'
-  resetBoard()
-
-  // @todo Systeme de point
-}
-
-/* -----------------------------------------------------------------------------
- * updateGameInformations : Met à jour le text indiquant à qui est le tour et
- * affiche le vainqueur si on est en fin de game
- * -----------------------------------------------------------------------------
- */
+* updateGameInformations : Update game information like turn, score and display state of game
+* -----------------------------------------------------------------------------
+*/
 function updateGameInformations ({ winner, turn }) {
   const h2 = document.getElementsByTagName('h2')[0]
 
+  const player1Score = document.getElementById('playerX1')
+  const player2Score = document.getElementById('playerO2')
+
   if (winner === '') {
-    h2.innerText = 'À vous de jouer ' + turn
+    h2.innerText = 'It\'s your turn ' + turn
   } else {
     if (winner === player1) {
-      h2.innerText = 'Bravo ' + player1 + ' vous avez gagné !'
+      h2.innerText = 'Winner is ' + player1 + ' !'
+      score.p1++
+      btnResetGame.style.visibility = 'hidden'
     } else if (winner === player2) {
-      h2.innerText = 'Bravo ' + player2 + ' vous avez gagné !'
+      h2.innerText = 'Winner is ' + player2 + ' !'
+      score.p2++
+      btnResetGame.style.visibility = 'hidden'
     } else if (winner === 'none') {
-      h2.innerText = 'Match nul !!!'
-    } else {
-      h2.innerText = 'Aucune partie en cours'
+      h2.innerText = 'It\'s a tie'
     }
   }
+  player1Score.innerText = 'Score of ' + player1 + ' : ' + score.p1
+  player2Score.innerText = 'Score of ' + player2 + ' : ' + score.p2
+}
+
+/* -----------------------------------------------------------------------------
+* nextGame : reset the board, hide some button and start new game
+* -----------------------------------------------------------------------------
+*/
+function nextGame () {
+  btnNextGame.style.visibility = 'hidden'
+  btnResetGame.style.visibility = 'visible'
+  resetBoard()
+}
+
+/* -----------------------------------------------------------------------------
+* hideForm : Hide names form
+* -----------------------------------------------------------------------------
+*/
+
+function hideForm () {
+  const playerForm = document.getElementById('playerForm')
+  playerForm.style.visibility = 'hidden'
+}
+
+/* -----------------------------------------------------------------------------
+* showGame : show game and score board
+* -----------------------------------------------------------------------------
+*/
+
+function showGame () {
+  const gameBoard = document.getElementById('gameBoard')
+  const infoBlock = document.getElementById('infoBlock')
+  gameBoard.style.visibility = 'visible'
+  infoBlock.style.visibility = 'visible'
 }

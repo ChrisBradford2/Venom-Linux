@@ -38,7 +38,7 @@
     <nav class="nav">
       <div>
         
-        <button id= "closeGame" style="color: black">Fermer le jeu</button>
+        <button id= "closeGame" style="color: white">Close game</button>
       </div>
       <div class="nav--date">
         <span id="day"></span>, <span id="date"></span> <span id="time"></span>
@@ -52,56 +52,62 @@
       </ul>
     </nav>
     <main>
-        <div id="game">
-            <section id="tictactoe_section_form" >
-                <form action="#" method="post">
-                    <label for='namePlayer1'>Le joueur X </label>
-                    <input type="text" id="namePlayer1" name="namePlayer1" value=""><br>
+
+      <div id="gameContainer">
+        <div id="leftSide">
+          <h1>Tic Tac Toe</h1>
+
+          <div id="playerForm">
+            <div id="playerFormInput">
+              <div id="playerInput">
+                <label for='namePlayer1' id="center" style="color: orange;">X Player </label>
+                <input type="text" id="namePlayer1" name="namePlayer1" value=""><br>
     
-                    <label for='namePlayer2'>Le joueur O </label>
-                    <input type="text" id="namePlayer2" name="namePlayer2" value=""><br>
-                    <p id="error"></p>
-                    <input id="startGame" type="submit" value="Démarrer">
-                </form>
-            </section>
-            <div id="gameAndScore">
-                <section id="plateau">
-                    <h2>Aucune partie en cours.</h2>
-        
-                    <div>
-                        <button id="changeOpponent" style="color: black">Changer d'adversaire</button>
-                        <button id="resetGame" style="color: black">Recommencer la manche</button>
-                        <button id="nextGame" style="color: black">Prochaine manche</button>
-                    </div>
-                    <table>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                    </table>                
-                </section>
-                <section id="scoreBoard">
-                    <h2>Score</h2>
-                    <p id="score">
-                        Hamidou : 18 points <br>
-                        Nicolas : 18 points <br>
-                        Serkan : 18 points <br>
-                    </p>
-                </section>
+              </div>
+              <div id="playerInput">
+                <label for='namePlayer2' id="center" style="color: cyan;">O Player </label>
+                <input type="text" id="namePlayer2" name="namePlayer2" value=""><br>
+              </div>
+          </div>
+            <p id="error"></p>
+            <button id="startGame" style="color: black;">Start</button>
+          </div>
+
+          <div id="gameBoard">
+            <table>
+              <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+            </table>
+          </div>
+        </div>
+        <div id="rightSide">
+          <div id="infoBlock">
+            <h2 id="turn"></h2>
+      
+            <div id="playerX1"></div>
+            <div id="playerO2"></div>
+      
+            <div id="btnBlock">
+              <button id="resetGame">Restart game</button>
+              <button id="nextGame">Next Game</button>
             </div>
-        </div>    
-    </main>
+          </div>
+        </div>
+      </div>
+      </main>
 
     <section class="desktop">
       <div id="application-list" class="desktop--app-list"></div>

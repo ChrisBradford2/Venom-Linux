@@ -44,7 +44,7 @@ const tictactoe = new Application(
 )
 
 // Add the application in the array :
-const applicationList = [github, figma, firefox, calculator, tictactoe]
+const applicationList = [github, figma, firefox, tictactoe]
 // eslint-disable-next-line no-unused-vars
 function formdata () {
   const newFileName = document.getElementById('new-file-name').value
