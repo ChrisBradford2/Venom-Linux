@@ -39,6 +39,27 @@ const settings = new Application(
   'Settings',
   'https://fonts.googleapis.com'
 )
+const calculatorApp = new Application(
+  'div',
+  'calculator',
+  'Calculator',
+  'https://fonts.googleapis.com'
+)
+
+const tictactoe = new Application(
+  'div',
+  'tictactoe',
+  'TicTacToe',
+  '../views/tictactoe.html',
+  true
+)
+
+const horloge = new Application(
+  'div',
+  'settings',
+  'Settings',
+  'https://exemple.com'
+)
 
 // Add the application in the array :
 const applicationList = [github, figma, calculatorApp, settings, tictactoe, horloge]
