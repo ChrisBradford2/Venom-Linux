@@ -1,3 +1,10 @@
+$xs: 0;
+$sm: 576px;
+$md: 768px;
+$lg: 992px;
+$xl: 1200px;
+$xxl: 1400px;
+
 @font-face {
   font-family: Ubuntu;
   src: url('../assets/fonts/Ubuntu-Regular.ttf');
@@ -67,11 +74,15 @@ body {
           background-image: url('../assets/icons/vibration.svg');
         }
       }
+      &--battery {
+        white-space: nowrap;
+      }
       #battery-span,
       #speed-test {
         padding-left: .25rem;
       }
       &--speed {
+        white-space: nowrap;
         #speed-test {
           min-width: 102px;
           display: inline-block;
@@ -345,7 +356,7 @@ body {
     }
     &:hover {
       .tooltip--text {
-        visibility: visible;
+        display: none;
         opacity: 1;
       }
     }
@@ -359,8 +370,14 @@ input{
 }
 
 #gameContainer {
-  display: flex; 
-  flex-direction: row;
+  padding: 1.5rem 0;
+  display: flex;
+  background-color: gray;
+  flex-direction: column;
+  gap: .5rem;
+  @media (min-width: $md) {
+    flex-direction: row;
+  }
 }
 
 #leftSide {
@@ -368,22 +385,19 @@ input{
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  background-color: gray;
   flex: 6;
-  padding-bottom: 20px;
 }
 
 #rightSide {
   display: flex; 
   justify-content: center;
   flex-direction: column;
-  background-color: gray;
   flex: 4;
 }
 
 #infoBlock {
   margin-bottom: 50%;
-  visibility: hidden;
+  display: none;
 }
 
 #btnBlock {
@@ -415,11 +429,10 @@ input{
 }
 
 #gameBoard{
-  visibility: hidden
+  display: none;
 }
 
 #playerForm{
-  visibility: visible;
   display: flex;
   flex-direction: column
 }
@@ -438,7 +451,7 @@ input{
 #nextGame{
   color: black; 
   margin-bottom: 10px;
-  visibility: hidden;
+  display: none;
 }
 
 table {
