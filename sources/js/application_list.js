@@ -47,7 +47,8 @@ const calculatorApp = new Application(
 )
 
 const tictactoe = new Application(
-  'firefox',
+  'div',
+  'tictactoe',
   'TicTacToe',
   '../views/tictactoe.html',
   true
