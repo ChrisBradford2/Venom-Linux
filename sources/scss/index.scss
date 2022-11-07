@@ -364,11 +364,6 @@ body {
 }
 
 /* TIC TAC TOE GAME  */
-
-input{
-  color: black;
-}
-
 #gameContainer {
   padding: 1.5rem 0;
   display: flex;
@@ -379,100 +374,83 @@ input{
     flex-direction: row;
   }
 }
-
 #leftSide {
-  display: flex; 
+  display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
   flex: 6;
 }
-
 #rightSide {
-  display: flex; 
+  display: flex;
   justify-content: center;
   flex-direction: column;
   flex: 4;
 }
-
 #infoBlock {
   margin-bottom: 50%;
   display: none;
 }
-
 #btnBlock {
-  display: flex; 
-  align-items:flex-start;
+  display: flex;
+  align-items: flex-start;
   flex-direction: column;
-  margin-top:10px;
+  margin-top: 10px;
 }
-
 #resetGame {
-  color: black; 
+  color: black;
   margin-bottom: 10px;
 }
-
 #startGame {
   align-self: center;
 }
-
 #closeGame {
   float: right;
   border: 1px solid black;
   background-color: red;
 }
-#error{
+#error {
   align-self: center;
 }
-#center{
+#center {
   align-self: center;
 }
-
-#gameBoard{
+#gameBoard {
   display: none;
 }
-
-#playerForm{
+#playerForm {
   display: flex;
-  flex-direction: column
+  flex-direction: column;
 }
-
-#playerFormInput{
-  display: flex; 
-  flex-direction:row; 
-  flex-wrap: wrap;
+#playerFormInput {
+  display: flex;
+  flex-flow: row wrap;
 }
-
-#playerInput{
-  display: flex; 
-  flex-direction:column
+#playerInput {
+  display: flex;
+  flex-direction: column;
 }
-
-#nextGame{
-  color: black; 
+#nextGame {
+  color: black;
   margin-bottom: 10px;
   display: none;
 }
-
 table {
   border-collapse: collapse;
 }
-
 table td {
   border: 10px solid black;
   width: 8rem;
   height: 8rem;
   text-align: center;
   font-size: 6rem;
-  font-family: sans;
-  background-color: #eee;
+  background-color: #EEE;
   cursor: pointer;
   color: #000;
 }
-
-table td.notClicked{
+table td.notClicked {
   cursor: pointer;
 }
-table td.clicked{
+table td.clicked {
   cursor: not-allowed;
 }

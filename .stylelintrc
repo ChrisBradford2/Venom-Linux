@@ -26,6 +26,7 @@
     "alpha-value-notation": "number",
     "keyframes-name-pattern": null,
     "custom-property-pattern": null,
-    "font-family-name-quotes": "always-where-recommended"
+    "font-family-name-quotes": "always-where-recommended",
+    "selector-id-pattern": null
   }
 }
