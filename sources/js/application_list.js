@@ -46,8 +46,16 @@ const calculatorApp = new Application(
   'https://fonts.googleapis.com'
 )
 
+const tictactoe = new Application(
+  'div',
+  'tictactoe',
+  'TicTacToe',
+  '../views/tictactoe.html',
+  true
+)
+
 // Add the application in the array :
-const applicationList = [github, figma, calculatorApp, settings]
+const applicationList = [github, figma, calculatorApp, settings, tictactoe]
 
 // eslint-disable-next-line no-unused-vars
 function formdata () {

@@ -356,10 +356,70 @@
         </div>
       </div>
     </section>
+    <section class="modal modal--tictactoe" id="modal-tictactoe">
+      <!-- Modal content -->
+      <div class="modal-content" style="border-radius: .5rem; width: 90%">
+        <div class="modal-header">
+          <span id="close-tictactoe" class="close">&times;</span>
+          <h2>Calculator</h2>
+        </div>
+        <div class="modal-body" style="padding: 0;">
+          <div id="gameContainer">
+            <div id="leftSide">
+              <div id="playerForm">
+                <div id="playerFormInput">
+                  <div id="playerInput">
+                    <label for='namePlayer1' id="center" style="color: orange;">X Player </label>
+                    <input type="text" id="namePlayer1" name="namePlayer1" value=""><br>
+                  </div>
+                  <div id="playerInput">
+                    <label for='namePlayer2' id="center" style="color: cyan;">O Player </label>
+                    <input type="text" id="namePlayer2" name="namePlayer2" value=""><br>
+                  </div>
+              </div>
+                <p id="error"></p>
+                <button id="startGame" style="color: black;">Start</button>
+              </div>
+              <div id="gameBoard">
+                <table>
+                  <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+            <div id="rightSide">
+              <div id="infoBlock">
+                <h2 id="turn"></h2>
+                <div id="playerX1"></div>
+                <div id="playerO2"></div>
+                <div id="btnBlock">
+                  <button id="resetGame">Restart game</button>
+                  <button id="nextGame">Next Game</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
     <script src="js/modal.js"></script>
+    <script src="js/application_list.js"></script>
+    <script src="js/tictactoe.js"></script>
     <script src="js/index.js"></script>
     <script src="js/navbar.js"></script>
-    <script src="js/application_list.js"></script>
     <script src="js/settings.js"></script>
     <script src="js/calculator.js"></script>
     <script
