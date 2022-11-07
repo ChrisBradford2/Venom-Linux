@@ -27,13 +27,19 @@ window.onload = function () {
   const appendTens = document.getElementById('tens')
   const appendSeconds = document.getElementById('secs')
   const buttonStart = document.getElementById('button-start')
+  const buttonSave = document.getElementById('button-save')
   const buttonStop = document.getElementById('button-stop')
   const buttonReset = document.getElementById('button-reset')
+  const listSave = document.getElementById('list-save')
   let Interval
 
   buttonStart.onclick = function () {
     clearInterval(Interval)
     Interval = setInterval(startTimer, 10)
+  }
+
+  buttonSave.onclick = function () {
+    listSave.innerHTML += '<li>' + seconds + ':' + tens + '</li>'
   }
 
   buttonStop.onclick = function () {
@@ -46,6 +52,7 @@ window.onload = function () {
     seconds = '00'
     appendTens.innerHTML = tens
     appendSeconds.innerHTML = seconds
+    listSave.innerHTML = ''
   }
 
   function startTimer () {
