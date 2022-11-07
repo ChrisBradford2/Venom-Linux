@@ -480,7 +480,23 @@
             style="display: none"
           >
             <h2>Timer</h2>
-            
+            <div class="timer-wrapper">
+              <div class="left-side">
+                <form action="javascript:void(0);">
+                  <label for="hours">Hours</label>
+                  <input type="number" name="Hours" id="hours-value-timer" value="0" min="0" max="">
+                  <label for="minutes">Minutes</label>
+                  <input type="number" name="Minutes" id="minutes-value-timer" value="0" min="0" max="60">
+                  <label for="seconds">Seconds</label>
+                  <input type="number" name="Seconds" id="seconds-value-timer" value="0" min="0" max="60">
+                </form>
+                <button class="button-stylised" id="button-start-timer">Run</button>
+                <button class="button-stylised" id="button-stop-timer">Stop</button>
+              </div>
+              <div class="right-side">
+                <p id="countdown"><span id="hours-timer">00</span>:<span id="minutes-timer">00</span>:<span id="seconds-timer">00</span></p>
+              </div>
+            </div>
           </div>
         </div>
       </div>

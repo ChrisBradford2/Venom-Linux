@@ -307,6 +307,22 @@ body {
               font-size: 2rem;
             }
           }
+          #timer {
+            .timer-wrapper {
+              display: grid !important;
+              grid-template-columns: repeat(2, 1fr);
+              .left-side {
+                form {
+                  display: flex;
+                  flex-direction: column;
+                  input {
+                    width: 3.25rem;
+                    margin-bottom: .5rem;
+                  } 
+                }
+              }
+            }
+          }
           .switch {
             position: relative;
             display: inline-block;

@@ -77,4 +77,50 @@ window.onload = function () {
       appendSeconds.innerHTML = seconds
     }
   }
+
+  // Divider
+
+  // let hours = 0
+  const minutesCountdown = document.getElementById('minutes-value-timer').value
+  const secondsCountdown = document.getElementById('seconds-value-timer').value
+  const appendMinutesCountdown = document.getElementById('minutes-timer')
+  const appendSecondsCountdown = document.getElementById('seconds-timer')
+  const buttonStartCountdown = document.getElementById('button-start-timer')
+  const buttonStopCountdown = document.getElementById('button-stop-timer')
+  // const buttonResetCountdown = document.getElementById('button-reset-timer')
+  let IntervalCountdown
+
+  buttonStartCountdown.onclick = function () {
+    clearInterval(IntervalCountdown)
+    IntervalCountdown = setInterval(startCountdown, 1000)
+  }
+
+  buttonStopCountdown.onclick = function () {
+    clearInterval(IntervalCountdown)
+  }
+
+  function startCountdown () {
+    appendSecondsCountdown.innerHTML = secondsCountdown
+    appendMinutesCountdown.innerHTML = minutesCountdown
+    /*
+    secondsCountdown--
+
+    if (9 >= secondsCountdown) {
+      appendSecondsCountdown.innerHTML = '0' + secondsCountdown
+    }
+
+    if (9 < secondsCountdown) {
+      appendSecondsCountdown.innerHTML = secondsCountdown
+    }
+
+    if (0 > seconds) {
+      minutesCountdown--
+      secondsCountdown = 60
+      appendMinutesCountdown.innerHTML = minutesCountdown
+    }
+
+    if (9 < minutesCountdown) {
+      appendMinutesCountdown.innerHTML = minutesCountdown
+    } */
+  }
 }
