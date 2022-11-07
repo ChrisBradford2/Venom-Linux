@@ -49,16 +49,13 @@ const calculatorApp = new Application(
 const tictactoe = new Application(
   'div',
   'tictactoe',
-  'TicTacToe',
-  '../views/tictactoe.html',
-  true
+  'TicTacToe'
 )
 
 const horloge = new Application(
   'div',
-  'settings',
-  'Settings',
-  'https://exemple.com'
+  'time',
+  'Time'
 )
 
 // Add the application in the array :

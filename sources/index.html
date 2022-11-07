@@ -415,6 +415,127 @@
         </div>
       </div>
     </section>
+    <section
+    class="modal modal--time-application"
+    id="modal-time-application"
+  >
+    <!-- Modal content -->
+    <div class="modal-content">
+      <div class="modal-header">
+        <span id="close-time-application" class="close">&times;</span>
+        <h2>Time</h2>
+      </div>
+      <div class="modal-body">
+        <div
+          class="sidebar w3-bar-block w3-light-grey w3-card"
+          style="width: 130px"
+        >
+          <h5 class="w3-bar-item">Menu</h5>
+          <button
+            class="bar-item button tablink red"
+            onclick="openCity(event, 'current-date')"
+          >
+            Current Date
+          </button>
+          <button
+            class="bar-item button tablink"
+            onclick="openCity(event, 'stopwatch')"
+          >
+            Stopwatch
+          </button>
+          <button
+            class="bar-item button tablink"
+            onclick="openCity(event, 'timer')"
+          >
+            Timer
+          </button>
+        </div>
+
+        <div class="tab-content">
+          <div
+            id="current-date"
+            class="w3-container city"
+            style="display: block"
+          >
+            <h2>Current Date</h2>
+            <h3>Date</h3>
+            <label class="switch">
+              <input id="checkbox-day" type="checkbox" />
+              <span class="slider round"></span>
+              <span class="description">Masquer le jour</span>
+            </label>
+            <br />
+            <label class="switch">
+              <input id="checkbox-date" type="checkbox" />
+              <span class="slider round"></span>
+              <span class="description">Masquer la date</span>
+            </label>
+            <br />
+            <label class="switch">
+              <input id="checkbox-month" type="checkbox" />
+              <span class="slider round"></span>
+              <span class="description">Masquer le mois</span>
+            </label>
+            <br />
+            <label class="switch">
+              <input id="checkbox-year" type="checkbox" />
+              <span class="slider round"></span>
+              <span class="description">Masquer l’année</span>
+            </label>
+            <br />
+
+            <h3>Heure</h3>
+            <label class="switch">
+              <input id="checkbox-hour" type="checkbox" />
+              <span class="slider round"></span>
+              <span class="description">Masquer l’heure</span>
+            </label>
+            <br />
+            <label class="switch">
+              <input id="checkbox-minutes" type="checkbox" />
+              <span class="slider round"></span>
+              <span class="description">Masquer les minutes</span>
+            </label>
+            <br />
+            <label class="switch">
+              <input id="checkbox-seconds" type="checkbox" />
+              <span class="slider round"></span>
+              <span class="description">Masquer les secondes</span>
+            </label>
+          </div>
+
+          <div id="stopwatch" class="w3-container city" style="display: none">
+            <h2>Stopwatch</h2>
+            <label class="switch">
+              <input id="checkbox-vibration-state" type="checkbox" />
+              <span class="slider round"></span>
+              <span class="description">Masquer l'état de vibration</span>
+            </label>
+            <br />
+            <label class="switch">
+              <input id="checkbox-vibration-toggle" type="checkbox" onchange="toggleVibrationState()"/>
+              <span class="slider round"></span>
+              <span class="description">Activer les vibrations</span>
+            </label>
+          </div>
+
+          <div
+            id="timer"
+            class="w3-container city"
+            style="display: none"
+          >
+            <h2>Timer</h2>
+            <label class="switch">
+              <input id="checkbox-battery" type="checkbox" />
+              <span class="slider round"></span>
+              <span class="description">Masquer le niveau de battery</span>
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
     <script src="js/modal.js"></script>
     <script src="js/application_list.js"></script>
     <script src="js/tictactoe.js"></script>
@@ -422,6 +543,7 @@
     <script src="js/navbar.js"></script>
     <script src="js/settings.js"></script>
     <script src="js/calculator.js"></script>
+    <script src="js/time.js"></script>
     <script
       src="https://kit.fontawesome.com/ca13fc92c5.js"
       crossorigin="anonymous"

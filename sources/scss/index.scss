@@ -97,6 +97,7 @@ body {
       display: flex;
       align-items: flex-start;
       flex-direction: column;
+      max-width: 15rem;
       &--icon {
         display: flex;
         text-align: center;
@@ -224,7 +225,8 @@ body {
       }
     }
   }
-  .modal--settings-application {
+  .modal--settings-application,
+  .modal--time-application{
     .modal-content {
       .modal-body {
         padding: 0;
