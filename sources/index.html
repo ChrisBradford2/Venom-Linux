@@ -67,6 +67,7 @@
     <meta name="msapplication-TileColor" content="#b91d47" />
     <meta name="theme-color" content="#210101" />
     <link rel="stylesheet" href="css/index.min.css" />
+    <link rel="stylesheet" href="css/calculator.min.css" />
   </head>
   <body>
     <nav class="nav">
@@ -291,11 +292,136 @@
         </div>
       </div>
     </section>
+    <section class="modal modal--calculator" id="modal-calculator">
+      <!-- Modal content -->
+      <div class="modal-content" style="border-radius: .5rem;">
+        <div class="modal-header">
+          <span id="close-calculator" class="close">&times;</span>
+          <h2>Calculator</h2>
+        </div>
+        <div class="modal-body" style="padding: 0;">
+          <div class="calculator" id="calculator">
+            <div class="calculator--output" id="screen">0</div>
+            <div class="calculator--keys">
+              <button
+                class="calculator--key calculator--key--operator"
+                data-action="plus"
+              >
+                +
+              </button>
+              <button
+                class="calculator--key calculator--key--operator"
+                data-action="minus"
+              >
+                -
+              </button>
+              <button
+                class="calculator--key calculator--key--operator"
+                data-action="multiply"
+              >
+                &times;
+              </button>
+              <button
+                class="calculator--key calculator--key--operator"
+                data-action="divide"
+              >
+                ÷
+              </button>
+              <button class="calculator--key">7</button>
+              <button class="calculator--key">8</button>
+              <button class="calculator--key">9</button>
+              <button class="calculator--key">4</button>
+              <button class="calculator--key">5</button>
+              <button class="calculator--key">6</button>
+              <button class="calculator--key">1</button>
+              <button class="calculator--key">2</button>
+              <button class="calculator--key">3</button>
+              <button class="calculator--key">0</button>
+              <button class="calculator--key" data-action="decimal">.</button>
+              <button class="calculator--key" data-action="clear">C</button>
+              <button
+                class="calculator--key calculator--key--operator"
+                data-action="opposite"
+              >
+                +/-
+              </button>
+              <button
+                class="calculator--key calculator--key--enter"
+                data-action="calculate"
+              >
+                =
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="modal modal--tictactoe" id="modal-tictactoe">
+      <!-- Modal content -->
+      <div class="modal-content" style="border-radius: .5rem; width: 90%">
+        <div class="modal-header">
+          <span id="close-tictactoe" class="close">&times;</span>
+          <h2>Calculator</h2>
+        </div>
+        <div class="modal-body" style="padding: 0;">
+          <div id="gameContainer">
+            <div id="leftSide">
+              <div id="playerForm">
+                <div id="playerFormInput">
+                  <div id="playerInput">
+                    <label for='namePlayer1' id="center" style="color: orange;">X Player </label>
+                    <input type="text" id="namePlayer1" name="namePlayer1" value=""><br>
+                  </div>
+                  <div id="playerInput">
+                    <label for='namePlayer2' id="center" style="color: cyan;">O Player </label>
+                    <input type="text" id="namePlayer2" name="namePlayer2" value=""><br>
+                  </div>
+              </div>
+                <p id="error"></p>
+                <button id="startGame" style="color: black;">Start</button>
+              </div>
+              <div id="gameBoard">
+                <table>
+                  <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+            <div id="rightSide">
+              <div id="infoBlock">
+                <h2 id="turn"></h2>
+                <div id="playerX1"></div>
+                <div id="playerO2"></div>
+                <div id="btnBlock">
+                  <button id="resetGame">Restart game</button>
+                  <button id="nextGame">Next Game</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
     <script src="js/modal.js"></script>
+    <script src="js/application_list.js"></script>
+    <script src="js/tictactoe.js"></script>
     <script src="js/index.js"></script>
     <script src="js/navbar.js"></script>
-    <script src="js/application_list.js"></script>
     <script src="js/settings.js"></script>
+    <script src="js/calculator.js"></script>
     <script
       src="https://kit.fontawesome.com/ca13fc92c5.js"
       crossorigin="anonymous"

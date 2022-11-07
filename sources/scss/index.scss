@@ -1,3 +1,10 @@
+$xs: 0;
+$sm: 576px;
+$md: 768px;
+$lg: 992px;
+$xl: 1200px;
+$xxl: 1400px;
+
 @font-face {
   font-family: Ubuntu;
   src: url('../assets/fonts/Ubuntu-Regular.ttf');
@@ -67,11 +74,15 @@ body {
           background-image: url('../assets/icons/vibration.svg');
         }
       }
+      &--battery {
+        white-space: nowrap;
+      }
       #battery-span,
       #speed-test {
         padding-left: .25rem;
       }
       &--speed {
+        white-space: nowrap;
         #speed-test {
           min-width: 102px;
           display: inline-block;
@@ -92,8 +103,11 @@ body {
         flex-direction: column;
         width: 100%;
         height: auto;
-        max-width: 4rem;
+        max-width: 7.5rem;
         cursor: pointer;
+        .icon-application {
+          max-width: 4rem;
+        }
       }
     }
   }
@@ -342,9 +356,101 @@ body {
     }
     &:hover {
       .tooltip--text {
-        visibility: visible;
+        display: none;
         opacity: 1;
       }
     }
   }
+}
+
+/* TIC TAC TOE GAME  */
+#gameContainer {
+  padding: 1.5rem 0;
+  display: flex;
+  background-color: gray;
+  flex-direction: column;
+  gap: .5rem;
+  @media (min-width: $md) {
+    flex-direction: row;
+  }
+}
+#leftSide {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  flex: 6;
+}
+#rightSide {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  flex: 4;
+}
+#infoBlock {
+  margin-bottom: 50%;
+  display: none;
+}
+#btnBlock {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  margin-top: 10px;
+}
+#resetGame {
+  color: black;
+  margin-bottom: 10px;
+}
+#startGame {
+  align-self: center;
+}
+#closeGame {
+  float: right;
+  border: 1px solid black;
+  background-color: red;
+}
+#error {
+  align-self: center;
+}
+#center {
+  align-self: center;
+}
+#gameBoard {
+  display: none;
+}
+#playerForm {
+  display: flex;
+  flex-direction: column;
+}
+#playerFormInput {
+  display: flex;
+  flex-flow: row wrap;
+}
+#playerInput {
+  display: flex;
+  flex-direction: column;
+}
+#nextGame {
+  color: black;
+  margin-bottom: 10px;
+  display: none;
+}
+table {
+  border-collapse: collapse;
+}
+table td {
+  border: 10px solid black;
+  width: 8rem;
+  height: 8rem;
+  text-align: center;
+  font-size: 6rem;
+  background-color: #EEE;
+  cursor: pointer;
+  color: #000;
+}
+table td.notClicked {
+  cursor: pointer;
+}
+table td.clicked {
+  cursor: not-allowed;
 }
