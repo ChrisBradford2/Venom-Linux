@@ -267,6 +267,19 @@ body {
         }
         .tab-content {
           flex: 2;
+          .date-wrapper {
+            border: 2px solid #841326;
+            padding: .5rem;
+            margin: 1.5rem 1rem 1.5rem 0;
+            .date {
+              font-size: 1.5rem;
+              text-decoration: underline;
+              margin: 1rem 0 0;
+            }
+            .time {
+              font-size: 1.25rem;
+            }
+          }
           .button-stylised {
             padding: 8px 16px;
             text-align: center;
@@ -286,13 +299,12 @@ body {
           }
           #stopwatch {
             text-align: center;
+            h2,
+            ul li {
+              text-align: left
+            }
             p {
               font-size: 2rem;
-            }
-            ul {
-              li {
-                text-align: left;
-              }
             }
           }
           .switch {
