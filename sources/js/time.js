@@ -128,7 +128,6 @@ function pauseCountdown () {
 }
 
 function stopCountdown () {
-  clearInterval(window.countdown)
   document.getElementById('hours-timer').innerHTML = '00'
   document.getElementById('minutes-timer').innerHTML = '00'
   document.getElementById('seconds-timer').innerHTML = '00'
