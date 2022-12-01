@@ -77,50 +77,74 @@ window.onload = function () {
       appendSeconds.innerHTML = seconds
     }
   }
-
-  // Divider
-
-  // let hours = 0
-  const minutesCountdown = document.getElementById('minutes-value-timer').value
-  const secondsCountdown = document.getElementById('seconds-value-timer').value
-  const appendMinutesCountdown = document.getElementById('minutes-timer')
-  const appendSecondsCountdown = document.getElementById('seconds-timer')
-  const buttonStartCountdown = document.getElementById('button-start-timer')
-  const buttonStopCountdown = document.getElementById('button-stop-timer')
-  // const buttonResetCountdown = document.getElementById('button-reset-timer')
-  let IntervalCountdown
-
-  buttonStartCountdown.onclick = function () {
-    clearInterval(IntervalCountdown)
-    IntervalCountdown = setInterval(startCountdown, 1000)
-  }
-
-  buttonStopCountdown.onclick = function () {
-    clearInterval(IntervalCountdown)
-  }
-
-  function startCountdown () {
-    appendSecondsCountdown.innerHTML = secondsCountdown
-    appendMinutesCountdown.innerHTML = minutesCountdown
-    /*
-    secondsCountdown--
-
-    if (9 >= secondsCountdown) {
-      appendSecondsCountdown.innerHTML = '0' + secondsCountdown
-    }
-
-    if (9 < secondsCountdown) {
-      appendSecondsCountdown.innerHTML = secondsCountdown
-    }
-
-    if (0 > seconds) {
-      minutesCountdown--
-      secondsCountdown = 60
-      appendMinutesCountdown.innerHTML = minutesCountdown
-    }
-
-    if (9 < minutesCountdown) {
-      appendMinutesCountdown.innerHTML = minutesCountdown
-    } */
-  }
 }
+
+console.log('not running : ' + window.countdown)
+
+function startCountdown () {
+  let hours = document.getElementById('hours-value-timer').value
+  let minutes = document.getElementById('minutes-value-timer').value
+  let seconds = document.getElementById('seconds-value-timer').value
+
+  window.countdown = setInterval(function () {
+    seconds--
+    if (0 > seconds) {
+      seconds = 59
+      minutes--
+      if (0 > minutes) {
+        minutes = 59
+        hours--
+        if (0 > hours) {
+          pauseCountdown()
+          const music = new Audio('../assets/sounds/mixkit-clown-horn-at-circus-715.wav')
+          music.play()
+          // eslint-disable-next-line no-undef
+          multiVibration([100, 100, 500])
+        }
+      }
+    }
+
+    document.getElementById('hours-timer').innerHTML = 10 > hours ? '0' + hours : hours
+    document.getElementById('minutes-timer').innerHTML = 10 > minutes ? '0' + minutes : minutes
+    document.getElementById('seconds-timer').innerHTML = 10 > seconds ? '0' + seconds : seconds
+    console.log(hours + ':' + minutes + ':' + seconds)
+  }, 1000)
+  document.getElementById('hours-value-timer').disabled = true
+  document.getElementById('minutes-value-timer').disabled = true
+  document.getElementById('seconds-value-timer').disabled = true
+
+  pauseCountdownButton.style.display = 'inline-block'
+  stopCountdownButton.style.display = 'none'
+}
+
+function pauseCountdown () {
+  clearInterval(window.countdown)
+  document.getElementById('hours-value-timer').disabled = false
+  document.getElementById('minutes-value-timer').disabled = false
+  document.getElementById('seconds-value-timer').disabled = false
+
+  pauseCountdownButton.style.display = 'none'
+  stopCountdownButton.style.display = 'inline-block'
+}
+
+function stopCountdown () {
+  clearInterval(window.countdown)
+  document.getElementById('hours-timer').innerHTML = '00'
+  document.getElementById('minutes-timer').innerHTML = '00'
+  document.getElementById('seconds-timer').innerHTML = '00'
+
+  document.getElementById('hours-value-timer').value = 0
+  document.getElementById('minutes-value-timer').value = 0
+  document.getElementById('seconds-value-timer').value = 0
+}
+
+const startCountdownButton = document.getElementById('start-countdown')
+startCountdownButton.addEventListener('click', startCountdown)
+
+const stopCountdownButton = document.getElementById('stop-countdown')
+stopCountdownButton.addEventListener('click', stopCountdown)
+
+const pauseCountdownButton = document.getElementById('pause-countdown')
+pauseCountdownButton.addEventListener('click', pauseCountdown)
+
+pauseCountdownButton.style.display = 'none'
