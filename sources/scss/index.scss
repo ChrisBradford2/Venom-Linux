@@ -139,8 +139,7 @@ body {
     &--app-list {
       display: flex;
       align-items: flex-start;
-      flex-direction: column;
-      flex-wrap: wrap;
+      flex-flow: column wrap;
       max-height: calc(100vh - 10rem);
       @media screen and (min-width: $sm) {
         max-height: 100vh;
