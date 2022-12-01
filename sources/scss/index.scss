@@ -48,14 +48,16 @@ body {
   background-clip: initial;
   background-size: cover;
   @media (min-width: $sm) {
-    background-image: url('../assets/images/bg.jpg');
+    background-image: url('../assets/img/background_dark.png');
   }
   .nav {
     background-color: black;
-    display: flex;
-    justify-content: space-between;
     align-items: center;
     padding: .25rem .5rem;
+    @media (min-width: $sm) {
+      display: flex;
+      justify-content: space-between;
+    }
     &--app-title {
       display: none;
       @media (min-width: $md) {
@@ -68,23 +70,16 @@ body {
       @media (min-width: $sm) {
         flex: 1;
         display: block;
+        p {
+          text-align: center;
+          margin: 0;
+        }
       }
       &--mobile {
         display: block;
+        margin-bottom: 2rem;
         @media (min-width: $sm) {
           display: none;
-        }
-        #day-mobile {
-          font-size: 1.5rem;
-        }
-        #date-mobile {
-          font-size: 1.5rem;
-        }
-        #month-mobile {
-          font-size: 1.5rem;
-        }
-        #year-mobile {
-          font-size: 1.5rem;
         }
         &--wrapper {
           display: flex;
@@ -96,10 +91,12 @@ body {
           .left {
             text-align: right;
             border-right: 1px solid white;
+            font-size: 1.5rem;
           }
           .right {
             display: flex;
             align-items: center;
+            font-size: 1.25rem;
           }
         }
       }
@@ -108,10 +105,13 @@ body {
       list-style: none;
       padding: 0;
       display: flex;
-      gap: .75rem;
+      justify-content: space-between;
       margin: .5rem 0;
-      flex: 1;
-      justify-content: flex-end;
+      @media (min-width: $sm) {
+        gap: .75rem;
+        flex: 1;
+        justify-content: end;
+      }
       &--vibration {
         .mySVG {
           background-image: url('../assets/icons/vibration.svg');
@@ -140,7 +140,12 @@ body {
       display: flex;
       align-items: flex-start;
       flex-direction: column;
-      max-width: 15rem;
+      flex-wrap: wrap;
+      max-height: calc(100vh - 10rem);
+      @media screen and (min-width: $sm) {
+        max-height: 100vh;
+        max-width: 15rem;
+      }
       &--icon {
         display: flex;
         text-align: center;
