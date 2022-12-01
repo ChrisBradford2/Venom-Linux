@@ -21,6 +21,87 @@ spanTime.onclick = function () {
   modalTime.style.display = 'none'
 }
 
+const start = document.getElementById('button-start')
+const stop = document.getElementById('button-stop')
+const save = document.getElementById('button-save')
+const reset = document.getElementById('button-reset')
+const time = document.getElementById('stopwatch-time')
+const listSave = document.getElementById('list-save')
+let seconds = 0
+let minutes = 0
+let hours = 0
+let milliseconds = 0
+let t
+
+function add () {
+  milliseconds++
+  if (100 === milliseconds) {
+    milliseconds = 0
+    seconds++
+  }
+  if (60 === seconds) {
+    seconds = 0
+    minutes++
+  }
+  if (60 === minutes) {
+    minutes = 0
+    hours++
+  }
+
+  time.textContent =
+    (hours ? (9 < hours ? hours : '0' + hours) : '00') +
+    ':' +
+    (minutes ? (9 < minutes ? minutes : '0' + minutes) : '00') +
+    ':' +
+    (9 < seconds ? seconds : '0' + seconds) +
+    ':' +
+    (9 < milliseconds ? milliseconds : '0' + milliseconds)
+
+  timer()
+}
+
+function timer () {
+  t = setTimeout(add, 10)
+}
+
+/* Start button */
+start.onclick = timer
+
+/* Stop button */
+
+stop.onclick = function () {
+  clearTimeout(t)
+}
+
+/* Reset button */
+
+reset.onclick = function () {
+  time.textContent = '00:00:00:00'
+
+  milliseconds = 0
+
+  seconds = 0
+
+  minutes = 0
+
+  hours = 0
+}
+
+save.onclick = function () {
+  listSave.innerHTML +=
+    '<li>' +
+    (hours ? (9 < hours ? hours : '0' + hours) : '00') +
+    ':' +
+    (minutes ? (9 < minutes ? minutes : '0' + minutes) : '00') +
+    ':' +
+    (9 < seconds ? seconds : '0' + seconds) +
+    ':' +
+    (9 < milliseconds ? milliseconds : '0' + milliseconds) +
+    '</li>'
+}
+
+/*
+
 window.onload = function () {
   let seconds = 0
   let tens = 0
@@ -79,7 +160,35 @@ window.onload = function () {
   }
 }
 
-console.log('not running : ' + window.countdown)
+*/
+
+const getBtnMinus = document.getElementsByClassName('btn-minus')
+const getBtnPlus = document.getElementsByClassName('btn-plus')
+
+for (let i = 0; i < getBtnPlus.length; i++) {
+  getBtnPlus[i].addEventListener('click', function () {
+    const getNumber = this.parentElement.querySelector('input[type=number]')
+    const getNumberValue = parseInt(getNumber.value)
+    const newNumberValue = getNumberValue + 1
+    getNumber.value = newNumberValue
+  })
+}
+
+for (let i = 0; i < getBtnMinus.length; i++) {
+  getBtnMinus[i].addEventListener('click', function () {
+    const getNumber = this.parentElement.querySelector('input[type=number]')
+    const getNumberValue = parseInt(getNumber.value)
+    const newNumberValue = getNumberValue - 1
+    getNumber.value = newNumberValue
+    if (0 > newNumberValue) {
+      getNumber.value = 0
+    }
+  })
+}
+
+const finishDiv = document.createElement('h3')
+finishDiv.innerHTML = 'Finished'
+const timerWrapper = document.getElementsByClassName('timer-wrapper')[0]
 
 function startCountdown () {
   let hours = document.getElementById('hours-value-timer').value
@@ -96,17 +205,20 @@ function startCountdown () {
         hours--
         if (0 > hours) {
           pauseCountdown()
-          const music = new Audio('../assets/sounds/mixkit-clown-horn-at-circus-715.wav')
+          const music = new Audio(
+            '../assets/sounds/mixkit-clown-horn-at-circus-715.wav'
+          )
           music.play()
           // eslint-disable-next-line no-undef
           multiVibration([100, 100, 500])
+          timerWrapper.appendChild(finishDiv)
         }
       }
     }
 
-    document.getElementById('hours-timer').innerHTML = 10 > hours ? '0' + hours : hours
-    document.getElementById('minutes-timer').innerHTML = 10 > minutes ? '0' + minutes : minutes
-    document.getElementById('seconds-timer').innerHTML = 10 > seconds ? '0' + seconds : seconds
+    document.getElementById('hours-value-timer').value = hours
+    document.getElementById('minutes-value-timer').value = minutes
+    document.getElementById('seconds-value-timer').value = seconds
     console.log(hours + ':' + minutes + ':' + seconds)
   }, 1000)
   document.getElementById('hours-value-timer').disabled = true
@@ -128,9 +240,12 @@ function pauseCountdown () {
 }
 
 function stopCountdown () {
-  document.getElementById('hours-timer').innerHTML = '00'
-  document.getElementById('minutes-timer').innerHTML = '00'
-  document.getElementById('seconds-timer').innerHTML = '00'
+  if (
+    'undefined' !== typeof timerWrapper.lastChild &&
+    'H3' === timerWrapper.lastChild.nodeName
+  ) {
+    timerWrapper.removeChild(timerWrapper.lastChild)
+  }
 
   document.getElementById('hours-value-timer').value = 0
   document.getElementById('minutes-value-timer').value = 0

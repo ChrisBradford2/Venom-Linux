@@ -309,15 +309,54 @@ body {
           }
           #timer {
             .timer-wrapper {
-              display: grid !important;
-              grid-template-columns: repeat(2, 1fr);
-              .left-side {
-                form {
+              form {
+                display: flex;
+                justify-content: space-around;
+                .input-wrapper {
                   display: flex;
                   flex-direction: column;
+                  justify-content: space-between;
+                  align-items: center;
+                  margin: 1rem 0;
+                  label {
+                    margin-bottom: .5rem;
+                  }
+                  .btn-plus,
+                  .btn-minus {
+                    width: 2rem;
+                    height: 2rem;
+                    border: 2px solid #841326;
+                    border-radius: 50%;
+                    background-color: transparent;
+                    color: white;
+                    font-size: 1rem;
+                    cursor: pointer;
+                    &:hover {
+                      background-color: #841326;
+                    }
+                  }
                   input {
+                    width: 100%;
+                    padding: 12px 0;
+                    margin: 8px 0;
+                    text-align: center;
+                    box-sizing: border-box;
+                    border: none;
+                    border-bottom: 2px solid #841326;
+                    &:focus {
+                      outline: none;
+                    }
+                  }
+                  input[type='number'] {
                     width: 3.25rem;
                     margin-bottom: .5rem;
+                    -webkit-appearance: textfield;
+                    -moz-appearance: textfield;
+                         appearance: textfield;
+                  }
+                  input[type="number"]::-webkit-inner-spin-button,
+                  input[type="number"]::-webkit-outer-spin-button {
+                    -webkit-appearance: none;
                   }
                 }
               }

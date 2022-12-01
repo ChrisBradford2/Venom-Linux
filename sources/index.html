@@ -466,7 +466,7 @@
 
           <div id="stopwatch" class="w3-container city" style="display: none">
             <h2>Stopwatch</h2>
-            <p><span id="secs">00</span>:<span id="tens">00</span></p>
+            <p id="stopwatch-time">00:00:00:00</p>
             <button class="button-stylised" id="button-start">Start</button>
             <button class="button-stylised" id="button-save">Save</button>
             <button class="button-stylised" id="button-stop">Stop</button>
@@ -481,22 +481,29 @@
           >
             <h2>Timer</h2>
             <div class="timer-wrapper">
-              <div class="left-side">
-                <form action="javascript:void(0);">
+              <form action="javascript:void(0);">
+                <div class="input-wrapper">
                   <label for="hours">Hours</label>
+                  <button class="btn-plus"><i class="fa fa-plus"></i></button>
                   <input type="number" name="Hours" id="hours-value-timer" value="0" min="0" max="">
+                  <button class="btn-minus"><i class="fa fa-minus"></i></button>
+                </div>
+                <div class="input-wrapper">
                   <label for="minutes">Minutes</label>
-                  <input type="number" name="Minutes" id="minutes-value-timer" value="0" min="0" max="60">
+                  <button class="btn-plus"><i class="fa fa-plus"></i></button>
+                  <input type="number" name="Minutes" id="minutes-value-timer" value="0" min="0" max="59">
+                  <button class="btn-minus"><i class="fa fa-minus"></i></button>
+                </div>
+                <div class="input-wrapper">
                   <label for="seconds">Seconds</label>
-                  <input type="number" name="Seconds" id="seconds-value-timer" value="0" min="0" max="60">
-                </form>
-                <button class="button-stylised" id="start-countdown">Run</button>
-                <button class="button-stylised" id="pause-countdown">Pause</button>
-                <button class="button-stylised" id="stop-countdown">Reset</button>
-              </div>
-              <div class="right-side">
-                <p id="countdown"><span id="hours-timer">00</span>:<span id="minutes-timer">00</span>:<span id="seconds-timer">00</span></p>
-              </div>
+                  <button class="btn-plus"><i class="fa fa-plus"></i></button>
+                  <input type="number" name="Seconds" id="seconds-value-timer" value="0" min="0" max="59">
+                  <button class="btn-minus"><i class="fa fa-minus"></i></button>
+                </div>
+              </form>
+              <button class="button-stylised" id="start-countdown">Run</button>
+              <button class="button-stylised" id="pause-countdown">Pause</button>
+              <button class="button-stylised" id="stop-countdown">Reset</button>
             </div>
           </div>
         </div>
