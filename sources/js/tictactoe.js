@@ -53,6 +53,8 @@ const btnResetGame = document.getElementById('resetGame')
 */
 
 btnStartGame.addEventListener('click', function (event) {
+  // eslint-disable-next-line no-undef
+  singleVibration(100)
   event.preventDefault()
   player1 = document.getElementById('namePlayer1').value
   player2 = document.getElementById('namePlayer2').value
