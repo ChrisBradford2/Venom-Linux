@@ -97,6 +97,7 @@ body {
       display: flex;
       align-items: flex-start;
       flex-direction: column;
+      max-width: 15rem;
       &--icon {
         display: flex;
         text-align: center;
@@ -224,7 +225,8 @@ body {
       }
     }
   }
-  .modal--settings-application {
+  .modal--settings-application,
+  .modal--time-application {
     .modal-content {
       .modal-body {
         padding: 0;
@@ -265,6 +267,99 @@ body {
         }
         .tab-content {
           flex: 2;
+          .date-wrapper {
+            border: 2px solid #841326;
+            padding: .5rem;
+            margin: 1.5rem 1rem 1.5rem 0;
+            .date {
+              font-size: 1.5rem;
+              text-decoration: underline;
+              margin: 1rem 0 0;
+            }
+            .time {
+              font-size: 1.25rem;
+            }
+          }
+          .button-stylised {
+            padding: 8px 16px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            transition-duration: .4s;
+            cursor: pointer;
+            background-color: transparent;
+            color: white;
+            border: 2px solid #841326;
+            &:hover {
+              background-color: #841326;
+              color: white;
+            }
+          }
+          #stopwatch {
+            text-align: center;
+            h2,
+            ul li {
+              text-align: left;
+            }
+            p {
+              font-size: 2rem;
+            }
+          }
+          #timer {
+            .timer-wrapper {
+              form {
+                display: flex;
+                justify-content: space-around;
+                .input-wrapper {
+                  display: flex;
+                  flex-direction: column;
+                  justify-content: space-between;
+                  align-items: center;
+                  margin: 1rem 0;
+                  label {
+                    margin-bottom: .5rem;
+                  }
+                  .btn-plus,
+                  .btn-minus {
+                    width: 2rem;
+                    height: 2rem;
+                    border: 2px solid #841326;
+                    border-radius: 50%;
+                    background-color: transparent;
+                    color: white;
+                    font-size: 1rem;
+                    cursor: pointer;
+                    &:hover {
+                      background-color: #841326;
+                    }
+                  }
+                  input {
+                    width: 100%;
+                    padding: 12px 0;
+                    margin: 8px 0;
+                    text-align: center;
+                    box-sizing: border-box;
+                    border: none;
+                    border-bottom: 2px solid #841326;
+                    &:focus {
+                      outline: none;
+                    }
+                  }
+                  input[type='number'] {
+                    width: 3.25rem;
+                    margin-bottom: .5rem;
+                    appearance: textfield;
+                  }
+                  input[type='number']::-webkit-inner-spin-button,
+                  input[type='number']::-webkit-outer-spin-button {
+                    appearance: none;
+                  }
+                }
+              }
+            }
+          }
           .switch {
             position: relative;
             display: inline-block;

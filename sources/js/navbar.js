@@ -120,12 +120,16 @@ setInterval(getBatteryPerMinutes(), 30000)
 
 function singleVibration (time) {
   // vibrate device for ${time} milliseconds
-  window.navigator.vibrate(time)
+  if (true === vibrationIsAllowed) {
+    window.navigator.vibrate(time)
+  }
 }
 
 function multiVibration (array) {
   // Basically it is performed as a series of [VIBRATION] [PAUSE] [VIBRATION] [PAUSE] [VIBRATION] [PAUSE]...
-  window.navigator.vibrate(array)
+  if (true === vibrationIsAllowed) {
+    window.navigator.vibrate(array)
+  }
 }
 
 let vibrationIsAllowed = true

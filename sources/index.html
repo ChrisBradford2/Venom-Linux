@@ -361,7 +361,7 @@
       <div class="modal-content" style="border-radius: .5rem; width: 90%">
         <div class="modal-header">
           <span id="close-tictactoe" class="close">&times;</span>
-          <h2>Calculator</h2>
+          <h2>Tic Tac Toe</h2>
         </div>
         <div class="modal-body" style="padding: 0;">
           <div id="gameContainer">
@@ -415,6 +415,102 @@
         </div>
       </div>
     </section>
+    <section
+    class="modal modal--time-application"
+    id="modal-time-application"
+  >
+    <!-- Modal content -->
+    <div class="modal-content">
+      <div class="modal-header">
+        <span id="close-time-application" class="close">&times;</span>
+        <h2>Time</h2>
+      </div>
+      <div class="modal-body">
+        <div
+          class="sidebar w3-bar-block w3-light-grey w3-card"
+          style="width: 130px"
+        >
+          <h5 class="w3-bar-item">Menu</h5>
+          <button
+            class="bar-item button tablink red"
+            onclick="openCity(event, 'current-date')"
+          >
+            Current Date
+          </button>
+          <button
+            class="bar-item button tablink"
+            onclick="openCity(event, 'stopwatch')"
+          >
+            Stopwatch
+          </button>
+          <button
+            class="bar-item button tablink"
+            onclick="openCity(event, 'timer')"
+          >
+            Timer
+          </button>
+        </div>
+
+        <div class="tab-content">
+          <div
+            id="current-date"
+            class="w3-container city"
+            style="display: block"
+          >
+            <h2>Current Date</h2>
+            <div class="date-wrapper">
+              <p class="date"><span id="time-day"></span><span id="time-date"></span><span id="time-month"></span><span id="time-year"></span></p>
+              <p class="time"><span id="time-hours"></span><span id="separator-hour-minute"></span><span id="time-minutes"></span><span id="separator-minute-seconds"></span><span id="time-seconds"></span><span id="time-ampm"></span></p>
+            </div>
+          </div>
+
+          <div id="stopwatch" class="w3-container city" style="display: none">
+            <h2>Stopwatch</h2>
+            <p id="stopwatch-time">00:00:00:00</p>
+            <button class="button-stylised" id="button-start">Start</button>
+            <button class="button-stylised" id="button-save">Save</button>
+            <button class="button-stylised" id="button-stop">Stop</button>
+            <button class="button-stylised" id="button-reset">Reset</button>
+            <ul id="list-save"></ul>
+          </div>
+
+          <div
+            id="timer"
+            class="w3-container city"
+            style="display: none"
+          >
+            <h2>Timer</h2>
+            <div class="timer-wrapper">
+              <form action="javascript:void(0);">
+                <div class="input-wrapper">
+                  <label for="hours">Hours</label>
+                  <button class="btn-plus"><i class="fa fa-plus"></i></button>
+                  <input type="number" name="Hours" id="hours-value-timer" value="0" min="0" max="">
+                  <button class="btn-minus"><i class="fa fa-minus"></i></button>
+                </div>
+                <div class="input-wrapper">
+                  <label for="minutes">Minutes</label>
+                  <button class="btn-plus"><i class="fa fa-plus"></i></button>
+                  <input type="number" name="Minutes" id="minutes-value-timer" value="0" min="0" max="59">
+                  <button class="btn-minus"><i class="fa fa-minus"></i></button>
+                </div>
+                <div class="input-wrapper">
+                  <label for="seconds">Seconds</label>
+                  <button class="btn-plus"><i class="fa fa-plus"></i></button>
+                  <input type="number" name="Seconds" id="seconds-value-timer" value="0" min="0" max="59">
+                  <button class="btn-minus"><i class="fa fa-minus"></i></button>
+                </div>
+              </form>
+              <button class="button-stylised" id="start-countdown">Run</button>
+              <button class="button-stylised" id="pause-countdown">Pause</button>
+              <button class="button-stylised" id="stop-countdown">Reset</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
     <script src="js/modal.js"></script>
     <script src="js/application_list.js"></script>
     <script src="js/tictactoe.js"></script>
@@ -422,6 +518,7 @@
     <script src="js/navbar.js"></script>
     <script src="js/settings.js"></script>
     <script src="js/calculator.js"></script>
+    <script src="js/time.js"></script>
     <script
       src="https://kit.fontawesome.com/ca13fc92c5.js"
       crossorigin="anonymous"

@@ -49,13 +49,17 @@ const calculatorApp = new Application(
 const tictactoe = new Application(
   'div',
   'tictactoe',
-  'TicTacToe',
-  '../views/tictactoe.html',
-  true
+  'TicTacToe'
+)
+
+const horloge = new Application(
+  'div',
+  'time',
+  'Time'
 )
 
 // Add the application in the array :
-const applicationList = [github, figma, calculatorApp, settings, tictactoe]
+const applicationList = [github, figma, calculatorApp, settings, tictactoe, horloge]
 
 // eslint-disable-next-line no-unused-vars
 function formdata () {
