@@ -135,16 +135,15 @@ body {
     }
   }
   .desktop {
-    padding: 1.5rem;
+    padding: .5rem;
+    @media screen and (min-width: $sm) {
+      padding: 1.5rem;
+    }
     &--app-list {
       display: flex;
       align-items: flex-start;
       flex-flow: column wrap;
       max-height: calc(100vh - 10rem);
-      @media screen and (min-width: $sm) {
-        max-height: 100vh;
-        max-width: 15rem;
-      }
       &--icon {
         display: flex;
         text-align: center;
