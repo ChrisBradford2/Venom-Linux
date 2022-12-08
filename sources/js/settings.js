@@ -69,10 +69,20 @@ if (false === document.getElementById('checkbox-hour').checked || false === docu
 } else {
   document.getElementById('separator-hour-minute').innerHTML = ''
 }
+if (false === document.getElementById('checkbox-hour').checked || false === document.getElementById('checkbox-minutes').checked) {
+  document.getElementById('separator-hour-minute-mobile').innerHTML = ':'
+} else {
+  document.getElementById('separator-hour-minute-mobile').innerHTML = ''
+}
 if (false === document.getElementById('checkbox-minutes').checked || false === document.getElementById('checkbox-seconds').checked) {
   document.getElementById('separator-minute-seconds').innerHTML = ':'
 } else {
   document.getElementById('separator-hour-seconds').innerHTML = ''
+}
+if (false === document.getElementById('checkbox-minutes').checked || false === document.getElementById('checkbox-seconds').checked) {
+  document.getElementById('separator-minute-seconds-mobile').innerHTML = ':'
+} else {
+  document.getElementById('separator-hour-seconds-mobile').innerHTML = ''
 }
 
 const checkboxDayShow = document.getElementById('checkbox-day')

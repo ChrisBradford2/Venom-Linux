@@ -73,7 +73,7 @@
     <nav class="nav">
       <div class="nav--app-title">Applications</div>
       <div class="nav--date">
-        <span id="day"></span><span id="date"></span><span id="month"></span><span id="year"></span><span id="hours"></span><span id="separator-hour-minute"></span><span id="minutes"></span><span id="separator-minute-seconds"></span><span id="seconds"></span><span id="ampm"></span>
+        <p><span id="day"></span><span id="date"></span><span id="month"></span><span id="year"></span><span id="hours"></span><span id="separator-hour-minute"></span><span id="minutes"></span><span id="separator-minute-seconds"></span><span id="seconds"></span><span id="ampm"></span></p>
       </div>
       <ul class="nav--infos">
         <li
@@ -94,6 +94,23 @@
       </ul>
     </nav>
     <section class="desktop">
+      <div class="nav--date--mobile">
+        <div class="nav--date--mobile--wrapper">
+          <div class="left">
+            <div class="top">
+              <span id="day-mobile"></span>
+            </div>
+            <div class="bottom">
+              <span id="date-mobile"></span>
+              <span id="month-mobile"></span>
+              <span id="year-mobile"></span>
+            </div>
+          </div>
+          <div class="right">
+            <span id="hours-mobile"></span><span id="separator-hour-minute-mobile"></span><span id="minutes-mobile"></span><span id="separator-minute-seconds-mobile"></span><span id="seconds-mobile"></span><span id="ampm-mobile"></span>
+          </div>
+        </div>
+      </div>
       <div id="application-list" class="desktop--app-list"></div>
     </section>
     <section id="context-menu">

@@ -135,6 +135,16 @@ const getCurrentTimeDate = () => {
   document.getElementById('time-month').innerHTML = currentMonth + ' '
   document.getElementById('time-year').innerHTML = currentYear + ' '
 
+  document.getElementById('hours-mobile').innerHTML = currentHour
+  document.getElementById('minutes-mobile').innerHTML = currentMinutes
+  document.getElementById('seconds-mobile').innerHTML = currentSeconds
+  document.getElementById('ampm-mobile').innerHTML = currentAMPM
+  // document.getElementById('time').innerHTML = currentTime
+  document.getElementById('day-mobile').innerHTML = currentDay + ', '
+  document.getElementById('date-mobile').innerHTML = currentDate + ' '
+  document.getElementById('month-mobile').innerHTML = currentMonth + ' '
+  document.getElementById('year-mobile').innerHTML = currentYear + ' '
+
   setTimeout(getCurrentTimeDate, 500)
 }
 getCurrentTimeDate()
