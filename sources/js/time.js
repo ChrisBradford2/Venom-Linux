@@ -167,6 +167,8 @@ const getBtnPlus = document.getElementsByClassName('btn-plus')
 
 for (let i = 0; i < getBtnPlus.length; i++) {
   getBtnPlus[i].addEventListener('click', function () {
+    // eslint-disable-next-line no-undef
+    singleVibration(100)
     const getNumber = this.parentElement.querySelector('input[type=number]')
     const getNumberValue = parseInt(getNumber.value)
     const newNumberValue = getNumberValue + 1
@@ -176,6 +178,8 @@ for (let i = 0; i < getBtnPlus.length; i++) {
 
 for (let i = 0; i < getBtnMinus.length; i++) {
   getBtnMinus[i].addEventListener('click', function () {
+    // eslint-disable-next-line no-undef
+    singleVibration(100)
     const getNumber = this.parentElement.querySelector('input[type=number]')
     const getNumberValue = parseInt(getNumber.value)
     const newNumberValue = getNumberValue - 1
@@ -196,6 +200,7 @@ function startCountdown () {
   let seconds = document.getElementById('seconds-value-timer').value
 
   window.countdown = setInterval(function () {
+    // eslint-disable-next-line no-undef
     seconds--
     if (0 > seconds) {
       seconds = 59
@@ -210,7 +215,7 @@ function startCountdown () {
           )
           music.play()
           // eslint-disable-next-line no-undef
-          multiVibration([100, 100, 500])
+          multiVibration([150, 150, 500])
           timerWrapper.appendChild(finishDiv)
         }
       }

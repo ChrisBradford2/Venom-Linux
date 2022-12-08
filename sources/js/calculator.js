@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 // Modal
 
 const modal3 = document.getElementById('modal-calculator')
@@ -98,11 +99,13 @@ keys.addEventListener('click', e => {
   */
 
   if ('decimal' === action) {
+    singleVibration(100)
     display.textContent = displayedNum + '.'
     actions.push(action)
   }
 
   if ('clear' === action) {
+    singleVibration(100)
     display.textContent = '0'
     calculator.dataset.firstValue = 0
     calculator.dataset.operator = ''
@@ -110,11 +113,13 @@ keys.addEventListener('click', e => {
   }
 
   if ('opposite' === action) {
+    singleVibration(100)
     displayedNum = -displayedNum
     display.textContent = displayedNum
   }
 
   if ('calculate' === action) {
+    multiVibration([100, 100, 50, 100, 50, 100])
     actions.push(action)
     displayedNum = calculate(firstValue, operator, secondValue)
     console.log(displayedNum)
