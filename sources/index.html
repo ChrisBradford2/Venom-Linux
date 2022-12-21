@@ -93,6 +93,17 @@
         </li>
       </ul>
     </nav>
+    <section class="lock-screen">
+      <div class="lock-screen--content">
+        <div class="lock-screen--content--img">
+          <img src="https://avatars.githubusercontent.com/u/56403640" alt="lock screen" />
+        </div>
+        <div class="lock-screen--content--name">
+          <h1>Venom Linux</h1>
+        </div>
+        <button class="lock-screen--content--login" id="login-btn">Login</button>
+      </div>
+    </section>
     <section class="desktop">
       <div class="nav--date--mobile">
         <div class="nav--date--mobile--wrapper">
@@ -188,6 +199,12 @@
             >
               Dark Mode
             </button>
+            <button
+            class="bar-item button tablink"
+            onclick="openCity(event, 'lock-mode')"
+          >
+            Lock Mode
+          </button>
           </div>
 
           <div class="tab-content">
@@ -307,6 +324,26 @@
                 <span class="slider round"></span>
                 <span class="description">Enable dark mode</span>
               </label>
+            </div>
+            <div id="lock-mode" class="w3-container city" style="display: none">
+              <h2>Lock Mode</h2>
+              <label for="lock-keys">Lock keys are :</label>
+              <br>
+              <input
+                type="text"
+                id="lock-key-1"
+                name="lock-key-1"
+                value="z"
+                required
+              />
+              and
+              <input
+                type="text"
+                id="lock-key-2"
+                name="lock-key-2"
+                value="q"
+                required
+              />
             </div>
           </div>
         </div>
