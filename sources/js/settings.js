@@ -6,16 +6,13 @@ const modal2 = document.getElementById('modal-settings-application')
 
 // Get the button that opens the modal
 const btn2 = document.getElementById('settings-application')
-console.log(btn2)
 
 // Get the <span> element that closes the modal
 const span2 = document.getElementById('close-settings-application')
-console.log(span2)
 
 // When the user clicks the button, open the modal
 btn2.onclick = function () {
   modal2.style.display = 'block'
-  console.log('Get the modal')
 }
 
 // When the user clicks on <span> (x), close the modal
@@ -55,10 +52,8 @@ function openCity (evt, cityName) {
 function changeToggleStateForDisplay (element, target) {
   element.addEventListener('change', (event) => {
     if (event.currentTarget.checked) {
-      console.log(element + ' is checked')
       document.getElementById(target).style.display = 'none'
     } else {
-      console.log(element + ' is not checked')
       document.getElementById(target).style.display = 'inline'
     }
   })
