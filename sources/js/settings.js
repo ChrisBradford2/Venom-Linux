@@ -174,5 +174,11 @@ document.getElementById('checkbox-theme-mode').addEventListener('change', (event
     for (const sidebar of sidebars) {
       sidebar.style.backgroundColor = null
     }
+    for (const input of inputs) {
+      input.style.backgroundColor = null
+    }
+    for (const select of selects) {
+      select.style.backgroundColor = null
+    }
   }
 })
