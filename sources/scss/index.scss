@@ -61,10 +61,10 @@ body {
     height: 100%; /* Full height */
     overflow: auto; /* Enable scroll if needed */
     backdrop-filter: blur(5px); /* Blur the background */
-    animation: blur 0.4s;
+    animation: blur .4s;
     @keyframes blur {
       from {
-        backdrop-filter: blur(0px);
+        backdrop-filter: blur(0);
       }
       to {
         backdrop-filter: blur(5px);
@@ -89,7 +89,7 @@ body {
         0 4px 8px 0 rgb(0 0 0 / .2),
         0 6px 20px 0 rgb(0 0 0 / .19);
       border-radius: $radius;
-      animation: scale 0.2s ease-out;
+      animation: scale .2s ease-out;
       @keyframes scale {
         from {
           transform: translate(0, -50%) scale(0);
