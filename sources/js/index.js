@@ -162,7 +162,6 @@ const span = document.getElementById('close-new-file')
 // When the user clicks the button, open the modal
 btn.onclick = function () {
   modal.style.display = 'block'
-  console.log('Get the modal')
 }
 
 // When the user clicks on <span> (x), close the modal
@@ -183,3 +182,26 @@ window.onkeydown = function (event) {
     modal.style.display = 'none'
   }
 }
+
+const keysPressed = {}
+let locked = false
+
+document.addEventListener('keydown', (event) => {
+  keysPressed[event.key] = true
+
+  if (keysPressed.z && keysPressed.q && keysPressed.d) {
+    locked = true
+    document.getElementsByClassName('lock-screen')[0].style.display = 'block'
+  }
+})
+
+document.addEventListener('keyup', (event) => {
+  delete keysPressed[event.key]
+})
+
+document.getElementById('login-btn').addEventListener('click', () => {
+  if (locked) {
+    locked = false
+    document.getElementsByClassName('lock-screen')[0].style.display = 'none'
+  }
+})

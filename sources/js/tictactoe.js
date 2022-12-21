@@ -4,16 +4,13 @@ const modalTicTacToe = document.getElementById('modal-tictactoe')
 
 // Get the button that opens the modal
 const btnTicTacToe = document.getElementById('tictactoe-application')
-console.log(btnTicTacToe)
 
 // Get the <span> element that closes the modal
 const spanTicTacToe = document.getElementById('close-tictactoe')
-console.log(spanTicTacToe)
 
 // When the user clicks the button, open the modal
 btnTicTacToe.onclick = function () {
   modalTicTacToe.style.display = 'block'
-  console.log('Get the modal')
 }
 
 // When the user clicks on <span> (x), close the modal

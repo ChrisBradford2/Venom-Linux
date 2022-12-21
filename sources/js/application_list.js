@@ -64,14 +64,10 @@ const applicationList = [github, figma, calculatorApp, settings, tictactoe, horl
 // eslint-disable-next-line no-unused-vars
 function formdata () {
   const newFileName = document.getElementById('new-file-name').value
-  console.log(newFileName)
   const newFile = new Application('div', 'file', newFileName, '#')
-  console.log(newFile)
   applicationList.push(newFile)
-  console.log(applicationList)
   const initialSize = applicationList.length
   const size = initialSize - (initialSize - 1)
-  console.log(size)
 
   // Storing data:
   const applicationJSON = JSON.stringify(newFile)
