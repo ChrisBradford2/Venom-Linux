@@ -1,3 +1,5 @@
+import jsonDataGames from '../storedGame.json'
+
 // Modal
 
 const modalTicTacToe = document.getElementById('modal-tictactoe')
@@ -41,11 +43,15 @@ const score = {
   p1: 0, p2: 0
 }
 let counterForDraw = 1
+let isBtnImportDataFromJsonClicked = false
 
 const btnStartGame = document.getElementById('startGame')
+const btnImportGame = document.getElementById('importGame')
 const msgError = document.getElementById('error')
 const btnNextGame = document.getElementById('nextGame')
 const btnResetGame = document.getElementById('resetGame')
+const blockImportGame = document.getElementById('blockImportGame')
+const btnBlock = document.getElementById('btnBlock')
 
 /* -----------------------------------------------------------------------------
 * btnStartGame : This will start the game
@@ -53,6 +59,8 @@ const btnResetGame = document.getElementById('resetGame')
 */
 
 btnStartGame.addEventListener('click', function (event) {
+  // eslint-disable-next-line no-undef
+  singleVibration(100)
   event.preventDefault()
   player1 = document.getElementById('namePlayer1').value
   player2 = document.getElementById('namePlayer2').value
@@ -61,10 +69,16 @@ btnStartGame.addEventListener('click', function (event) {
     if (player1 !== player2) {
       resetBoard()
       turn = player1
+      // if(isDataComeFromJson)
+      // {
+      //   //score.p1 =
+      // }
       updateGameInformations({ winner: '', turn })
       hideForm()
       showGame()
       initializeCellAndPlay()
+      blockImportGame.style = 'display:none;'
+      btnBlock.style = 'display:block;'
     } else {
       msgError.innerText = 'Names must be different'
       msgError.style.color = 'rgb(165, 51, 51)'
@@ -267,3 +281,59 @@ function showGame () {
   gameBoard.style.display = 'block'
   infoBlock.style.display = 'block'
 }
+
+/* -----------------------------------------------------------------------------
+* importGame : Import stored game from jsonFile
+* -----------------------------------------------------------------------------
+*/
+
+btnImportGame.addEventListener('click', function (event) {
+  console.log(isBtnImportDataFromJsonClicked)
+  event.preventDefault()
+  console.log('clicked')
+
+  this.style.display = 'none'
+
+  const chooseParty = document.getElementById('turn')
+  const infoBlock = document.getElementById('infoBlock')
+  infoBlock.style.display = 'block'
+  infoBlock.style.marginBottom = '0%'
+  const blockImportGame = document.getElementById('blockImportGame')
+  const btnBlock = document.getElementById('btnBlock')
+
+  btnBlock.style = 'display:none;'
+  blockImportGame.style = 'display:block;'
+  chooseParty.innerText = 'Select party'
+
+  const listed = document.getElementById('listImportedParty')
+
+  if (!isBtnImportDataFromJsonClicked) {
+    jsonDataGames.forEach((item) => {
+      console.log(item)
+      const li = document.createElement('li')
+      const div = document.createElement('div')
+      div.style = 'display:flex; align-items:center;'
+      const p = document.createElement('p')
+      const btnChooseGames = document.createElement('button')
+      listed.appendChild(li)
+      li.appendChild(div)
+      p.innerText = item.player1 + ' ' + item.score_player1 + ' -- ' + item.player2 + ' ' + item.score_player2 + ' '
+      btnChooseGames.type = 'button'
+      btnChooseGames.id = 'chooseGame'
+      btnChooseGames.innerText = 'Choose'
+      btnChooseGames.style = 'color:black;margin-left:10px;'
+      div.appendChild(p)
+      div.appendChild(btnChooseGames)
+      isBtnImportDataFromJsonClicked = true
+
+      btnChooseGames.addEventListener('click', function (event) {
+        console.log(item)
+        // isDataComeFromJson = true
+        document.getElementById('namePlayer1').value = item.player1
+        document.getElementById('namePlayer2').value = item.player2
+        score.p1 = item.score_player1
+        score.p2 = item.score_player2
+      })
+    })
+  }
+})
