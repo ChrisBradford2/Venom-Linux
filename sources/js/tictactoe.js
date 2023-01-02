@@ -1,7 +1,3 @@
-import jsonDataGames from '../storedGame.json'
-
-// Modal
-
 const modalTicTacToe = document.getElementById('modal-tictactoe')
 
 // Get the button that opens the modal
@@ -42,11 +38,15 @@ let winner = ''
 const score = {
   p1: 0, p2: 0
 }
+
+let fileHandle = null
+
 let counterForDraw = 1
 let isBtnImportDataFromJsonClicked = false
 
 const btnStartGame = document.getElementById('startGame')
 const btnImportGame = document.getElementById('importGame')
+const btnExportGame = document.getElementById('exportGame')
 const msgError = document.getElementById('error')
 const btnNextGame = document.getElementById('nextGame')
 const btnResetGame = document.getElementById('resetGame')
@@ -69,10 +69,6 @@ btnStartGame.addEventListener('click', function (event) {
     if (player1 !== player2) {
       resetBoard()
       turn = player1
-      // if(isDataComeFromJson)
-      // {
-      //   //score.p1 =
-      // }
       updateGameInformations({ winner: '', turn })
       hideForm()
       showGame()
@@ -109,11 +105,6 @@ function resetBoard () {
   counterForDraw = 1
   msgError.innerText = ''
 }
-
-/* -----------------------------------------------------------------------------
-* closeGame : Close the game and go back to previous screen (main screen)
-* -----------------------------------------------------------------------------
-*/
 
 /* -----------------------------------------------------------------------------
 * checkWin : Check if we are a winner
@@ -245,10 +236,60 @@ function updateGameInformations ({ winner, turn }) {
     } else if ('none' === winner) {
       h2.innerText = 'It\'s a tie'
     }
+    if (isBtnImportDataFromJsonClicked) {
+      updateJsonData(score.p1, score.p2)
+    }
   }
   player1Score.innerText = 'Score of ' + player1 + ' : ' + score.p1
   player2Score.innerText = 'Score of ' + player2 + ' : ' + score.p2
 }
+
+/* -----------------------------------------------------------------------------
+* UpdateJsonData : update data in json file
+* -----------------------------------------------------------------------------
+*/
+
+async function updateJsonData (scorePlayer1, scorePlayer2) {
+  const updateData = JSON.stringify({
+    player1,
+    score_player1: scorePlayer1,
+    player2,
+    score_player2: scorePlayer2
+  })
+
+  const stream = await fileHandle.createWritable()
+  // write our file
+  await stream.write(updateData)
+  await stream.close()
+}
+
+/* -----------------------------------------------------------------------------
+* ExportGame : reset the board, hide some button and start new game
+* -----------------------------------------------------------------------------
+*/
+
+btnExportGame.addEventListener('click', function (event) {
+  const updateData = JSON.stringify({
+    player1,
+    score_player1: score.p1,
+    player2,
+    score_player2: score.p2
+  })
+  // create blob object of json data with mime type application json
+  const blob = new Blob([updateData], { type: 'application/json' })
+
+  // create url and a element to dl the file on btn click
+  const url = URL.createObjectURL(blob)
+  const a = document.createElement('a')
+  a.style.display = 'none'
+  a.href = url
+  a.download = player1 + '_vs_' + player2 + '_savedGame.json'
+  document.body.appendChild(a)
+  a.click()
+
+  // free space of navigator
+  URL.revokeObjectURL(url)
+})
 
 /* -----------------------------------------------------------------------------
 * nextGame : reset the board, hide some button and start new game
@@ -288,52 +329,23 @@ function showGame () {
 */
 
 btnImportGame.addEventListener('click', function (event) {
-  console.log(isBtnImportDataFromJsonClicked)
   event.preventDefault()
   console.log('clicked')
-
   this.style.display = 'none'
-
-  const chooseParty = document.getElementById('turn')
-  const infoBlock = document.getElementById('infoBlock')
-  infoBlock.style.display = 'block'
-  infoBlock.style.marginBottom = '0%'
-  const blockImportGame = document.getElementById('blockImportGame')
-  const btnBlock = document.getElementById('btnBlock')
-
-  btnBlock.style = 'display:none;'
-  blockImportGame.style = 'display:block;'
-  chooseParty.innerText = 'Select party'
-
-  const listed = document.getElementById('listImportedParty')
-
-  if (!isBtnImportDataFromJsonClicked) {
-    jsonDataGames.forEach((item) => {
-      console.log(item)
-      const li = document.createElement('li')
-      const div = document.createElement('div')
-      div.style = 'display:flex; align-items:center;'
-      const p = document.createElement('p')
-      const btnChooseGames = document.createElement('button')
-      listed.appendChild(li)
-      li.appendChild(div)
-      p.innerText = item.player1 + ' ' + item.score_player1 + ' -- ' + item.player2 + ' ' + item.score_player2 + ' '
-      btnChooseGames.type = 'button'
-      btnChooseGames.id = 'chooseGame'
-      btnChooseGames.innerText = 'Choose'
-      btnChooseGames.style = 'color:black;margin-left:10px;'
-      div.appendChild(p)
-      div.appendChild(btnChooseGames)
-      isBtnImportDataFromJsonClicked = true
-
-      btnChooseGames.addEventListener('click', function (event) {
-        console.log(item)
-        // isDataComeFromJson = true
-        document.getElementById('namePlayer1').value = item.player1
-        document.getElementById('namePlayer2').value = item.player2
-        score.p1 = item.score_player1
-        score.p2 = item.score_player2
-      })
-    })
-  }
+  OpenJsonFile()
 })
+
+async function OpenJsonFile () {
+  [fileHandle] = await window.showOpenFilePicker()
+  const fileData = await fileHandle.getFile()
+  const fileText = await fileData.text()
+  const dataInJson = JSON.parse(fileText)
+
+  document.getElementById('namePlayer1').value = dataInJson.player1
+  document.getElementById('namePlayer2').value = dataInJson.player2
+  score.p1 = dataInJson.score_player1
+  score.p2 = dataInJson.score_player2
+  isBtnImportDataFromJsonClicked = true
+
+  btnStartGame.click()
+}

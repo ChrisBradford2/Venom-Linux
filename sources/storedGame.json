@@ -3,18 +3,21 @@
         "player1": "Serkan",
         "score_player1": 1,
         "player2": "Hamidou",
-        "score_player2": 2
+        "score_player2": 2,
+        "id_game" : 1
     },
     {
         "player1": "Nicolas",
         "score_player1": 3,
         "player2": "Hamidou",
-        "score_player2": 4
+        "score_player2": 4,
+        "id_game" : 2
     },
     {
         "player1": "Nicolas",
         "score_player1": 5,
         "player2": "Serkan",
-        "score_player2": 6
+        "score_player2": 6,
+        "id_game" : 3
     }
 ]
