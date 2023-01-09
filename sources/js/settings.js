@@ -38,7 +38,7 @@ window.onkeydown = function (event) {
 }
 
 // eslint-disable-next-line no-unused-vars
-function openCity (evt, cityName) {
+function openCity(evt, cityName) {
   let i, x, tablinks
   x = document.getElementsByClassName('city')
   for (i = 0; i < x.length; i++) {
@@ -52,7 +52,7 @@ function openCity (evt, cityName) {
   evt.currentTarget.className += ' red'
 }
 
-function changeToggleStateForDisplay (element, target) {
+function changeToggleStateForDisplay(element, target) {
   element.addEventListener('change', (event) => {
     if (event.currentTarget.checked) {
       console.log(element + ' is checked')
@@ -107,6 +107,8 @@ changeToggleStateForDisplay(checkboxNetworkShow, 'speed-network')
 
 const checkboxVibrationShow = document.getElementById('checkbox-vibration-state')
 changeToggleStateForDisplay(checkboxVibrationShow, 'vibration')
+
+const checkboxVibrationToggle = document.getElementById('checkbox-vibration-toggle')
 
 const white = 'white'
 const grey = 'grey'
@@ -170,4 +172,30 @@ document.getElementById('checkbox-theme-mode').addEventListener('change', (event
       sidebar.style.backgroundColor = null
     }
   }
+})
+
+document.getElementById('save-settings').addEventListener('click', () => {
+  const setting = {
+    dateSetting: {
+      day: checkboxDayShow.checked,
+      date: checkboxDateShow.checked,
+      month: checkboxMonthShow.checked,
+      year: checkboxYearShow.checked
+    },
+    hoursSetting: {
+      hours: checkboxHour.checked,
+      minutes: checkboxMinutes.checked,
+      seconds: checkboxSeconds.checked
+    },
+    vibration: {
+      vibrationShowState: checkboxVibrationShow.checked,
+      vibrationToggle: checkboxVibrationToggle.checked
+    },
+    battery: checkboxBattery.checkbox,
+    networkj: {
+
+    }
+  }
+
+  console.log(setting)
 })
