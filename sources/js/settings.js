@@ -110,9 +110,9 @@ changeToggleStateForDisplay(checkboxVibrationShow, 'vibration')
 
 const checkboxVibrationToggle = document.getElementById('checkbox-vibration-toggle')
 
-const white = 'white'
-const grey = 'grey'
-const black = 'black'
+const white = '#FFFFFF'
+const grey = '#808080'
+const black = '#000000'
 
 const elements = document.getElementsByTagName('*')
 const body = document.getElementsByTagName('body')
@@ -191,9 +191,9 @@ document.getElementById('save-settings').addEventListener('click', () => {
       vibrationShowState: checkboxVibrationShow.checked,
       vibrationToggle: checkboxVibrationToggle.checked
     },
-    battery: checkboxBattery.checkbox,
-    networkj: {
-
+    battery: checkboxBattery.checked,
+    network: {
+      networkShow: checkboxNetworkShow.checked
     }
   }
 
