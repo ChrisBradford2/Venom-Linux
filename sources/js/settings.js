@@ -123,6 +123,29 @@ const sidebars = document.getElementsByClassName('sidebar')
 const inputs = document.getElementsByTagName('input')
 const selects = document.getElementsByTagName('select')
 
+let setting = {
+  id: 1,
+  dateSetting: {
+    day: checkboxDayShow.checked,
+    date: checkboxDateShow.checked,
+    month: checkboxMonthShow.checked,
+    year: checkboxYearShow.checked
+  },
+  hoursSetting: {
+    hours: checkboxHour.checked,
+    minutes: checkboxMinutes.checked,
+    seconds: checkboxSeconds.checked
+  },
+  vibration: {
+    vibrationShowState: checkboxVibrationShow.checked,
+    vibrationToggle: checkboxVibrationToggle.checked
+  },
+  battery: checkboxBattery.checked,
+  network: {
+    networkShow: checkboxNetworkShow.checked
+  }
+}
+
 document.getElementById('checkbox-theme-mode').addEventListener('change', (event) => {
   if (false === event.currentTarget.checked) {
     for (const element of elements) {
@@ -174,28 +197,55 @@ document.getElementById('checkbox-theme-mode').addEventListener('change', (event
   }
 })
 
-document.getElementById('save-settings').addEventListener('click', () => {
-  const setting = {
-    dateSetting: {
-      day: checkboxDayShow.checked,
-      date: checkboxDateShow.checked,
-      month: checkboxMonthShow.checked,
-      year: checkboxYearShow.checked
-    },
-    hoursSetting: {
-      hours: checkboxHour.checked,
-      minutes: checkboxMinutes.checked,
-      seconds: checkboxSeconds.checked
-    },
-    vibration: {
-      vibrationShowState: checkboxVibrationShow.checked,
-      vibrationToggle: checkboxVibrationToggle.checked
-    },
-    battery: checkboxBattery.checked,
-    network: {
-      networkShow: checkboxNetworkShow.checked
-    }
+function UdateObject(db, object) {
+  const transaction = db.transaction('settingStore', 'readwrite')
+  const objectStore = transaction.objectStore('settingStore')
+  const req = objectStore.get(1)
+
+  req.onsuccess = () => {
+    const setting = request.result
+    setting = object
   }
 
-  console.log(setting)
-})
+  const request = indexedDB.open('SettingSave', 1)
+  let db
+  // Create the object store
+  request.onupgradeneeded = (event) => {
+    db = event.target.result
+    db.createObjectStore('settingStore', { keyPath: 'id' })
+  }
+
+  // Add the object to the store
+  request.onsuccess = (event) => {
+    db = event.target.result
+    const transaction = db.transaction('settingStore', 'readwrite')
+    const objectStore = transaction.objectStore('settingStore')
+    objectStore.add(setting)
+  }
+
+  document.getElementById('save-settings').addEventListener('click', () => {
+    setting = {
+      id: 1,
+      dateSetting: {
+        day: checkboxDayShow.checked,
+        date: checkboxDateShow.checked,
+        month: checkboxMonthShow.checked,
+        year: checkboxYearShow.checked
+      },
+      hoursSetting: {
+        hours: checkboxHour.checked,
+        minutes: checkboxMinutes.checked,
+        seconds: checkboxSeconds.checked
+      },
+      vibration: {
+        vibrationShowState: checkboxVibrationShow.checked,
+        vibrationToggle: checkboxVibrationToggle.checked
+      },
+      battery: checkboxBattery.checked,
+      network: {
+        networkShow: checkboxNetworkShow.checked
+      }
+    }
+
+    saveObject(db, setting)
+  })
