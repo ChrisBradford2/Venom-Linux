@@ -51,7 +51,9 @@ const msgError = document.getElementById('error')
 const btnNextGame = document.getElementById('nextGame')
 const btnResetGame = document.getElementById('resetGame')
 const blockImportGame = document.getElementById('blockImportGame')
-const btnBlock = document.getElementById('btnBlock')
+const btnChangeOpp = document.getElementById('changeOpponent')
+
+// const btnBlock = document.getElementById('btnBlock')
 
 /* -----------------------------------------------------------------------------
 * btnStartGame : This will start the game
@@ -74,7 +76,6 @@ btnStartGame.addEventListener('click', function (event) {
       showGame()
       initializeCellAndPlay()
       blockImportGame.style = 'display:none;'
-      btnBlock.style = 'display:block;'
     } else {
       msgError.innerText = 'Names must be different'
       msgError.style.color = 'rgb(165, 51, 51)'
@@ -179,6 +180,7 @@ function initializeCellAndPlay () {
   document.getElementById('checkbox-vibration-toggle').style.backgroundColor = 'red'
   btnResetGame.addEventListener('click', resetBoard)
   btnNextGame.addEventListener('click', nextGame)
+  btnChangeOpp.addEventListener('click', changeOpponent)
 
   const cells = document.getElementsByTagName('td')
 
@@ -269,6 +271,20 @@ async function updateJsonData (scorePlayer1, scorePlayer2) {
 */
 
 btnExportGame.addEventListener('click', function (event) {
+  const date = new Date()
+  const dateString = date.toLocaleString('fr-FR', {
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit'
+  })
+
+  const timeString = date.toLocaleString('fr-FR', {
+    hour12: false,
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit'
+  })
+
   const updateData = JSON.stringify({
     player1,
     score_player1: score.p1,
@@ -283,7 +299,8 @@ btnExportGame.addEventListener('click', function (event) {
   const a = document.createElement('a')
   a.style.display = 'none'
   a.href = url
-  a.download = player1 + '_vs_' + player2 + '_savedGame.json'
+  // format file name
+  a.download = player1 + '_vs_' + player2 + '_' + dateString + '_' + timeString + '.json'
   document.body.appendChild(a)
   a.click()
 
@@ -299,6 +316,38 @@ function nextGame () {
   btnNextGame.style.display = 'none'
   btnResetGame.style.display = 'block'
   resetBoard()
+}
+
+/* -----------------------------------------------------------------------------
+* changeOpponent : Change the opponent in the game
+* -----------------------------------------------------------------------------
+*/
+function changeOpponent () {
+  hideGame()
+  resetBoard()
+  resetInfos()
+  showForm()
+}
+
+/* -----------------------------------------------------------------------------
+* resetInfos : Reset score and names of game
+* -----------------------------------------------------------------------------
+*/
+function resetInfos () {
+  document.getElementById('namePlayer1').value = ''
+  document.getElementById('namePlayer2').value = ''
+  score.p1 = 0
+  score.p2 = 0
+}
+
+/* -----------------------------------------------------------------------------
+* showForm : show names form
+* -----------------------------------------------------------------------------
+*/
+
+function showForm () {
+  const playerForm = document.getElementById('playerForm')
+  playerForm.style.display = 'flex'
 }
 
 /* -----------------------------------------------------------------------------
@@ -324,28 +373,50 @@ function showGame () {
 }
 
 /* -----------------------------------------------------------------------------
+* hideGame : hide game and score board
+* -----------------------------------------------------------------------------
+*/
+
+function hideGame () {
+  const gameBoard = document.getElementById('gameBoard')
+  const infoBlock = document.getElementById('infoBlock')
+  gameBoard.style.display = 'none'
+  infoBlock.style.display = 'none'
+}
+
+/* -----------------------------------------------------------------------------
 * importGame : Import stored game from jsonFile
 * ------------------------------------------------------------------------------
 */
 
 btnImportGame.addEventListener('click', function (event) {
   event.preventDefault()
-  console.log('clicked')
-  this.style.display = 'none'
   OpenJsonFile()
 })
 
 async function OpenJsonFile () {
-  [fileHandle] = await window.showOpenFilePicker()
-  const fileData = await fileHandle.getFile()
-  const fileText = await fileData.text()
-  const dataInJson = JSON.parse(fileText)
-
-  document.getElementById('namePlayer1').value = dataInJson.player1
-  document.getElementById('namePlayer2').value = dataInJson.player2
-  score.p1 = dataInJson.score_player1
-  score.p2 = dataInJson.score_player2
-  isBtnImportDataFromJsonClicked = true
-
-  btnStartGame.click()
+  try {
+    [fileHandle] = await window.showOpenFilePicker()
+    if ('json' !== fileHandle.name.split('.')[1]) {
+      msgError.innerText = 'Please select Json file OR enter valid player name'
+      msgError.style.color = 'rgb(165, 51, 51)'
+    } else {
+      const fileData = await fileHandle.getFile()
+      const fileText = await fileData.text()
+      const dataInJson = JSON.parse(fileText)
+      btnExportGame.textContent = 'Save game'
+      document.getElementById('namePlayer1').value = dataInJson.player1
+      document.getElementById('namePlayer2').value = dataInJson.player2
+      score.p1 = dataInJson.score_player1
+      score.p2 = dataInJson.score_player2
+      isBtnImportDataFromJsonClicked = true
+      btnStartGame.click()
+    }
+  } catch (error) {
+    if (error instanceof DOMException && 'AbortError' === error.name) {
+      console.log('user closed the file picker without choosing a file')
+    } else {
+      throw error
+    }
+  }
 }
