@@ -73,11 +73,13 @@
     <nav class="nav">
       <div class="nav--app-title">Applications</div>
       <div class="nav--date">
+
         <span id="day"></span><span id="date"></span><span id="month"></span
         ><span id="year"></span><span id="hours"></span
         ><span id="separator-hour-minute"></span><span id="minutes"></span
         ><span id="separator-minute-seconds"></span><span id="seconds"></span
         ><span id="ampm"></span>
+
       </div>
       <ul class="nav--infos">
         <li
@@ -97,7 +99,35 @@
         </li>
       </ul>
     </nav>
+    <section class="lock-screen">
+      <div class="lock-screen--content">
+        <div class="lock-screen--content--img">
+          <img src="https://avatars.githubusercontent.com/u/56403640" alt="lock screen" />
+        </div>
+        <div class="lock-screen--content--name">
+          <h1>Venom Linux</h1>
+        </div>
+        <button class="lock-screen--content--login" id="login-btn">Login</button>
+      </div>
+    </section>
     <section class="desktop">
+      <div class="nav--date--mobile">
+        <div class="nav--date--mobile--wrapper">
+          <div class="left">
+            <div class="top">
+              <span id="day-mobile"></span>
+            </div>
+            <div class="bottom">
+              <span id="date-mobile"></span>
+              <span id="month-mobile"></span>
+              <span id="year-mobile"></span>
+            </div>
+          </div>
+          <div class="right">
+            <span id="hours-mobile"></span><span id="separator-hour-minute-mobile"></span><span id="minutes-mobile"></span><span id="separator-minute-seconds-mobile"></span><span id="seconds-mobile"></span><span id="ampm-mobile"></span>
+          </div>
+        </div>
+      </div>
       <div id="application-list" class="desktop--app-list"></div>
     </section>
     <section id="context-menu">
@@ -176,6 +206,12 @@
             >
               Dark Mode
             </button>
+            <button
+            class="bar-item button tablink"
+            onclick="openCity(event, 'lock-mode')"
+          >
+            Lock Mode
+          </button>
           </div>
 
           <div class="tab-content">
@@ -285,12 +321,15 @@
                 value="2"
               />
               <br />
-              <label for="network-select">Choose unity :</label>
-              <select name="pets" id="network-select">
-                <option value="mbps" selected>Mbps</option>
-                <option value="kbps">Kbps</option>
-                <option value="bps">Bps</option>
-              </select>
+              <label for="ping">Nom de domaine du serveur de ping</label>
+              <br>
+              <input
+                type="url"
+                id="domain-ping"
+                name="ping"
+                value="https://venom-linux-seven.vercel.app/assets/img/background_dark.png"
+                required
+              />
             </div>
 
             <div id="dark-mode" class="w3-container city" style="display: none">
@@ -300,6 +339,26 @@
                 <span class="slider round"></span>
                 <span class="description">Enable dark mode</span>
               </label>
+            </div>
+            <div id="lock-mode" class="w3-container city" style="display: none">
+              <h2>Lock Mode</h2>
+              <label for="lock-keys">Lock keys are :</label>
+              <br>
+              <input
+                type="text"
+                id="first-key"
+                name="first-key"
+                value="z"
+                required
+              />
+              and
+              <input
+                type="text"
+                id="second-key"
+                name="second-key"
+                value="q"
+                required
+              />
             </div>
           </div>
         </div>

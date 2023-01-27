@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 console.log('Hello, ESGI!')
 
 /**
@@ -135,6 +136,16 @@ const getCurrentTimeDate = () => {
   document.getElementById('time-month').innerHTML = currentMonth + ' '
   document.getElementById('time-year').innerHTML = currentYear + ' '
 
+  document.getElementById('hours-mobile').innerHTML = currentHour
+  document.getElementById('minutes-mobile').innerHTML = currentMinutes
+  document.getElementById('seconds-mobile').innerHTML = currentSeconds
+  document.getElementById('ampm-mobile').innerHTML = currentAMPM
+  // document.getElementById('time').innerHTML = currentTime
+  document.getElementById('day-mobile').innerHTML = currentDay + ', '
+  document.getElementById('date-mobile').innerHTML = currentDate + ' '
+  document.getElementById('month-mobile').innerHTML = currentMonth + ' '
+  document.getElementById('year-mobile').innerHTML = currentYear + ' '
+
   setTimeout(getCurrentTimeDate, 500)
 }
 getCurrentTimeDate()
@@ -152,7 +163,6 @@ const span = document.getElementById('close-new-file')
 // When the user clicks the button, open the modal
 btn.onclick = function () {
   modal.style.display = 'block'
-  console.log('Get the modal')
 }
 
 // When the user clicks on <span> (x), close the modal
@@ -171,5 +181,56 @@ window.onclick = function (event) {
 window.onkeydown = function (event) {
   if (27 === event.keyCode) {
     modal.style.display = 'none'
+  }
+}
+
+const keysPressed = {}
+let locked = false
+
+document.addEventListener('keydown', (event) => {
+  keysPressed[event.key] = true
+
+  if (keysPressed.z && keysPressed.q && keysPressed.d) {
+    locked = true
+    document.getElementsByClassName('lock-screen')[0].style.display = 'block'
+  }
+})
+
+document.addEventListener('keyup', (event) => {
+  delete keysPressed[event.key]
+})
+
+document.getElementById('login-btn').addEventListener('click', () => {
+  if (locked) {
+    locked = false
+    document.getElementsByClassName('lock-screen')[0].style.display = 'none'
+  }
+})
+
+if ('granted' !== Notification.permission) {
+  document.addEventListener('DOMContentLoaded', () => {
+    spawnNotification('Thank you for using Viper Linux!', '../assets/img/logo_viper.png', 'Welcome!')
+    new Audio('../assets/sounds/welcome.wav').play()
+  })
+}
+
+const spawnNotification = (body, icon, title) => {
+  if ('granted' !== Notification.permission) {
+    Notification.requestPermission().then((permission) => {
+      if ('granted' === permission) {
+        const options = {
+          body,
+          icon
+        }
+        const n = new Notification(title, options)
+        new Audio('../assets/sounds/welcome.wav').play()
+      }
+    })
+  } else {
+    const options = {
+      body,
+      icon
+    }
+    const n = new Notification(title, options)
   }
 }

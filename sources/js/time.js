@@ -4,16 +4,13 @@ const modalTime = document.getElementById('modal-time-application')
 
 // Get the button that opens the modal
 const btnTime = document.getElementById('time-application')
-console.log(btnTime)
 
 // Get the <span> element that closes the modal
 const spanTime = document.getElementById('close-time-application')
-console.log(spanTime)
 
 // When the user clicks the button, open the modal
 btnTime.onclick = function () {
   modalTime.style.display = 'block'
-  console.log('Get the modal')
 }
 
 // When the user clicks on <span> (x), close the modal
@@ -194,37 +191,41 @@ const finishDiv = document.createElement('h3')
 finishDiv.innerHTML = 'Finished'
 const timerWrapper = document.getElementsByClassName('timer-wrapper')[0]
 
+function firstStopCountdown () {
+  pauseCountdown()
+  const music = new Audio(
+    '../assets/sounds/mixkit-clown-horn-at-circus-715.wav'
+  )
+  music.play()
+  // eslint-disable-next-line no-undef
+  multiVibration([150, 150, 500])
+  timerWrapper.appendChild(finishDiv)
+  // eslint-disable-next-line no-undef
+  spawnNotification('The timer have ended', '../assets/img/logo_viper.png', 'Time\'s up!')
+}
+
 function startCountdown () {
-  let hours = document.getElementById('hours-value-timer').value
-  let minutes = document.getElementById('minutes-value-timer').value
-  let seconds = document.getElementById('seconds-value-timer').value
+  let hours = Number(document.getElementById('hours-value-timer').value)
+  let minutes = Number(document.getElementById('minutes-value-timer').value)
+  let seconds = Number(document.getElementById('seconds-value-timer').value)
 
   window.countdown = setInterval(function () {
     // eslint-disable-next-line no-undef
-    seconds--
-    if (0 > seconds) {
+    if (0 === hours && 0 === minutes && 0 === seconds) {
+      firstStopCountdown()
+    } else if (0 !== hours && 0 === minutes && 0 === seconds) {
+      hours--
+      minutes = 59
+      seconds = 59
+    } else if (0 !== minutes && 0 === seconds) {
       seconds = 59
       minutes--
-      if (0 > minutes) {
-        minutes = 59
-        hours--
-        if (0 > hours) {
-          pauseCountdown()
-          const music = new Audio(
-            '../assets/sounds/mixkit-clown-horn-at-circus-715.wav'
-          )
-          music.play()
-          // eslint-disable-next-line no-undef
-          multiVibration([150, 150, 500])
-          timerWrapper.appendChild(finishDiv)
-        }
-      }
+    } else if (0 !== seconds) {
+      seconds--
     }
-
     document.getElementById('hours-value-timer').value = hours
     document.getElementById('minutes-value-timer').value = minutes
     document.getElementById('seconds-value-timer').value = seconds
-    console.log(hours + ':' + minutes + ':' + seconds)
   }, 1000)
   document.getElementById('hours-value-timer').disabled = true
   document.getElementById('minutes-value-timer').disabled = true
