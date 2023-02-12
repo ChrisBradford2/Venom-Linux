@@ -337,6 +337,20 @@ body {
           cursor: pointer;
         }
       }
+      .save {
+        color: white;
+        font-size: 18px;
+        width: 1.5rem;
+        background-color: #00A000;
+        text-align: center;
+        border-radius: 50%;
+        &:hover,
+        &:focus {
+          background-color: #00EA0F;
+          text-decoration: none;
+          cursor: pointer;
+        }
+      }
       h2 {
         margin: .5rem auto;
         margin-left: calc(50% - 32px);
