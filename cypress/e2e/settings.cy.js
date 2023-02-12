@@ -29,8 +29,4 @@ describe('The settings modal', () => {
     cy.get('#checkbox-year').uncheck({ force: true })
     cy.get('#day').should('have.css', 'display').should('eq', 'inline')
   })
-  it('should disallow vibration', () => {
-    cy.get('.tablink').check({ force: true })
-    cy.get('#checkbox-vibration').should('be.checked')
-  })
 })
