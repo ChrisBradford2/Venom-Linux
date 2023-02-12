@@ -633,6 +633,9 @@ body {
   margin-bottom: 50%;
   display: none;
 }
+#blockImportGame {
+  display: none;
+}
 #btnBlock {
   display: flex;
   align-items: flex-start;
@@ -645,6 +648,16 @@ body {
 }
 #startGame {
   align-self: center;
+}
+#importGame {
+  align-self: center;
+}
+#exportGame {
+  color: black;
+  margin-bottom: 10px;
+}
+#changeOpponent {
+  color: black;
 }
 #closeGame {
   float: right;

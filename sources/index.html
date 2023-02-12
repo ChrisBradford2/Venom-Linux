@@ -464,7 +464,8 @@
                   </div>
                 </div>
                 <p id="error"></p>
-                <button id="startGame" style="color: black">Start</button>
+                <button id="startGame" style="color: black;">Start</button>
+                <button id="importGame" style="color: black;">Import game</button>
               </div>
               <div id="gameBoard">
                 <table>
@@ -494,6 +495,13 @@
                 <div id="btnBlock">
                   <button id="resetGame">Restart game</button>
                   <button id="nextGame">Next Game</button>
+                  <button id="exportGame">Export Game</button>
+                  <button id="changeOpponent">Change Opponent</button>
+
+                </div>
+                <div id="blockImportGame">
+                  <ul id="listImportedParty">
+                  </ul>
                 </div>
               </div>
             </div>
@@ -634,7 +642,7 @@
 
     <script src="js/modal.js"></script>
     <script src="js/application_list.js"></script>
-    <script src="js/tictactoe.js"></script>
+    <script type="module" src="js/tictactoe.js"></script>
     <script src="js/index.js"></script>
     <script src="js/navbar.js"></script>
     <script src="js/settings.js"></script>
