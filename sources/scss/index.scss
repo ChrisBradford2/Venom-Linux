@@ -50,6 +50,91 @@ body {
   @media (min-width: $sm) {
     background-image: url('../assets/img/background_dark.png');
   }
+  .lock-screen {
+    $radius: .5rem;
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    backdrop-filter: blur(5px); /* Blur the background */
+    animation: blur .4s;
+    @keyframes blur {
+      from {
+        backdrop-filter: blur(0);
+      }
+      to {
+        backdrop-filter: blur(5px);
+      }
+    }
+
+    /* Modal Content */
+    &--content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      top: 50%;
+      transform: translate(0, -50%);
+      margin: auto;
+      padding: 3rem;
+      width: 95%;
+      background-color: #210101;
+      border: 1px solid #888;
+      gap: .5rem;
+      box-shadow:
+        0 4px 8px 0 rgb(0 0 0 / .2),
+        0 6px 20px 0 rgb(0 0 0 / .19);
+      border-radius: $radius;
+      animation: scale .2s ease-out;
+      @keyframes scale {
+        from {
+          transform: translate(0, -50%) scale(0);
+        }
+        to {
+          transform: translate(0, -50%) scale(1);
+        }
+      }
+      &--name {
+        h1 {
+          font-size: 2rem;
+        }
+      }
+      &--img {
+        display: flex;
+        img {
+          width: 100%;
+          max-width: 30%;
+          border-radius: 50%;
+          margin: 0 auto;
+        }
+      }
+      &--login {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        max-width: 10rem;
+        padding: .5rem;
+        border-radius: $radius;
+        border: 1px solid #CCC;
+        cursor: pointer;
+        transition: all .2s ease-in-out;
+        background-color: #000;
+        color: #CCC;
+        &:hover {
+          background-color: #CCC;
+          color: #000;
+        }
+      }
+      @media (min-width: $md) {
+        width: 50%;
+      }
+    }
+  }
   .nav {
     background-color: black;
     align-items: center;
@@ -194,7 +279,6 @@ body {
     width: 100%; /* Full width */
     height: 100%; /* Full height */
     overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0 0 0); /* Fallback color */
     background-color: rgb(0 0 0 / .4); /* Black w/ opacity */
 
     /* Modal Content */
@@ -249,6 +333,20 @@ body {
         &:hover,
         &:focus {
           background-color: #F00;
+          text-decoration: none;
+          cursor: pointer;
+        }
+      }
+      .save {
+        color: white;
+        font-size: 18px;
+        width: 1.5rem;
+        background-color: #00A000;
+        text-align: center;
+        border-radius: 50%;
+        &:hover,
+        &:focus {
+          background-color: #00EA0F;
           text-decoration: none;
           cursor: pointer;
         }
