@@ -1,19 +1,17 @@
+/* eslint-disable no-undef */
 // Modal
 
 const modal3 = document.getElementById('modal-calculator')
 
 // Get the button that opens the modal
 const btn3 = document.getElementById('calculator-application')
-console.log(btn3)
 
 // Get the <span> element that closes the modal
 const span3 = document.getElementById('close-calculator')
-console.log(span3)
 
 // When the user clicks the button, open the modal
 btn3.onclick = function () {
   modal3.style.display = 'block'
-  console.log('Get the modal')
 }
 
 // When the user clicks on <span> (x), close the modal
@@ -98,11 +96,13 @@ keys.addEventListener('click', e => {
   */
 
   if ('decimal' === action) {
+    singleVibration(100)
     display.textContent = displayedNum + '.'
     actions.push(action)
   }
 
   if ('clear' === action) {
+    singleVibration(100)
     display.textContent = '0'
     calculator.dataset.firstValue = 0
     calculator.dataset.operator = ''
@@ -110,20 +110,19 @@ keys.addEventListener('click', e => {
   }
 
   if ('opposite' === action) {
+    singleVibration(100)
     displayedNum = -displayedNum
     display.textContent = displayedNum
   }
 
   if ('calculate' === action) {
+    multiVibration([100, 100, 50, 100, 50, 100])
     actions.push(action)
     displayedNum = calculate(firstValue, operator, secondValue)
-    console.log(displayedNum)
     if ('0' !== displayedNum && operator !== undefined) display.textContent = calculate(firstValue, operator, secondValue)
     isComplexStatement = false
     actions = []
   }
-
-  console.log(actions)
 })
 
 /**
@@ -134,7 +133,6 @@ keys.addEventListener('click', e => {
  * @returns {string|int}
  */
 function calculate (firstValue, operator, secondValue) {
-  console.log(firstValue, operator, secondValue)
   let result = 0
   switch (operator) {
     case 'plus':

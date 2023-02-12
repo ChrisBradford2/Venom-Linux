@@ -4,30 +4,12 @@
  * Speed test
  */
 
-const imageAddr = 'https://venom-linux-seven.vercel.app/assets/img/background_dark.png'
-const downloadSize = 4995374 // bytes
+const imageAddr = document.getElementById('domain-ping')
+const downloadSize = 5000000 // bytes
 
-function ShowProgressMessage (msg) {
-  if (console) {
-    if ('string' === typeof msg) {
-      console.log(msg)
-    } else {
-      for (let i = 0; i < msg.length; i++) {
-        console.log(msg[i])
-      }
-    }
-  }
-
-  const oProgress = document.getElementById('progress')
-  if (oProgress) {
-    const actualHTML = ('string' === typeof msg) ? msg : msg.join('<br />')
-    oProgress.innerHTML = actualHTML
-  }
-}
-
-function InitiateSpeedDetection () {
+const InitiateSpeedDetection = () => {
   window.setTimeout(MeasureConnectionSpeed, 1)
-};
+}
 
 if (window.addEventListener) {
   window.addEventListener('load', InitiateSpeedDetection, false)
@@ -35,7 +17,7 @@ if (window.addEventListener) {
   window.attachEvent('onload', InitiateSpeedDetection)
 }
 
-function MeasureConnectionSpeed () {
+const MeasureConnectionSpeed = () => {
   let startTime, endTime
   const download = new Image()
   download.onload = function () {
@@ -43,16 +25,22 @@ function MeasureConnectionSpeed () {
     showResults()
   }
 
-  download.onerror = function (_err, _msg) {
-    document.getElementById('speed-test').innerHTML = 'No connexion'
+  download.onerror = function () {
+    if (isValidHttpUrl(imageAddr.value)) {
+      document.getElementById('speed-test').innerHTML = 'Invalid URL'
+    } else if ('false' === navigator.onLine) {
+      document.getElementById('speed-test').innerHTML = 'No connexion'
+    } else {
+      document.getElementById('speed-test').innerHTML = 'Image not found'
+    }
   }
 
   // eslint-disable-next-line prefer-const
   startTime = (new Date()).getTime()
   const cacheBuster = '?nnn=' + startTime
-  download.src = imageAddr + cacheBuster
+  download.src = imageAddr.value + cacheBuster
 
-  function showResults () {
+  const showResults = () => {
     const duration = (endTime - startTime) / 1000
     const bitsLoaded = downloadSize * 8
     const speedBps = (bitsLoaded / duration).toFixed(2)
@@ -63,17 +51,28 @@ function MeasureConnectionSpeed () {
 }
 
 const timeInterval = document.getElementById('number-timeout')
-let intervalHasChanged = false
+let interval = setInterval(MeasureConnectionSpeed, timeInterval.value * 1000)
 
-let interval = setInterval(MeasureConnectionSpeed, timeInterval.value * 1000) // setting the loop with time interval
-console.log('initial : ' + interval)
-
-timeInterval.addEventListener('change', (e) => {
-  intervalHasChanged = true
-  timeInterval.value = e.target.value
+timeInterval.addEventListener('change', function () {
   clearInterval(interval)
-  interval = setInterval(MeasureConnectionSpeed, timeInterval.value * 1000) // setting the loop with time interval
-  console.log('modified : ' + interval)
+  interval = setInterval(MeasureConnectionSpeed, timeInterval.value * 1000)
+})
+
+function isValidHttpUrl (string) {
+  let url
+  try {
+    url = new URL(string)
+  } catch (_err) {
+    return false
+  }
+  return 'http:' === url.protocol || 'https:' === url.protocol
+}
+
+imageAddr.addEventListener('change', function () {
+  if (isValidHttpUrl(imageAddr.value)) {
+    clearInterval(interval)
+    interval = setInterval(MeasureConnectionSpeed, timeInterval.value * 1000)
+  }
 })
 
 /**
@@ -120,12 +119,16 @@ setInterval(getBatteryPerMinutes(), 30000)
 
 function singleVibration (time) {
   // vibrate device for ${time} milliseconds
-  window.navigator.vibrate(time)
+  if (true === vibrationIsAllowed) {
+    window.navigator.vibrate(time)
+  }
 }
 
 function multiVibration (array) {
   // Basically it is performed as a series of [VIBRATION] [PAUSE] [VIBRATION] [PAUSE] [VIBRATION] [PAUSE]...
-  window.navigator.vibrate(array)
+  if (true === vibrationIsAllowed) {
+    window.navigator.vibrate(array)
+  }
 }
 
 let vibrationIsAllowed = true
