@@ -339,11 +339,12 @@ body {
       }
       .save {
         color: white;
-        font-size: 18px;
+        font-size: 1.125rem;
         width: 1.5rem;
         background-color: #00A000;
         text-align: center;
         border-radius: 50%;
+        margin-right: .5rem;
         &:hover,
         &:focus {
           background-color: #00EA0F;
