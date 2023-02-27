@@ -4,7 +4,7 @@
 setupModal('modal-settings-application', 'settings-application', 'close-settings-application')
 
 // eslint-disable-next-line no-unused-vars
-function openCity (evt, cityName) {
+function openTab (evt, id) {
   let i, x, tablinks
   x = document.getElementsByClassName('city')
   for (i = 0; i < x.length; i++) {
@@ -14,7 +14,7 @@ function openCity (evt, cityName) {
   for (i = 0; i < x.length; i++) {
     tablinks[i].className = tablinks[i].className.replace(' red', '')
   }
-  document.getElementById(cityName).style.display = 'block'
+  document.getElementById(id).style.display = 'block'
   evt.currentTarget.className += ' red'
 }
 

@@ -1,28 +1,28 @@
 // eslint-disable-next-line no-unused-vars
-function newModal (modalId, btnId, spanId) {
-  // Get the modal
-  const modal = document.getElementById(modalId)
+function setupModal (modal, btn, span) {
+  const modalEl = document.getElementById(modal)
+  const btnEl = document.getElementById(btn)
+  const closeEl = document.getElementById(span)
 
-  // Get the button that opens the modal
-  const btn = document.getElementById(btnId)
-
-  // Get the <span> element that closes the modal
-  const span = document.getElementById(spanId)
-
-  // When the user clicks the button, open the modal
-  btn.onclick = function () {
-    modal.style.display = 'block'
+  btnEl.onclick = function () {
+    modalEl.style.display = 'block'
   }
 
-  // When the user clicks on <span> (x), close the modal
-  span.onclick = function () {
-    modal.style.display = 'none'
+  closeEl.onclick = function () {
+    modalEl.style.display = 'none'
   }
 
   // When the user clicks anywhere outside of the modal, close it
   window.onclick = function (event) {
-    if (event.target === modal) {
-      modal.style.display = 'none'
+    if (event.target === modalEl) {
+      modalEl.style.display = 'none'
+    }
+  }
+
+  // When the user clicks on 'esc' key, close the modal
+  window.onkeydown = function (event) {
+    if (27 === event.keyCode) {
+      modalEl.style.display = 'none'
     }
   }
 }
