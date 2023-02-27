@@ -246,6 +246,8 @@ document.getElementById('checkbox-theme-mode').addEventListener('change', (event
     for (const select of selects) {
       select.style.backgroundColor = null
     }
+    document.getElementById('startGame').style.color = black
+    document.getElementById('importGame').style.color = black
   }
 })
 document.getElementById('save-settings').addEventListener('click', () => {
