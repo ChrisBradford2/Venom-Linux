@@ -1,4 +1,5 @@
 /* eslint-disable no-undef */
+
 // Modal
 
 setupModal('modal-calculator', 'calculator-application', 'close-calculator')
