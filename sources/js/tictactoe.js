@@ -1,27 +1,5 @@
-const modalTicTacToe = document.getElementById('modal-tictactoe')
-
-// Get the button that opens the modal
-const btnTicTacToe = document.getElementById('tictactoe-application')
-
-// Get the <span> element that closes the modal
-const spanTicTacToe = document.getElementById('close-tictactoe')
-
-// When the user clicks the button, open the modal
-btnTicTacToe.onclick = function () {
-  modalTicTacToe.style.display = 'block'
-}
-
-// When the user clicks on <span> (x), close the modal
-spanTicTacToe.onclick = function () {
-  modalTicTacToe.style.display = 'none'
-}
-
-// When the user clicks anywhere outside of the modal, close it.
-window.onclick = function (event) {
-  if (event.target === modalTicTacToe) {
-    modalTicTacToe.style.display = 'none'
-  }
-}
+// eslint-disable-next-line no-undef
+setupModal('modal-tictactoe', 'tictactoe-application', 'close-tictactoe')
 
 /* -----------------------------------------------------------------------------
 * Global Variables
