@@ -44,9 +44,15 @@ request.onupgradeneeded = (event) => {
 function changeToggleStateForDisplay (element, target) {
   element.addEventListener('change', (event) => {
     if (event.currentTarget.checked) {
-      document.getElementById(target).style.display = 'none'
+      const targetElement = document.getElementById(target)
+      if (targetElement) {
+        targetElement.style.display = 'none'
+      }
     } else {
-      document.getElementById(target).style.display = 'inline'
+      const targetElement = document.getElementById(target)
+      if (targetElement) {
+        targetElement.style.display = 'inline'
+      }
     }
   })
 }
