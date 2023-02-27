@@ -1,6 +1,7 @@
 /* eslint-disable prefer-const */
 
-// eslint-disable-next-line no-undef
+import setupModal from './lib/modal.js'
+
 setupModal('modal-settings-application', 'settings-application', 'close-settings-application')
 
 // eslint-disable-next-line no-unused-vars

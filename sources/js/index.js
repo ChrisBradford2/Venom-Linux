@@ -1,3 +1,5 @@
+import setupModal from './lib/modal.js'
+
 /* eslint-disable no-unused-vars */
 console.log('Hello, ESGI!')
 
@@ -150,7 +152,6 @@ const getCurrentTimeDate = () => {
 }
 getCurrentTimeDate()
 
-// eslint-disable-next-line no-undef
 setupModal('modal-new-file', 'new-file', 'close-new-file')
 
 const keysPressed = {}

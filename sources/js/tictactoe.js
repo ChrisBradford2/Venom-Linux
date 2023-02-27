@@ -1,4 +1,5 @@
-// eslint-disable-next-line no-undef
+import setupModal from './lib/modal.js'
+
 setupModal('modal-tictactoe', 'tictactoe-application', 'close-tictactoe')
 
 /* -----------------------------------------------------------------------------

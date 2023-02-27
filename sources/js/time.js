@@ -1,4 +1,5 @@
-// eslint-disable-next-line no-undef
+import setupModal from './lib/modal.js'
+
 setupModal('modal-time-application', 'time-application', 'close-time-application')
 
 const start = document.getElementById('button-start')
@@ -80,74 +81,12 @@ save.onclick = function () {
     '</li>'
 }
 
-/*
-
-window.onload = function () {
-  let seconds = 0
-  let tens = 0
-  const appendTens = document.getElementById('tens')
-  const appendSeconds = document.getElementById('secs')
-  const buttonStart = document.getElementById('button-start')
-  const buttonSave = document.getElementById('button-save')
-  const buttonStop = document.getElementById('button-stop')
-  const buttonReset = document.getElementById('button-reset')
-  const listSave = document.getElementById('list-save')
-  let Interval
-
-  buttonStart.onclick = function () {
-    clearInterval(Interval)
-    Interval = setInterval(startTimer, 10)
-  }
-
-  buttonSave.onclick = function () {
-    listSave.innerHTML += '<li>' + seconds + ':' + tens + '</li>'
-  }
-
-  buttonStop.onclick = function () {
-    clearInterval(Interval)
-  }
-
-  buttonReset.onclick = function () {
-    clearInterval(Interval)
-    tens = '00'
-    seconds = '00'
-    appendTens.innerHTML = tens
-    appendSeconds.innerHTML = seconds
-    listSave.innerHTML = ''
-  }
-
-  function startTimer () {
-    tens++
-
-    if (9 >= tens) {
-      appendTens.innerHTML = '0' + tens
-    }
-
-    if (9 < tens) {
-      appendTens.innerHTML = tens
-    }
-
-    if (99 < tens) {
-      seconds++
-      appendSeconds.innerHTML = '0' + seconds
-      tens = 0
-      appendTens.innerHTML = '0' + 0
-    }
-
-    if (9 < seconds) {
-      appendSeconds.innerHTML = seconds
-    }
-  }
-}
-
-*/
-
 const getBtnMinus = document.getElementsByClassName('btn-minus')
 const getBtnPlus = document.getElementsByClassName('btn-plus')
 
 for (let i = 0; i < getBtnPlus.length; i++) {
   getBtnPlus[i].addEventListener('click', function () {
-    // eslint-disable-next-line no-undef
+    // eslint-disable-next-line
     singleVibration(100)
     const getNumber = this.parentElement.querySelector('input[type=number]')
     const getNumberValue = parseInt(getNumber.value)
@@ -158,7 +97,7 @@ for (let i = 0; i < getBtnPlus.length; i++) {
 
 for (let i = 0; i < getBtnMinus.length; i++) {
   getBtnMinus[i].addEventListener('click', function () {
-    // eslint-disable-next-line no-undef
+    // eslint-disable-next-line
     singleVibration(100)
     const getNumber = this.parentElement.querySelector('input[type=number]')
     const getNumberValue = parseInt(getNumber.value)
@@ -180,10 +119,10 @@ function firstStopCountdown () {
     '../assets/sounds/mixkit-clown-horn-at-circus-715.wav'
   )
   music.play()
-  // eslint-disable-next-line no-undef
+  // eslint-disable-next-line
   multiVibration([150, 150, 500])
   timerWrapper.appendChild(finishDiv)
-  // eslint-disable-next-line no-undef
+  // eslint-disable-next-line
   spawnNotification('The timer have ended', '../assets/img/logo_viper.png', 'Time\'s up!')
 }
 
@@ -193,7 +132,6 @@ function startCountdown () {
   let seconds = Number(document.getElementById('seconds-value-timer').value)
 
   window.countdown = setInterval(function () {
-    // eslint-disable-next-line no-undef
     if (0 === hours && 0 === minutes && 0 === seconds) {
       firstStopCountdown()
     } else if (0 !== hours && 0 === minutes && 0 === seconds) {

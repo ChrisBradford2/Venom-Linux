@@ -1,5 +1,5 @@
 /* eslint-disable no-undef */
-// Modal
+import setupModal from './lib/modal.js'
 
 setupModal('modal-calculator', 'calculator-application', 'close-calculator')
 
