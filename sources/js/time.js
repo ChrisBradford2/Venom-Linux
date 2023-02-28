@@ -1,4 +1,5 @@
 import setupModal from './lib/modal.js'
+import spawnNotification from './lib/notification.js'
 
 setupModal('modal-time-application', 'time-application', 'close-time-application')
 
@@ -122,7 +123,6 @@ function firstStopCountdown () {
   // eslint-disable-next-line
   multiVibration([150, 150, 500])
   timerWrapper.appendChild(finishDiv)
-  // eslint-disable-next-line
   spawnNotification('The timer have ended', '../assets/img/logo_viper.png', 'Time\'s up!')
 }
 

@@ -1,4 +1,5 @@
 import setupModal from './lib/modal.js'
+import spawnNotification from './lib/notification.js'
 
 /* eslint-disable no-unused-vars */
 console.log('Hello, ESGI!')
@@ -182,25 +183,4 @@ if ('granted' !== Notification.permission) {
     spawnNotification('Thank you for using Viper Linux!', '../assets/img/logo_viper.png', 'Welcome!')
     new Audio('../assets/sounds/welcome.wav').play()
   })
-}
-
-const spawnNotification = (body, icon, title) => {
-  if ('granted' !== Notification.permission) {
-    Notification.requestPermission().then((permission) => {
-      if ('granted' === permission) {
-        const options = {
-          body,
-          icon
-        }
-        const n = new Notification(title, options)
-        new Audio('../assets/sounds/welcome.wav').play()
-      }
-    })
-  } else {
-    const options = {
-      body,
-      icon
-    }
-    const n = new Notification(title, options)
-  }
 }
