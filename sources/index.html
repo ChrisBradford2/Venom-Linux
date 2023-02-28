@@ -648,10 +648,25 @@
     <script src="js/settings.js" type="module"></script>
     <script src="js/calculator.js" type="module"></script>
     <script src="js/time.js" type="module"></script>
-    <script src="js/sentry.js" type="module"></script>
     <script
       src="https://kit.fontawesome.com/ca13fc92c5.js"
       crossorigin="anonymous"
     ></script>
+    <script
+      src="https://browser.sentry-cdn.com/7.39.0/bundle.tracing.min.js"
+      integrity="sha384-gVfRL0U1cyt9MP7bvpuo2Uli/nef/BzPnzYkYzqM4mKjhsDsxSWguHp0V215syHh"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      Sentry.init({
+  dsn: 'https://b0bcad657c8744e186cbd52ca70831a7@o4504758412050432.ingest.sentry.io/4504758419783680',
+  // this assumes your build process replaces `process.env.npm_package_version` with a value
+  integrations: [new Sentry.BrowserTracing()],
+
+  // We recommend adjusting this value in production, or using tracesSampler
+  // for finer control
+  tracesSampleRate: 1.0
+})
+    </script>
   </body>
 </html>
