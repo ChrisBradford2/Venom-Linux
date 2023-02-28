@@ -217,7 +217,7 @@
           <div class="tab-content">
             <div
               id="date-heure"
-              class="w3-container city"
+              class="w3-container tab-item"
               style="display: block"
             >
               <h2>Date et heure</h2>
@@ -269,7 +269,7 @@
 
             <div
               id="vibration-tab"
-              class="w3-container city"
+              class="w3-container tab-item"
               style="display: none"
             >
               <h2>Vibration</h2>
@@ -292,7 +292,7 @@
 
             <div
               id="battery-tab"
-              class="w3-container city"
+              class="w3-container tab-item"
               style="display: none"
             >
               <h2>Battery</h2>
@@ -303,7 +303,7 @@
               </label>
             </div>
 
-            <div id="network" class="w3-container city" style="display: none">
+            <div id="network" class="w3-container tab-item" style="display: none">
               <h2>Network</h2>
               <label class="switch">
                 <input id="checkbox-network-show" type="checkbox" />
@@ -332,7 +332,7 @@
               />
             </div>
 
-            <div id="dark-mode" class="w3-container city" style="display: none">
+            <div id="dark-mode" class="w3-container tab-item" style="display: none">
               <h2>Dark Mode</h2>
               <label class="switch">
                 <input id="checkbox-theme-mode" type="checkbox" checked />
@@ -340,7 +340,7 @@
                 <span class="description">Enable dark mode</span>
               </label>
             </div>
-            <div id="lock-mode" class="w3-container city" style="display: none">
+            <div id="lock-mode" class="w3-container tab-item" style="display: none">
               <h2>Lock Mode</h2>
               <label for="lock-keys">Lock keys are :</label>
               <br>
@@ -545,7 +545,7 @@
           <div class="tab-content">
             <div
               id="current-date"
-              class="w3-container city"
+              class="w3-container tab-item"
               style="display: block"
             >
               <h2>Current Date</h2>
@@ -564,7 +564,7 @@
               </div>
             </div>
 
-            <div id="stopwatch" class="w3-container city" style="display: none">
+            <div id="stopwatch" class="w3-container tab-item" style="display: none">
               <h2>Stopwatch</h2>
               <p id="stopwatch-time">00:00:00:00</p>
               <button class="button-stylised" id="button-start">Start</button>
@@ -574,7 +574,7 @@
               <ul id="list-save"></ul>
             </div>
 
-            <div id="timer" class="w3-container city" style="display: none">
+            <div id="timer" class="w3-container tab-item" style="display: none">
               <h2>Timer</h2>
               <div class="timer-wrapper">
                 <form action="javascript:void(0);">
@@ -640,8 +640,9 @@
       </div>
     </section>
 
+    <script src="js/lib/tabItem.js"></script>
     <script src="js/application_list.js"></script>
-    <script type="module" src="js/tictactoe.js"></script>
+    <script src="js/tictactoe.js" type="module"></script>
     <script src="js/index.js" type="module"></script>
     <script src="js/navbar.js"></script>
     <script src="js/settings.js" type="module"></script>
