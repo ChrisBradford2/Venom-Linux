@@ -1,6 +1,6 @@
 /* eslint-disable prefer-const */
 // eslint-disable-next-line no-unused-vars
-function openTabisx (evt, id) {
+function openTab (evt, id) {
   let i, x, tablinks
   x = document.getElementsByClassName('tab-item')
   for (i = 0; i < x.length; i++) {
